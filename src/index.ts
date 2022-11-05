@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 
 import { Gradient } from '$utils/gradient.js';
 
@@ -82,3 +83,48 @@ window.Webflow.push(() => {
     '<'
   );
 });
+
+gsap.registerPlugin(ScrollTrigger);
+
+const paths = document.querySelectorAll('.feature-path');
+const featureItems = document.querySelectorAll('.template-features_item');
+
+for (let i = 0; i < paths.length; i++) {
+  const path = paths[i],
+    length = path.getTotalLength();
+
+  path.style.strokeDasharray = length;
+  path.style.strokeDashoffset = length;
+}
+
+let featureItem;
+
+for (let i = 0; i < featureItems.length; i++) {
+  featureItem = featureItems[i];
+  gsap.set(featureItem, { opacity: 0, y: 100 });
+  gsap.to(featureItem, {
+    scrollTrigger: {
+      trigger: featureItem,
+      start: '30% bottom',
+      end: '50%',
+      // scrub: 1,
+      // markers: true
+    },
+    duration: 1,
+    opacity: 1,
+    y: 0,
+    stagger: 0.5,
+    immediateRender: false,
+  });
+
+  gsap.to(paths[i], {
+    strokeDashoffset: 0,
+    stroke: '#DCD2D2',
+    duration: 3,
+    // stagger: 0.7,
+    scrollTrigger: {
+      trigger: featureItem,
+      start: '30% bottom',
+    },
+  });
+}
