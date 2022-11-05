@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.3.0
+
+### Minor Changes
+
+- 50f0ac5: Added svg animation
+
 ## 1.2.0
 
 ### Minor Changes
