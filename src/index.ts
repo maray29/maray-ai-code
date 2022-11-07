@@ -43,9 +43,18 @@ window.Webflow.push(() => {
 
   loadingTl.to(counter, {
     onUpdate: updateCounter,
-    duration: 2,
+    duration: 1.25,
     value: 100,
   });
+  loadingTl.to(
+    counterIcon,
+    {
+      rotate: 120,
+      ease: 'power2.out',
+      duration: 1.25,
+    },
+    '<'
+  );
 
   //Loading screen animation
   loadingTl.to('.loading-screen', {
