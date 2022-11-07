@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { Gradient } from '$utils/gradient.js';
 
@@ -24,20 +24,38 @@ window.Webflow.push(() => {
   // }
 
   // runSplit();
+  // Loader counter
+  const counter = {
+    value: 75,
+  };
+
+  const counterText = document.querySelector("[am-element='counter-text']");
+  const counterIcon = document.querySelector("[am-element='counter-icon']");
+  console.log(counterText);
+
+  function updateCounter() {
+    const progress = Math.round(counter.value);
+    counterText.textContent = progress.toString();
+  }
 
   const loadingTl = gsap.timeline();
-  loadingTl.to('.loading-icon', { rotate: 360, ease: 'none', duration: 0.8 });
+  // loadingTl.to(counterIcon, { rotate: 360, ease: 'none', duration: 4 });
 
+  loadingTl.to(counter, {
+    onUpdate: updateCounter,
+    duration: 2,
+    value: 100,
+  });
+
+  //Loading screen animation
   loadingTl.to('.loading-screen', {
     yPercent: -100,
-    delay: 0.5,
     duration: 0.85,
     ease: 'power2.out',
   });
   loadingTl.to(
     '.loading-shape',
     {
-      // yPercent: -100,
       top: '100%',
       duration: 0.85,
       ease: 'power2.out',
@@ -45,6 +63,7 @@ window.Webflow.push(() => {
     '<'
   );
 
+  // Heading animation
   loadingTl.from(
     '.header-home_heading-v3',
     {
@@ -57,7 +76,7 @@ window.Webflow.push(() => {
     },
     '<'
   );
-
+  // Heading cubes image animation
   loadingTl.from(
     '.header_image',
     {
@@ -71,6 +90,7 @@ window.Webflow.push(() => {
     '<'
   );
 
+  // The text message animation that is below the header.
   loadingTl.from(
     '.message_text',
     {
