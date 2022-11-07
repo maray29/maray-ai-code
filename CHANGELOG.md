@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.4.1
+
+### Patch Changes
+
+- 67d12e3: Changed duration and added icon animation.
+
 ## 1.4.0
 
 ### Minor Changes
