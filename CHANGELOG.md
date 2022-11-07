@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.4.0
+
+### Minor Changes
+
+- 182383d: Added counter animation and fixed loading screen flickering.
+
 ## 1.3.0
 
 ### Minor Changes
