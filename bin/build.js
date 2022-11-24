@@ -5,7 +5,7 @@ const buildDirectory = 'dist';
 const production = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const entryPoints = ['src/index.ts'];
+const entryPoints = ['src/index.ts', 'src/blog-os.ts'];
 
 /**
  * Default Settings
