@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.5.0
+
+### Minor Changes
+
+- 283cabc: Developed section heading animation
+
 ## 1.4.1
 
 ### Patch Changes
