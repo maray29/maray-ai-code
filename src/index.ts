@@ -279,3 +279,11 @@ for (let i = 0; i < featureItems.length; i++) {
     },
   });
 }
+
+/* Set Footer Copyright Year */
+function setCopyrightYear() {
+  const copyRightYear = document.querySelector('[am-element="copyright-year"]');
+  copyRightYear.textContent = new Date().getFullYear();
+}
+
+setCopyrightYear();
