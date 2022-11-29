@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.6.0
+
+### Minor Changes
+
+- 5855f73: Developed blog os landing page animation.
+
 ## 1.5.0
 
 ### Minor Changes
