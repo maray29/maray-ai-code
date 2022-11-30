@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.6.3
+
+### Patch Changes
+
+- 88060d2: Removed gsap markers
+
 ## 1.6.2
 
 ### Patch Changes
