@@ -211,7 +211,7 @@ window.Webflow.push(() => {
       trigger: templateHeadingCard,
       start: 'top bottom',
       end: 'bottom top',
-      markers: true,
+      // markers: true,
       scrub: 1,
     },
   });
