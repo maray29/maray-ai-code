@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.6.4
+
+### Patch Changes
+
+- 3cca094: Removed gsap markers
+
 ## 1.6.3
 
 ### Patch Changes
