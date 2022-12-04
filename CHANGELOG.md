@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.6.5
+
+### Patch Changes
+
+- ab762db: Fixed scrolltrigger not firing with lazy loaded images.
+
 ## 1.6.4
 
 ### Patch Changes
