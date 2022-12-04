@@ -25,7 +25,7 @@ window.Webflow.push(() => {
       trigger: templateHeadingCard,
       start: 'top bottom',
       end: 'bottom top',
-      markers: true,
+      // markers: true,
       scrub: 1,
     },
   });
@@ -71,7 +71,7 @@ window.Webflow.push(() => {
       trigger: blogosHeadingCard,
       start: 'top bottom',
       end: 'bottom top',
-      markers: true,
+      // markers: true,
       scrub: 1,
     },
   });
@@ -87,7 +87,7 @@ window.Webflow.push(() => {
         trigger: blogosHeadingCard,
         start: 'top bottom',
         end: 'bottom top',
-        markers: true,
+        // markers: true,
         scrub: 1,
       },
       onComplete: () => {
