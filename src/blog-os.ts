@@ -14,42 +14,7 @@ window.Webflow.push(() => {
   const templateScreenshots = document.querySelectorAll('[am-element="template-screenshot"]');
 
   const templateFeatures = document.querySelector('[am-element="template-features"');
-
-  // Section heading animation
-  gsap.from(blogosHeadingCard, {
-    y: 500,
-    // ease: 'none',
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: blogosHeadingCard,
-      start: 'top bottom',
-      end: 'bottom top',
-      // markers: true,
-      scrub: 1,
-    },
-  });
-
   let screenshotMoveSpeed = 100;
-
-  // Section screenshots animation
-  blogosScreenshots.forEach((screenshot) => {
-    screenshotMoveSpeed += 150;
-    gsap.from(screenshot, {
-      y: screenshotMoveSpeed,
-      // ease: 'none',
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: blogosHeadingCard,
-        start: 'top bottom',
-        end: 'bottom top',
-        // markers: true,
-        scrub: 1,
-      },
-      onComplete: () => {
-        screenshotMoveSpeed = 100;
-      },
-    });
-  });
 
   // Section heading animation
   gsap.from(templateHeadingCard, {
@@ -60,7 +25,7 @@ window.Webflow.push(() => {
       trigger: templateHeadingCard,
       start: 'top bottom',
       end: 'bottom top',
-      // markers: true,
+      markers: true,
       scrub: 1,
     },
   });
@@ -95,6 +60,40 @@ window.Webflow.push(() => {
       // markers: true,
       scrub: 1,
     },
+  });
+
+  // Section heading animation
+  gsap.from(blogosHeadingCard, {
+    y: 500,
+    // ease: 'none',
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: blogosHeadingCard,
+      start: 'top bottom',
+      end: 'bottom top',
+      markers: true,
+      scrub: 1,
+    },
+  });
+
+  // Section screenshots animation
+  blogosScreenshots.forEach((screenshot) => {
+    screenshotMoveSpeed += 150;
+    gsap.from(screenshot, {
+      y: screenshotMoveSpeed,
+      // ease: 'none',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: blogosHeadingCard,
+        start: 'top bottom',
+        end: 'bottom top',
+        markers: true,
+        scrub: 1,
+      },
+      onComplete: () => {
+        screenshotMoveSpeed = 100;
+      },
+    });
   });
 
   const paths = document.querySelectorAll('.feature-path');
