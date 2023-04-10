@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.7.0
+
+### Minor Changes
+
+- 3c074f0: Update codebase.
+
 ## 1.6.7
 
 ### Patch Changes
