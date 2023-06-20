@@ -1,4 +1,5 @@
 import * as esbuild from 'esbuild';
+import { glsl } from 'esbuild-plugin-glsl';
 import { readdirSync } from 'fs';
 import { join, sep } from 'path';
 
@@ -7,7 +8,13 @@ const BUILD_DIRECTORY = 'dist';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const ENTRY_POINTS = ['src/index.ts', 'src/blog-os.ts', 'src/blog-post.js'];
+const ENTRY_POINTS = [
+  'src/index.ts',
+  'src/blog-os.ts',
+  'src/blog-post.ts',
+  'src/wf-landing-page.js',
+  'src/portfolio.js',
+];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
@@ -26,6 +33,11 @@ const context = await esbuild.context({
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
+  plugins: [
+    glsl({
+      minify: true,
+    }),
+  ],
 });
 
 // Build files in prod
@@ -124,7 +136,7 @@ class App {
   // Rest of the code
 }
 
-window.addEventListener('load', () => {
-  const app = new App(); // eslint-disable-line
-  console.log('Loaded');
-});
+// window.addEventListener('load', () => {
+//   const app = new App(); // eslint-disable-line
+//   console.log('Loaded');
+// });

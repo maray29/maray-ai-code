@@ -53,10 +53,16 @@
   },
   "dependencies": {
     "@finsweet/ts-utils": "^0.33.2",
+    "@studio-freight/lenis": "^1.0.16",
+    "esbuild-plugin-glsl": "^1.2.1",
     "gsap": "^3.11.3",
     "highlight.js": "^11.7.0",
+    "lodash": "^4.17.21",
     "postscribe": "^2.0.8",
     "showdown": "^2.1.0",
-    "split-type": "^0.3.3"
+    "split-type": "^0.3.3",
+    "stats.js": "^0.17.0",
+    "three": "^0.153.0",
+    "tweakpane": "^3.1.10"
   }
 }

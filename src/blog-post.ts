@@ -121,7 +121,6 @@ window.Webflow.push(() => {
   let p = contains('p', 'CODE');
   let code = contains('code', 'CODE');
   let snips = [].concat(p, code);
-  console.log(snips);
 
   snips.forEach(formatCode);
   hljs.registerLanguage('javascript', javascript);
