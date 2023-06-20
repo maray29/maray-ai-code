@@ -1,5 +1,15 @@
 # @finsweet/developer-starter
 
+## 1.8.0
+
+### Minor Changes
+
+- d87c034: develop portfolio & webflow pages
+
+### Patch Changes
+
+- f785645: Update packages and template.
+
 ## 1.7.0
 
 ### Minor Changes
