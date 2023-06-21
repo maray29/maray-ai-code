@@ -64,13 +64,13 @@ class App {
       // syncTouch: true,
     });
 
-    this.lenis.on('scroll', ({ scroll }) => {
-      // update our scroll manager values
-      // this.stage.updateScrollValues(scroll)
-      if (this.stage) {
-        this.stage.animateOnScroll(0, scroll);
-      }
-    });
+    // this.lenis.on('scroll', ({ scroll }) => {
+    //   // update our scroll manager values
+    //   // this.stage.updateScrollValues(scroll)
+    //   if (this.stage) {
+    //     this.stage.animateOnScroll(0, scroll);
+    //   }
+    // });
 
     this.lenis.on('scroll', ScrollTrigger.update);
 
