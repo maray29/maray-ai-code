@@ -59,7 +59,7 @@ class App {
 
   createLenis() {
     this.lenis = new Lenis({
-      duration: 2.5,
+      // duration: 2.5,
       // normalizeWheel: true,
       // syncTouch: true,
     });
@@ -111,7 +111,6 @@ class App {
     }
 
     gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-    console.log('Cursor: ', cursor);
 
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     this.mouse = { x: pos.x, y: pos.y };

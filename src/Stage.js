@@ -376,7 +376,7 @@ export default class Stage {
       particleMin: 4,
       particleMax: 10,
     });
-    this.animateOnScroll(0, window.scrollY);
+    // this.animateOnScroll(0, window.scrollY);
     gsap.from(this.sphere.mesh.position, {
       y: this.moveSphereUpNewPosY - 100,
       duration: 1,
