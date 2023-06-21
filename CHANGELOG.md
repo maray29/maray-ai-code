@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.5
+
+### Patch Changes
+
+- c20f75c: 5
+
 ## 1.8.4
 
 ### Patch Changes
