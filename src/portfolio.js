@@ -72,7 +72,7 @@ class App {
       }
     });
 
-    lenis.on('scroll', ScrollTrigger.update);
+    this.lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
       this.lenis.raf(time * 1000);
