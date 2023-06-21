@@ -105,16 +105,15 @@ export default class Stage {
     this.bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight, 0.1, 0.1, 0.1)
     );
+    this.effect1 = new ShaderPass(AberrationShader);
 
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(this.renderScene);
 
     if (!this.isIOS) {
       this.composer.addPass(this.bloomPass);
+      this.composer.addPass(this.effect1);
     }
-
-    this.effect1 = new ShaderPass(AberrationShader);
-    this.composer.addPass(this.effect1);
   }
 
   #render() {
@@ -231,8 +230,6 @@ export default class Stage {
 
     const { width, height } = this.viewport;
 
-    console.log(this.viewport);
-
     // this.screen.set(width, height);
     // Adjust renderer
     this.renderer.setSize(width, height);
@@ -246,7 +243,9 @@ export default class Stage {
     this.composer.setSize(width, height);
 
     // Resize the render targets for post processing
-    this.bloomPass.setSize(width, height);
+    if (this.bloomPass) {
+      this.bloomPass.setSize(width, height);
+    }
     this.effect1.setSize(width, height);
 
     // Call sphere's resize function if it exists

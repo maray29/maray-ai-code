@@ -97,30 +97,51 @@ window.Webflow.push(() => {
   );
 
   // Scroll based animations
-  gsap.to(
-    bgImg,
-    {
-      y: -100,
-      scrollTrigger: {
-        trigger: bgImg,
-        start: 'top 30%',
-        end: 'bottom top',
-        scrub: true,
-      },
-    },
-    'start'
-  );
+  let mm = gsap.matchMedia(),
+    breakPoint = 768;
 
-  gsap.to(headerContent, {
-    y: -80,
-    duration: 1,
-    scrollTrigger: {
-      trigger: '.portfolio_nav',
-      start: 'top top',
-      end: '+300%',
-      scrub: true,
+  mm.add(
+    {
+      // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
+      isDesktop: `(min-width: ${breakPoint}px)`,
+      isMobile: `(max-width: ${breakPoint - 1}px)`,
+      reduceMotion: '(prefers-reduced-motion: reduce)',
     },
-  });
+    (context) => {
+      // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
+      let { isDesktop, isMobile, reduceMotion } = context.conditions;
+
+      gsap.to(
+        bgImg,
+        {
+          yPercent: isDesktop ? -10 : -5,
+          scrollTrigger: {
+            trigger: bgImg,
+            start: 'top 30%',
+            end: 'bottom top',
+            scrub: true,
+          },
+        },
+        'start'
+      );
+
+      gsap.to(headerContent, {
+        yPercent: isDesktop ? -40 : -20,
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.portfolio_nav',
+          start: 'top top',
+          end: '+300%',
+          scrub: true,
+        },
+      });
+
+      return () => {
+        // optionally return a cleanup function that will be called when none of the conditions match anymore (after having matched)
+        // it'll automatically call context.revert() - do NOT do that here . Only put custom cleanup code here.
+      };
+    }
+  );
 
   blogPost.addEventListener('mouseover', () => {
     console.log(' I am over ');
