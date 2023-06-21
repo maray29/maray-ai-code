@@ -61,7 +61,8 @@ class App {
   createLenis() {
     this.lenis = new Lenis({
       duration: 2.5,
-      normalizeWheel: true,
+      // normalizeWheel: true,
+      // syncTouch: true,
     });
 
     this.lenis.on('scroll', ({ scroll }) => {

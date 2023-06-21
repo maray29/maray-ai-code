@@ -189,10 +189,10 @@ export default class PortfolioAnimation {
         '<0.9'
       );
 
-    window.addEventListener('click', () => {
-      console.log(' hello');
-      tl.restart();
-    });
+    // window.addEventListener('click', () => {
+    //   console.log(' hello');
+    //   tl.restart();
+    // });
   }
 
   animateParallax() {
@@ -200,7 +200,7 @@ export default class PortfolioAnimation {
     // const parallaxAnimationItems = [
     //   ...document.querySelectorAll('.portfolio_header_name-wrapper .row'),
     // ];
-    console.log(parallaxAnimationItems);
+    // console.log(parallaxAnimationItems);
     parallaxAnimationItems.forEach((item) => {
       console.log(item);
       const speed = item.getAttribute('data-speed');
@@ -347,7 +347,7 @@ export default class PortfolioAnimation {
           start: 'top bottom',
           end: 'bottom top',
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       });
 
@@ -385,7 +385,7 @@ export default class PortfolioAnimation {
         //   backgroundColor: '#15d86d',
         // });
         // cursorInner.appendChild(p);
-        mouseTl.play();
+        // mouseTl.play();
         console.log('mouseenter');
       });
 
@@ -404,22 +404,18 @@ export default class PortfolioAnimation {
   animateFadeIn() {
     const fadeInElements = [...document.querySelectorAll('[data-animation="fade-in"]')];
 
-    // fadeInElements.forEach((el) => {
-    //   isAlpha = el.getAttribute('data-alpha');
-
-    //   if (!isAlpha) {
-    //     gsap.set(el, {
-    //       autoAlpha: 0.2,
-    //     });
-    //   }
-    // });
+    fadeInElements.forEach((el) => {
+      gsap.set(el, {
+        autoAlpha: 0.2,
+        onComplete: () => {
+          console.log('blyaaaaaaaaaaaaaat');
+        },
+      });
+    });
     ScrollTrigger.batch(fadeInElements, {
       start: 'top center',
       once: true,
       onEnter: (batch) => {
-        gsap.set(batch, {
-          autoAlpha: 0,
-        });
         gsap.to(batch, {
           autoAlpha: 1,
           stagger: 0.2,
