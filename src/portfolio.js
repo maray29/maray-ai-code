@@ -59,20 +59,21 @@ class App {
 
   createLenis() {
     this.lenis = new Lenis({
-      // duration: 2.5,
+      duration: 2.5,
       // normalizeWheel: true,
       // syncTouch: true,
     });
 
-    // this.lenis.on('scroll', ({ scroll }) => {
-    //   // update our scroll manager values
-    //   // this.stage.updateScrollValues(scroll)
-    //   if (this.stage) {
-    //     this.stage.animateOnScroll(0, scroll);
-    //   }
-    // });
+    this.lenis.on('scroll', ({ scroll }) => {
+      ScrollTrigger.update();
+      // update our scroll manager values
+      // this.stage.updateScrollValues(scroll)
+      if (this.stage) {
+        this.stage.animateOnScroll(0, scroll);
+      }
+    });
 
-    this.lenis.on('scroll', ScrollTrigger.update);
+    // this.lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
       this.lenis.raf(time * 1000);

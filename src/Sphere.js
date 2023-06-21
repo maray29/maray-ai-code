@@ -88,6 +88,14 @@ export default class Sphere extends THREE.Object3D {
     // this.stage.scene.add(this.meshSphere)
   }
 
+  resizeSphere(newRadius) {
+    // Assuming this.mesh is a THREE.Mesh and has a geometry that is a THREE.SphereGeometry
+    this.mesh.dispose(); // dispose of the old geometry
+    this.mesh = new THREE.Points(this.geometry, this.material);
+    this.mesh.scale.multiplyScalar(1000);
+    // this.mesh.position.y += this.initialPositionY;
+  }
+
   dot(size = 32, color = '#FFFFFF') {
     const sizeH = size * 0.5;
 

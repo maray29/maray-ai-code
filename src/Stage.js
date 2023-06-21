@@ -8,8 +8,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 import Sphere from './Sphere.js';
 import { AberrationShader } from './shaders/AberrationShader.js';
-import postFXfragment from './shaders/postFXfragmentShader.glsl';
-import postFXvertex from './shaders/postFXvertexShader.glsl';
+
+// import postFXfragment from './shaders/postFXfragmentShader.glsl';
+// import postFXvertex from './shaders/postFXvertexShader.glsl';
 
 // define your constants here
 const CAMERA_FOV = 30;
@@ -35,8 +36,8 @@ export default class Stage {
     this.#createRenderer();
     this.#createCamera();
 
-    this.#setupPostFX();
-    this.#createSphere();
+    // this.#setupPostFX();
+    await this.#createSphere();
     // this.#createLogoSymbol()
     // this.#setupAnimationLoop()
 
@@ -157,7 +158,8 @@ export default class Stage {
   }
 
   #addEventListeners() {
-    window.addEventListener('resize', this.#onResize.bind(this), false);
+    // window.addEventListener('resize', this.#onResize.bind(this), false);
+    window.addEventListener('resize', this.#resizeCallback, { passive: true });
   }
 
   #removeListeners() {
@@ -225,32 +227,26 @@ export default class Stage {
 
     const { width, height } = this.viewport;
 
+    this.screen.set(width, height);
     // Adjust renderer
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(this.screen.x, this.screen.y);
 
     // Adjust camera
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.camera.fov = (2 * Math.atan(height / 2 / 600) * 180) / Math.PI;
 
-    // Adjust render buffers
-    this.renderBufferA.dispose();
-    this.renderBufferB.dispose();
-    this.renderBufferA = new THREE.WebGLRenderTarget(
-      width * window.devicePixelRatio,
-      height * window.devicePixelRatio
-    );
-    this.renderBufferB = new THREE.WebGLRenderTarget(
-      width * window.devicePixelRatio,
-      height * window.devicePixelRatio
-    );
+    // Adjust effect composer
+    this.composer.setSize(width, height);
 
-    // Adjust postFX geometry
-    this.postFXGeometry.dispose();
-    this.postFXGeometry = new THREE.PlaneGeometry(width, height);
+    // Resize the render targets for post processing
+    this.bloomPass.setSize(width, height);
+    this.effect1.setSize(width, height);
 
-    // Replace geometry in postFX mesh
-    this.postFXMesh.geometry = this.postFXGeometry;
+    // Call sphere's resize function if it exists
+    if (this.sphere && typeof this.sphere.resize === 'function') {
+      this.sphere.resize();
+    }
   }
 
   updateMousePosition() {
@@ -274,8 +270,8 @@ export default class Stage {
   }
 
   get viewport() {
-    let width = this.container.offsetWidth;
-    let height = this.container.offsetHeight;
+    let width = this.container.clientWidth;
+    let height = this.container.clientHeight;
     let aspectRatio = width / height;
     return {
       width,
@@ -369,7 +365,7 @@ export default class Stage {
   }
 
   async #createSphere() {
-    this.sphere = await new Sphere(this, {
+    this.sphere = new Sphere(this, {
       scale: 1000,
       noiseSpeed: 0.2,
       rotationSpeed: 0.1,
