@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.1
+
+### Patch Changes
+
+- 844790e: 1
+
 ## 1.8.0
 
 ### Minor Changes
