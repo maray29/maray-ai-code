@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.7
+
+### Patch Changes
+
+- fc448b5: 1
+
 ## 1.8.6
 
 ### Patch Changes
