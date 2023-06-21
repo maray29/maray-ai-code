@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.11
+
+### Patch Changes
+
+- 036becb: Bug fix
+
 ## 1.8.10
 
 ### Patch Changes
