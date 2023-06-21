@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.10
+
+### Patch Changes
+
+- e70e897: Fixed resizing issue.
+
 ## 1.8.9
 
 ### Patch Changes
