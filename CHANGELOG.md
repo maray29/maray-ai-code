@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.8.3
+
+### Patch Changes
+
+- 6caacaa: 3
+
 ## 1.8.2
 
 ### Patch Changes
