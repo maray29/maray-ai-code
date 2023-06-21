@@ -170,16 +170,6 @@ export default class PortfolioAnimation {
       //   autoAlpha: 0,
       // })
 
-      // .from(navContact, {
-      //   ease: 'power.out4',
-      //   autoAlpha: 0,
-      // })
-
-      // .from(navContactSubtitle, {
-      //   ease: 'power.out4',
-      //   autoAlpha: 0,
-      // })
-
       .from(
         headerCta,
         {
@@ -200,8 +190,8 @@ export default class PortfolioAnimation {
     const parallaxAnimationItems = [...document.querySelectorAll('[data-animation="parallax"]')];
     const nameElements = [...document.querySelectorAll('[data-animation="name"]')];
 
-    gsap.to([nameElements, underline], {
-      y: -100,
+    gsap.to('.portfolio_header_name-wrapper', {
+      yPercent: -100,
       scrollTrigger: {
         trigger: '.portfolio_nav',
         start: 'top top',
@@ -209,16 +199,6 @@ export default class PortfolioAnimation {
         scrub: true,
       },
     });
-
-    // gsap.to(underline, {
-    //   yPercent: -2000,
-    //   scrollTrigger: {
-    //     trigger: '.portfolio_nav',
-    //     start: 'top top',
-    //     end: '+300%',
-    //     scrub: true,
-    //   },
-    // });
 
     // console.log(parallaxAnimationItems);
     parallaxAnimationItems.forEach((item) => {
