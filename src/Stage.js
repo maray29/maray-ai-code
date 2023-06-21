@@ -326,7 +326,14 @@ export default class Stage {
     });
   }
 
+  isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  }
+
   animateOnScroll(x, scrollY) {
+    console.log('heellllllllllllooooooooooooo');
     this.moveSphereDownNewPosY =
       this.sphere.initialPositionY -
       (scrollY / this.doc.scrollableHeight) * (this.doc.bodyHeight - this.doc.windowHeight);
@@ -340,17 +347,17 @@ export default class Stage {
 
     gsap.to(this.sphere.mesh.position, {
       y: this.moveSphereUpNewPosY,
-      // z: -2000,
       z: this.sphereNewPosZ,
       duration: 0.1,
     });
-
-    if (this.newScale > 600) {
-      gsap.to(this.sphere.mesh.scale, {
-        x: this.newScale,
-        y: this.newScale,
-        z: this.newScale,
-      });
+    if (!this.isMobileDevice()) {
+      if (this.newScale > 600) {
+        gsap.to(this.sphere.mesh.scale, {
+          x: this.newScale,
+          y: this.newScale,
+          z: this.newScale,
+        });
+      }
     }
   }
 
