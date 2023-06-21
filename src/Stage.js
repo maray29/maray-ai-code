@@ -357,15 +357,15 @@ export default class Stage {
       duration: 0.1,
     });
 
-    if (!this.isMobileDevice() && !this.isTouchDevice()) {
-      if (this.newScale > 600) {
-        gsap.to(this.sphere.mesh.scale, {
-          x: this.newScale,
-          y: this.newScale,
-          z: this.newScale,
-        });
-      }
-    }
+    // if (!this.isMobileDevice() && !this.isTouchDevice()) {
+    //   if (this.newScale > 600) {
+    //     gsap.to(this.sphere.mesh.scale, {
+    //       x: this.newScale,
+    //       y: this.newScale,
+    //       z: this.newScale,
+    //     });
+    //   }
+    // }
   }
 
   async #createSphere() {
