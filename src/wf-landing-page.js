@@ -1,14 +1,15 @@
 import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { doc } from 'prettier';
 import SplitType from 'split-type';
 
-gsap.registerPlugin(ScrollTrigger);
-
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  const lenis = new Lenis({ lerp: 0.1 });
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(CustomEase);
+  const lenis = new Lenis({ lerp: 0.1, duration: 2.5 });
 
   lenis.on('scroll', ScrollTrigger.update);
 
@@ -25,6 +26,11 @@ window.Webflow.push(() => {
   const blogPost = document.querySelector('[data-element="blog-post"]');
   const readLabel = blogPost.querySelector('[data-element="blog-post-read"]');
   const blogPostImg = blogPost.querySelector('.wf_blog-post_img');
+
+  const ease = CustomEase.create(
+    'custom',
+    'M0,0 C0.134,0.03 0.244,0.09 0.298,0.168 0.395,0.308 0.423,0.682 0.55,0.82 0.631,0.908 0.752,1 1,1 '
+  );
 
   gsap.to('.page-wrapper', {
     autoAlpha: 1,
@@ -44,10 +50,15 @@ window.Webflow.push(() => {
   gsap.set('.overlay', {
     // height: 0,
     scale: 1,
+    opacity: 1,
     transformOrigin: 'center bottom',
   });
 
   const headingTl = gsap.timeline();
+
+  window.addEventListener('click', () => {
+    headingTl.restart();
+  });
 
   headingTl.to(
     bgImg,
@@ -55,6 +66,7 @@ window.Webflow.push(() => {
       // scale: 1,
       yPercent: 0,
       duration: 1,
+      ease: 'ease.in',
     },
     'start'
   );
@@ -63,67 +75,32 @@ window.Webflow.push(() => {
     '.overlay',
     {
       scaleY: 0,
+      // autoAlpha: 1,
       // height: '0%',
-      duration: 1,
+      duration: 1.5,
+      ease: ease,
     },
-    'start'
+    'start+=0.2'
   );
 
   const headingSplit = new SplitType(h1, { types: 'words, lines' });
 
-  // headingTl.from(
-  //   headingSplit.words,
-  //   {
-  //     yPercent: 120,
-  //     stagger: 0.05,
-  //     duration: 0.7,
-  //     //   delay: 0.2,
-  //     autoAlpha: 0,
-  //     ease: 'ease.in',
-  //     onComplete: function () {
-  //       headingSplit.revert();
-  //     },
-  //   },
-  //   'start'
-  // );
-
   headingTl.from(
     headerContent,
     {
-      yPercent: 150,
-      duration: 0.7,
+      yPercent: 80,
+      duration: 1.2,
       autoAlpha: 0,
-      ease: 'ease.in',
+      ease: ease,
     },
     'start'
   );
 
-  // headingTl.from(
-  //   subHeading,
-  //   {
-  //     yPercent: 100,
-  //     opacity: 0,
-  //     delay: 0.4,
-  //   },
-  //   '<'
-  // );
-  // headingTl.from(
-  //   buttonRow,
-  //   {
-  //     yPercent: 100,
-  //     opacity: 0,
-  //     delay: 0.2,
-  //   },
-  //   '<'
-  // );
-
   // Scroll based animations
-
   gsap.to(
     bgImg,
     {
-      y: -600,
-      scale: 0.9,
+      y: -100,
       scrollTrigger: {
         trigger: bgImg,
         start: 'top 30%',
@@ -135,12 +112,12 @@ window.Webflow.push(() => {
   );
 
   gsap.to(headerContent, {
-    y: -100,
+    y: -80,
     duration: 1,
     scrollTrigger: {
-      trigger: headerContent,
-      start: 'top 30%',
-      end: 'bottom top',
+      trigger: '.portfolio_nav',
+      start: 'top top',
+      end: '+300%',
       scrub: true,
     },
   });

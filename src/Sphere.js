@@ -24,11 +24,11 @@ export default class Sphere extends THREE.Object3D {
   }
 
   async init() {
-    this.#createSphereMesh();
+    await this.#createSphereMesh();
     // this.stage.scene.add(this.sphere)
   }
 
-  #createSphereMesh() {
+  async #createSphereMesh() {
     this.geometry = new THREE.IcosahedronGeometry(1, 60);
     // this.geometry2 = new THREE.IcosahedronGeometry(1, 5)
     this.geometrySphere = new THREE.SphereGeometry(1, 100, 100);
@@ -79,21 +79,16 @@ export default class Sphere extends THREE.Object3D {
     // this.innerMesh.scale.multiplyScalar(990)
 
     // Set the initial position
-    this.initialPositionY = window.scrollY - this.initialScale;
+    console.log('WINDOW.SCROLLY: ', window.scrollY);
+    this.initialPositionY = window.scrollY - this.initialScale - window.innerHeight * 0.05;
     this.mesh.position.y += this.initialPositionY;
+    this.currentPos = this.mesh.position.y;
     // this.innerMesh.position.y += this.initialPositionY
 
     this.stage.scene.add(this.mesh);
+
     // this.stage.scene.add(this.innerMesh)
     // this.stage.scene.add(this.meshSphere)
-  }
-
-  resizeSphere(newRadius) {
-    // Assuming this.mesh is a THREE.Mesh and has a geometry that is a THREE.SphereGeometry
-    this.mesh.dispose(); // dispose of the old geometry
-    this.mesh = new THREE.Points(this.geometry, this.material);
-    this.mesh.scale.multiplyScalar(1000);
-    // this.mesh.position.y += this.initialPositionY;
   }
 
   dot(size = 32, color = '#FFFFFF') {

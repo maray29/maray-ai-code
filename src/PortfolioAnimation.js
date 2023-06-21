@@ -196,17 +196,37 @@ export default class PortfolioAnimation {
   }
 
   animateParallax() {
+    const underline = [...document.querySelectorAll('[data-animation="underline"]')];
     const parallaxAnimationItems = [...document.querySelectorAll('[data-animation="parallax"]')];
-    // const parallaxAnimationItems = [
-    //   ...document.querySelectorAll('.portfolio_header_name-wrapper .row'),
-    // ];
+    const nameElements = [...document.querySelectorAll('[data-animation="name"]')];
+
+    gsap.to([nameElements, underline], {
+      y: -100,
+      scrollTrigger: {
+        trigger: '.portfolio_nav',
+        start: 'top top',
+        end: '+300%',
+        scrub: true,
+      },
+    });
+
+    // gsap.to(underline, {
+    //   yPercent: -2000,
+    //   scrollTrigger: {
+    //     trigger: '.portfolio_nav',
+    //     start: 'top top',
+    //     end: '+300%',
+    //     scrub: true,
+    //   },
+    // });
+
     // console.log(parallaxAnimationItems);
     parallaxAnimationItems.forEach((item) => {
-      console.log(item);
+      // console.log(item);
       const speed = item.getAttribute('data-speed');
       const scale = item.getAttribute('data-scale');
       gsap.from(item, {
-        y: speed ? `${speed * 1.2}px` : 100,
+        yPercent: speed ? `${speed * 2}` : 20,
         scale: scale ? 0.95 : 1.0,
         scrollTrigger: {
           trigger: item,
@@ -341,7 +361,7 @@ export default class PortfolioAnimation {
     projects.forEach((project) => {
       const speed = project.getAttribute('data-speed');
       gsap.from(project, {
-        y: `+${speed * 2}px`,
+        yPercent: `+${speed}`,
         scrollTrigger: {
           trigger: project,
           start: 'top bottom',
@@ -356,7 +376,7 @@ export default class PortfolioAnimation {
 
       const projectImg = project.querySelector('img');
       const tag = project.querySelector('.wf_tag-text');
-      console.log(projectImg);
+      // console.log(projectImg);
 
       const mouseTl = gsap.timeline({ paused: true });
 

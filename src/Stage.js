@@ -28,6 +28,7 @@ export default class Stage {
 
     this.doc = this.document;
     this.sphereIntroOver = true;
+    this.isIOS = this.isIOS();
   }
 
   async #init() {
@@ -107,7 +108,10 @@ export default class Stage {
 
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(this.renderScene);
-    this.composer.addPass(this.bloomPass);
+
+    if (!this.isIOS) {
+      this.composer.addPass(this.bloomPass);
+    }
 
     this.effect1 = new ShaderPass(AberrationShader);
     this.composer.addPass(this.effect1);
@@ -227,14 +231,16 @@ export default class Stage {
 
     const { width, height } = this.viewport;
 
-    this.screen.set(width, height);
+    console.log(this.viewport);
+
+    // this.screen.set(width, height);
     // Adjust renderer
-    this.renderer.setSize(this.screen.x, this.screen.y);
+    this.renderer.setSize(width, height);
 
     // Adjust camera
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
-    this.camera.fov = (2 * Math.atan(height / 2 / 600) * 180) / Math.PI;
+    this.camera.fov = (2 * Math.atan(height / 2 / 2000) * 180) / Math.PI;
 
     // Adjust effect composer
     this.composer.setSize(width, height);
@@ -334,14 +340,26 @@ export default class Stage {
     );
   }
 
+  isIOS() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return true;
+    }
+
+    return false;
+  }
+
   animateOnScroll(x, scrollY) {
-    console.log('heellllllllllllooooooooooooo');
     this.moveSphereDownNewPosY =
       this.sphere.initialPositionY -
       (scrollY / this.doc.scrollableHeight) * (this.doc.bodyHeight - this.doc.windowHeight);
 
+    // console.log('heellllllllllllooooooooooooo', this.moveSphereUpNewPosY);
+    // console.log('heellllllllllllooooooooooooo', this.sphere.mesh.position.y);
+
     this.moveSphereUpNewPosY =
-      this.sphere.initialPositionY +
+      this.sphere.currentPos +
       (scrollY / this.doc.scrollableHeight) * (this.doc.bodyHeight - this.doc.windowHeight);
 
     this.sphereNewPosZ = -scrollY * 0.5;
@@ -365,8 +383,8 @@ export default class Stage {
   }
 
   async #createSphere() {
-    this.sphere = new Sphere(this, {
-      scale: 1000,
+    this.sphere = await new Sphere(this, {
+      scale: window.innerHeight * 1.2,
       noiseSpeed: 0.2,
       rotationSpeed: 0.1,
       particleMin: 4,
@@ -376,6 +394,7 @@ export default class Stage {
     gsap.from(this.sphere.mesh.position, {
       y: this.moveSphereUpNewPosY - 100,
       duration: 1,
+      // delay: 3,
     });
   }
 
