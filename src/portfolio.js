@@ -5,8 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PortfolioAnimation from './PortfolioAnimation.js';
 import Stage from './Stage.js';
 
-gsap.registerPlugin(ScrollTrigger);
-
 class App {
   lenis;
   plane;
@@ -33,6 +31,7 @@ class App {
     };
 
     this.isFirstLoad = true;
+    gsap.registerPlugin(ScrollTrigger);
     this.init();
     // this.isFirstLoad = false
   }
@@ -68,11 +67,12 @@ class App {
     this.lenis.on('scroll', ({ scroll }) => {
       // update our scroll manager values
       // this.stage.updateScrollValues(scroll)
-
       if (this.stage) {
         this.stage.animateOnScroll(0, scroll);
       }
     });
+
+    lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
       this.lenis.raf(time * 1000);
