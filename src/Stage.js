@@ -332,6 +332,12 @@ export default class Stage {
     );
   }
 
+  isTouchDevice() {
+    return (
+      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+    );
+  }
+
   animateOnScroll(x, scrollY) {
     console.log('heellllllllllllooooooooooooo');
     this.moveSphereDownNewPosY =
@@ -350,7 +356,8 @@ export default class Stage {
       z: this.sphereNewPosZ,
       duration: 0.1,
     });
-    if (!this.isMobileDevice()) {
+
+    if (!this.isMobileDevice() && !this.isTouchDevice()) {
       if (this.newScale > 600) {
         gsap.to(this.sphere.mesh.scale, {
           x: this.newScale,

@@ -81,16 +81,34 @@ class App {
     console.log('Lenis: ', this.lenis);
   }
 
-  animateCursor(cursor, speed = 0.1) {
-    let mm = gsap.matchMedia();
+  isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  }
 
-    // add a media query. When it matches, the associated function will run
-    mm.add('(max-width: 768px)', () => {
-      // this setup code only runs when viewport is at least 800px wide
+  isTouchDevice() {
+    return (
+      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+    );
+  }
+
+  animateCursor(cursor, speed = 0.1) {
+    // let mm = gsap.matchMedia();
+
+    // // add a media query. When it matches, the associated function will run
+    // mm.add('(max-width: 768px)', () => {
+    //   // this setup code only runs when viewport is at least 800px wide
+    //   gsap.set(cursor, {
+    //     autoAlpha: 0,
+    //   });
+    // });
+
+    if (!this.isMobileDevice() && !this.isTouchDevice()) {
       gsap.set(cursor, {
         autoAlpha: 0,
       });
-    });
+    }
 
     gsap.set(cursor, { xPercent: -50, yPercent: -50 });
     console.log('Cursor: ', cursor);
