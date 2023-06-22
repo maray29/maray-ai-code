@@ -110,10 +110,10 @@ export default class Stage {
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(this.renderScene);
 
-    if (!this.isIOS) {
-      this.composer.addPass(this.bloomPass);
-      this.composer.addPass(this.effect1);
-    }
+    // this.composer.addPass(this.bloomPass);
+    this.composer.addPass(this.effect1);
+    // if (!this.isIOS) {
+    // }
   }
 
   #render() {
@@ -367,7 +367,7 @@ export default class Stage {
     gsap.to(this.sphere.mesh.position, {
       y: this.moveSphereUpNewPosY,
       z: this.sphereNewPosZ,
-      duration: 0.1,
+      duration: 0.2,
     });
 
     // if (!this.isMobileDevice() && !this.isTouchDevice()) {
@@ -384,10 +384,10 @@ export default class Stage {
   async #createSphere() {
     this.sphere = await new Sphere(this, {
       scale: window.innerHeight * 1.2,
-      noiseSpeed: 0.2,
+      noiseSpeed: 0.1,
       rotationSpeed: 0.1,
       particleMin: 4,
-      particleMax: 10,
+      particleMax: 12,
     });
     // this.animateOnScroll(0, window.scrollY);
     gsap.from(this.sphere.mesh.position, {

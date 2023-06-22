@@ -275,8 +275,8 @@ export default class PortfolioAnimation {
         delay: 0.25,
         scrollTrigger: {
           trigger: line,
-          start: 'top center',
-          end: 'bottom center',
+          start: 'top 65%',
+          end: 'top 50%',
           scrub: 1,
           // once: true,
         },
@@ -301,8 +301,8 @@ export default class PortfolioAnimation {
         delay: 0.25,
         scrollTrigger: {
           trigger: el,
-          start: 'top center',
-          end: 'bottom center',
+          start: 'top 60%',
+          end: 'top 45%',
           scrub: 1,
           // once: true,
         },
@@ -311,8 +311,6 @@ export default class PortfolioAnimation {
   }
 
   animateParagraphs() {
-    gsap.registerPlugin(ScrollTrigger);
-
     const paragraphs = [...document.querySelectorAll('[data-animation="paragraph"]')];
 
     paragraphs.forEach((paragraph) => {
@@ -328,7 +326,7 @@ export default class PortfolioAnimation {
         delay: 0.5,
         scrollTrigger: {
           trigger: paragraph,
-          start: 'top 90%',
+          start: 'top 65%',
           once: true,
         },
       });
@@ -413,7 +411,7 @@ export default class PortfolioAnimation {
       });
     });
     ScrollTrigger.batch(fadeInElements, {
-      start: 'top center',
+      start: 'top 60%',
       once: true,
       onEnter: (batch) => {
         gsap.to(batch, {

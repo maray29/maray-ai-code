@@ -29,7 +29,7 @@ export default class Sphere extends THREE.Object3D {
   }
 
   async #createSphereMesh() {
-    this.geometry = new THREE.IcosahedronGeometry(1, 60);
+    this.geometry = new THREE.IcosahedronGeometry(1, 50);
     // this.geometry2 = new THREE.IcosahedronGeometry(1, 5)
     this.geometrySphere = new THREE.SphereGeometry(1, 100, 100);
 

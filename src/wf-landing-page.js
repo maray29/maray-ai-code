@@ -106,8 +106,6 @@ window.Webflow.push(() => {
 
   // Scroll based animations
 
-  console.log('++++++++++++++++', isMobileDevice());
-
   // gsap.to(
   //   bgImg,
   //   {
