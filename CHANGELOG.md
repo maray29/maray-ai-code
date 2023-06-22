@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.9.4
+
+### Patch Changes
+
+- 2a3a270: Fixed noise values.
+
 ## 1.9.3
 
 ### Patch Changes
