@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.9.5
+
+### Patch Changes
+
+- b7983ee: Fixed scrolltrigger timing.
+
 ## 1.9.4
 
 ### Patch Changes
