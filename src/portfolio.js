@@ -59,7 +59,7 @@ class App {
 
   createLenis() {
     this.lenis = new Lenis({
-      duration: 2.5,
+      duration: 1.5,
       // normalizeWheel: true,
       // syncTouch: true,
     });

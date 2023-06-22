@@ -9,7 +9,7 @@ window.Webflow ||= [];
 window.Webflow.push(() => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(CustomEase);
-  const lenis = new Lenis({ lerp: 0.1, duration: 2.5 });
+  const lenis = new Lenis({ lerp: 0.1, duration: 1.5 });
 
   lenis.on('scroll', ScrollTrigger.update);
 
