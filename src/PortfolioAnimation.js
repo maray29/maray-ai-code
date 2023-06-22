@@ -190,15 +190,15 @@ export default class PortfolioAnimation {
     const parallaxAnimationItems = [...document.querySelectorAll('[data-animation="parallax"]')];
     const nameElements = [...document.querySelectorAll('[data-animation="name"]')];
 
-    gsap.to('.portfolio_header_name-wrapper', {
-      yPercent: -100,
-      scrollTrigger: {
-        trigger: '.portfolio_nav',
-        start: 'top top',
-        end: '+300%',
-        scrub: true,
-      },
-    });
+    // gsap.to('.portfolio_header_name-wrapper', {
+    //   yPercent: -100,
+    //   scrollTrigger: {
+    //     trigger: '.portfolio_nav',
+    //     start: 'top top',
+    //     end: '+300%',
+    //     scrub: true,
+    //   },
+    // });
 
     // console.log(parallaxAnimationItems);
     parallaxAnimationItems.forEach((item) => {
