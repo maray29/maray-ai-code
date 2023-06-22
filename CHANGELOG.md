@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.9.2
+
+### Patch Changes
+
+- 8d135b0: Bug fix
+
 ## 1.9.1
 
 ### Patch Changes
