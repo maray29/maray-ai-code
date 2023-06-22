@@ -17,6 +17,14 @@ window.Webflow.push(() => {
     lenis.raf(time * 1000);
   });
 
+  function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  }
+
+  const isMobile = isMobileDevice();
+
   const bgImg = document.querySelector('.header_bg-img');
   const bgWrap = document.querySelector('.header_bg-wrap');
   const h1 = document.querySelector('h1');
@@ -56,9 +64,9 @@ window.Webflow.push(() => {
 
   const headingTl = gsap.timeline();
 
-  window.addEventListener('click', () => {
-    headingTl.restart();
-  });
+  // window.addEventListener('click', () => {
+  //   headingTl.restart();
+  // });
 
   headingTl.to(
     bgImg,
@@ -88,7 +96,7 @@ window.Webflow.push(() => {
   headingTl.from(
     headerContent,
     {
-      yPercent: 80,
+      yPercent: isMobile ? 60 : 80,
       duration: 1.2,
       autoAlpha: 0,
       ease: ease,
@@ -97,51 +105,33 @@ window.Webflow.push(() => {
   );
 
   // Scroll based animations
-  let mm = gsap.matchMedia(),
-    breakPoint = 768;
 
-  mm.add(
-    {
-      // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
-      isDesktop: `(min-width: ${breakPoint}px)`,
-      isMobile: `(max-width: ${breakPoint - 1}px)`,
-      reduceMotion: '(prefers-reduced-motion: reduce)',
-    },
-    (context) => {
-      // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
-      let { isDesktop, isMobile, reduceMotion } = context.conditions;
+  console.log('++++++++++++++++', isMobileDevice());
 
-      gsap.to(
-        bgImg,
-        {
-          yPercent: isDesktop ? -10 : -5,
-          scrollTrigger: {
-            trigger: bgImg,
-            start: 'top 30%',
-            end: 'bottom top',
-            scrub: true,
-          },
-        },
-        'start'
-      );
+  // gsap.to(
+  //   bgImg,
+  //   {
+  //     yPercent: isMobile ? 0 : -10,
+  //     scrollTrigger: {
+  //       trigger: bgImg,
+  //       start: 'top 30%',
+  //       end: 'bottom top',
+  //       scrub: true,
+  //     },
+  //   },
+  //   'start'
+  // );
 
-      gsap.to(headerContent, {
-        yPercent: isDesktop ? -40 : -20,
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.portfolio_nav',
-          start: 'top top',
-          end: '+300%',
-          scrub: true,
-        },
-      });
-
-      return () => {
-        // optionally return a cleanup function that will be called when none of the conditions match anymore (after having matched)
-        // it'll automatically call context.revert() - do NOT do that here . Only put custom cleanup code here.
-      };
-    }
-  );
+  // gsap.to(headerContent, {
+  //   yPercent: isMobile ? 0 : -20,
+  //   duration: 1,
+  //   scrollTrigger: {
+  //     trigger: headerContent,
+  //     start: 'top top',
+  //     end: 'bottom top',
+  //     scrub: true,
+  //   },
+  // });
 
   blogPost.addEventListener('mouseover', () => {
     console.log(' I am over ');
