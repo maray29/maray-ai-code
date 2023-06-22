@@ -95,6 +95,10 @@ float snoise(vec3 v) {
   return 105.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
 }
 
+float remap(float value, float inputMin, float inputMax, float outputMin, float outputMax) {
+  return outputMin + ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin);
+}
+
 void main() {
   vUv = uv;
   vPosition = position;
@@ -107,6 +111,8 @@ void main() {
   // constrain to sphere radius
   float l = radius / length(p);
   p *= l;
+
+  n = remap(n, -1.0, 1.0, 0.0, 1.0);
 
   float s = mix(particleSizeMin, particleSizeMax, n);
   vec3 transformed = vec3(p.x, p.y, p.z);
