@@ -69,8 +69,7 @@ window.Webflow.push(() => {
     codeEl.innerHTML = txt;
   }
 
-  function rtfToMarkdown(el) {
-    let txt = el.innerHTML;
+  function rtfToMarkdown(txt) {
     txt = txt.replace(/<p>/g, '');
     txt = txt.replace(/<\/p>/g, '\n\n');
     txt = txt.replace(/<br>/g, '\n');
@@ -78,7 +77,6 @@ window.Webflow.push(() => {
     txt = txt.replace(/&lt;/g, '<');
     txt = txt.replace(/&gt;/g, '>');
     txt = txt.replace(/&amp;lt;/g, '&lt;');
-    // console.log(txt);
     return txt;
   }
 
@@ -87,6 +85,7 @@ window.Webflow.push(() => {
       noHeaderId: true,
       headerLevelStart: 1,
       literalMidWordUnderscores: true,
+      simpleLineBreaks: false, // you might want to set this option to false to ensure that Showdown.js handles line breaks correctly
     });
     let html = converter.makeHtml(txt);
     // console.log(html);
@@ -98,8 +97,21 @@ window.Webflow.push(() => {
   let markdowns = [...document.querySelectorAll('.markdown')];
 
   markdowns.forEach((el) => {
-    let txt = rtfToMarkdown(el),
-      html = markdownToHtml(txt);
+    let txt = rtfToMarkdown(el.innerHTML);
+
+    // Parse content inside <aside> tags
+    txt = txt.replace(/<aside>([\s\S]*?)<\/aside>/g, (match, asideContent) => {
+      // Convert aside content to markdown and then back to html
+      let markdown = rtfToMarkdown(asideContent);
+      let html = markdownToHtml(markdown);
+      // Return the converted html wrapped in <aside> tags
+      return `<aside>${html}</aside>`;
+    });
+
+    // Convert remaining content
+    let html = markdownToHtml(txt);
+
+    console.log(html);
     el.innerHTML = html;
   });
   // syntax-highlight elements that contain a string like
