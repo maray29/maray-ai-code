@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.10.0
+
+### Minor Changes
+
+- 753aca0: Added callout markdown to html
+
 ## 1.9.5
 
 ### Patch Changes
