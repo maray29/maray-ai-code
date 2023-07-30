@@ -205,13 +205,14 @@ export default class PortfolioAnimation {
       // console.log(item);
       const speed = item.getAttribute('data-speed');
       const scale = item.getAttribute('data-scale');
+      const end = item.getAttribute('data-end');
       gsap.from(item, {
         yPercent: speed ? `${speed * 2}` : 20,
         scale: scale ? 0.95 : 1.0,
         scrollTrigger: {
           trigger: item,
           start: 'top 100%',
-          end: 'top 0%',
+          end: `top ${end ? end : 0}%`,
           scrub: true,
         },
       });

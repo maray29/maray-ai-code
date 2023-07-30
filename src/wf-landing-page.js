@@ -49,12 +49,6 @@ window.Webflow.push(() => {
     yPercent: 20,
   });
 
-  // gsap.from(bgWrap, {
-  //   height: 0,
-  //   duration: 1,
-  //   transformOrigin: 'center top',
-  // });
-
   gsap.set('.overlay', {
     // height: 0,
     scale: 1,
