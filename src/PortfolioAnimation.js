@@ -260,30 +260,42 @@ export default class PortfolioAnimation {
 
     const processText = [...document.querySelectorAll('[data-animation="words"]')];
 
-    const splitProcessText = new SplitType(processText, {
-      types: `lines`,
-    });
-    splitProcessText.lines.forEach((line) => {
-      const splitLines = new SplitType(line, { types: `words` });
-      gsap.set(splitLines.words, {
-        autoAlpha: 0.1,
+    processText.forEach((text) => {
+      console.log(text);
+
+      const triggerElement = text;
+      const targetElement = new SplitType(text, {
+        types: `words`,
       });
-      gsap.to(splitLines.words, {
-        autoAlpha: 1,
-        stagger: 0.15,
-        duration: 0.75,
-        ease: 'power.out4',
-        delay: 0.25,
+
+      let tl = gsap.timeline({
         scrollTrigger: {
-          trigger: line,
-          start: 'top 65%',
-          end: 'top 50%',
-          scrub: 1,
-          // once: true,
+          trigger: triggerElement,
+          start: '0% 90%',
+          end: '100% 50%',
+          scrub: 0.5,
         },
       });
 
-      // return tl
+      console.log(targetElement.words);
+
+      // tl.from(targetElement.words, {
+      //   autoAlpha: 0.25,
+      // });
+
+      tl.fromTo(
+        targetElement.words,
+        {
+          opacity: 0.25,
+        },
+        {
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.75,
+          ease: 'none',
+          delay: 0.25,
+        }
+      );
     });
   }
 
