@@ -2,12 +2,15 @@ import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import PortfolioAnimation from './PortfolioAnimation.js';
-import Stage from './Stage.js';
+import PortfolioAnimation from '../PortfolioAnimation.js';
+import Stage from '../Stage.js';
+
+import './portfolio.css';
 
 class App {
   lenis;
   plane;
+  stage;
   DOM = {
     container: document.querySelector('.canvas-container'),
     itemsWrapper: document.querySelector('.projects_list'),
@@ -18,9 +21,11 @@ class App {
       el: document.querySelector('.project_cover'),
     },
     mouse: {
-      cursor1: document.querySelector('.cursor-inner'),
-      cursor2: document.querySelector('.cursor-outer'),
+      cursor1: document.querySelector('.cursor_inner'),
+      cursor2: document.querySelector('.cursor_outer'),
     },
+    cards: document.querySelectorAll('.wf_process-card_component'),
+    toggle: document.querySelector("[data-toggle='theme']"),
   };
 
   constructor() {
@@ -36,13 +41,15 @@ class App {
     // this.isFirstLoad = false
   }
 
-  init() {
-    this.createStage();
+  async init() {
+    await this.createStage();
     this.createLenis();
     this.preventReloading();
     this.createEventListeners();
     this.animateCursor(this.DOM.mouse.cursor1, 0.2);
-    this.animateCursor(this.DOM.mouse.cursor2, 0.1);
+    // this.animateCursor(this.DOM.mouse.cursor2, 0.1);
+    this.animateCards(this.DOM.cards);
+    this.changeTheme(this.DOM.toggle);
 
     const container = document.querySelector('main');
 
@@ -50,11 +57,94 @@ class App {
     this.homePageAnimation.initAnimationsOnPageLoad();
   }
 
+  changeTheme(button) {
+    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+
+    // Set initial theme
+    document.body.setAttribute('data-theme', currentTheme);
+
+    button.addEventListener('change', () => {
+      console.log('hello');
+      let theme = document.body.getAttribute('data-theme');
+
+      if (theme === 'light-mode') {
+        theme = 'dark-mode';
+        this.stage.sphere.updateParticleProperties(0x2e2e2e, 4, 12);
+        if (this.stage.effect1) this.stage.updateAberrationShader(0.35);
+        this.stage.sphere.toggleBlendingMode();
+      } else {
+        theme = 'light-mode';
+        this.stage.sphere.updateParticleProperties(0xe6e6e6, 2, 6);
+        if (this.stage.effect1) this.stage.updateAberrationShader(0.001);
+        this.stage.sphere.toggleBlendingMode();
+      }
+
+      // Set new theme
+      document.body.setAttribute('data-theme', theme);
+
+      // Save theme choice
+      localStorage.setItem('theme', theme);
+    });
+  }
+
+  animateCards(cards) {
+    const CONFIG = {
+      proximity: 40,
+      spread: 80,
+      blur: 20,
+      gap: 32,
+      vertical: false,
+      opacity: 0,
+    };
+
+    const PROXIMITY = 10;
+
+    const UPDATE = (event) => {
+      // get the angle based on the center point of the card and pointer position
+      for (const CARD of cards) {
+        // Check the card against the proximity and then start updating
+        const CARD_BOUNDS = CARD.getBoundingClientRect();
+        // Get distance between pointer and outerbounds of card
+        if (
+          event?.x > CARD_BOUNDS.left - CONFIG.proximity &&
+          event?.x < CARD_BOUNDS.left + CARD_BOUNDS.width + CONFIG.proximity &&
+          event?.y > CARD_BOUNDS.top - CONFIG.proximity &&
+          event?.y < CARD_BOUNDS.top + CARD_BOUNDS.height + CONFIG.proximity
+        ) {
+          // If within proximity set the active opacity
+          CARD.style.setProperty('--active', 1);
+        } else {
+          CARD.style.setProperty('--active', CONFIG.opacity);
+        }
+        const CARD_CENTER = [
+          CARD_BOUNDS.left + CARD_BOUNDS.width * 0.5,
+          CARD_BOUNDS.top + CARD_BOUNDS.height * 0.5,
+        ];
+        let ANGLE =
+          (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) * 180) / Math.PI;
+        ANGLE = ANGLE < 0 ? ANGLE + 360 : ANGLE;
+        CARD.style.setProperty('--start', ANGLE + 90);
+      }
+    };
+
+    document.body.addEventListener('pointermove', UPDATE);
+    UPDATE();
+  }
+
+  // Init three.js
   async createStage() {
     const container = document.querySelector('.canvas-container');
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
 
-    // Init three.js
-    this.stage = new Stage(container);
+    if (currentTheme === 'light-mode') {
+      this.stage = new Stage(container, {
+        aberration: 0.001,
+      });
+    } else {
+      this.stage = new Stage(container, {
+        aberration: 0.35,
+      });
+    }
   }
 
   createLenis() {
@@ -70,6 +160,7 @@ class App {
       // this.stage.updateScrollValues(scroll)
       if (this.stage) {
         this.stage.animateOnScroll(0, scroll);
+        // console.log(scroll);
       }
     });
 
@@ -78,8 +169,6 @@ class App {
     gsap.ticker.add((time) => {
       this.lenis.raf(time * 1000);
     });
-
-    console.log('Lenis: ', this.lenis);
   }
 
   isMobileDevice() {
@@ -107,11 +196,13 @@ class App {
 
     if (!this.isMobileDevice() && !this.isTouchDevice()) {
       gsap.set(cursor, {
-        autoAlpha: 0,
+        // autoAlpha: 0,
+        // x: '20px',
+        // y: '-20px',
+        // xPercent: 50,
+        // yPercent: -100,
       });
     }
-
-    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
 
     const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     this.mouse = { x: pos.x, y: pos.y };
@@ -127,8 +218,8 @@ class App {
 
       pos.x += (this.mouse.x - pos.x) * dt;
       pos.y += (this.mouse.y - pos.y) * dt;
-      xSet(pos.x);
-      ySet(pos.y);
+      xSet(pos.x + 20);
+      ySet(pos.y - 20);
     });
   }
 

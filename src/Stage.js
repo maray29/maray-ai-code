@@ -9,9 +9,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import Sphere from './Sphere.js';
 import { AberrationShader } from './shaders/AberrationShader.js';
 
-// import postFXfragment from './shaders/postFXfragmentShader.glsl';
-// import postFXvertex from './shaders/postFXvertexShader.glsl';
-
 // define your constants here
 const CAMERA_FOV = 30;
 const NEAR = 0.1;
@@ -23,11 +20,12 @@ export default class Stage {
   constructor(container, opts = { physics: false, debug: false }) {
     this.container = container;
     this.hasDebug = opts.debug;
+    this.aberration = opts.aberration;
     this.planes = [];
     this.#init();
 
     this.doc = this.document;
-    this.sphereIntroOver = true;
+    this.sphereIntroOver = false;
     this.isIOS = this.isIOS();
   }
 
@@ -37,18 +35,13 @@ export default class Stage {
     this.#createRenderer();
     this.#createCamera();
 
-    // this.#setupPostFX();
-    await this.#createSphere();
-    // this.#createLogoSymbol()
-    // this.#setupAnimationLoop()
+    this.#initPostProcessing();
+
+    await this.createSphere();
 
     this.#createClock();
     this.#addEventListeners();
     this.#createControls();
-
-    this.#initPostProcessing();
-
-    // this.#createParticles()
 
     if (this.hasDebug) {
       const { Debug } = await import('./Debug.js');
@@ -69,12 +62,7 @@ export default class Stage {
       this.#render();
 
       this.stats?.end();
-      // animation loop
-      // this.renderer.setAnimationLoop(this.render.bind(this))
-      // gsap.ticker.add(this.render.bind(this))
     });
-
-    console.log(this);
   }
 
   #setInitialParameters() {
@@ -95,7 +83,6 @@ export default class Stage {
     const elapsed = this.clock.getElapsedTime();
     if (this.sphere) {
       this.sphere.animateSphere(elapsed, this.sphereIntroOver);
-      // this.sphere2.animateSphere(elapsed)
     }
   }
 
@@ -106,14 +93,17 @@ export default class Stage {
       new THREE.Vector2(window.innerWidth, window.innerHeight, 0.1, 0.1, 0.1)
     );
     this.effect1 = new ShaderPass(AberrationShader);
+    // this.effect1.uniforms.max_distort.value = this.aberration;
 
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(this.renderScene);
 
     // this.composer.addPass(this.bloomPass);
     this.composer.addPass(this.effect1);
-    // if (!this.isIOS) {
-    // }
+  }
+
+  updateAberrationShader(newValue) {
+    this.effect1.uniforms.max_distort.value = newValue;
   }
 
   #render() {
@@ -129,7 +119,7 @@ export default class Stage {
     this.container.appendChild(this.renderer.domElement);
     this.renderer.setSize(this.viewport.width, this.viewport.height);
     this.renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio));
-    this.renderer.setClearColor(0x000000);
+    this.renderer.setClearColor(0x000000, 0);
     // this.renderer.setClearColor(0x9c3737)
   }
 
@@ -350,18 +340,14 @@ export default class Stage {
   }
 
   animateOnScroll(x, scrollY) {
-    this.moveSphereDownNewPosY =
-      this.sphere.initialPositionY -
-      (scrollY / this.doc.scrollableHeight) * (this.doc.bodyHeight - this.doc.windowHeight);
-
-    // console.log('heellllllllllllooooooooooooo', this.moveSphereUpNewPosY);
-    // console.log('heellllllllllllooooooooooooo', this.sphere.mesh.position.y);
+    const adjustedScrollY = scrollY - this.initialScrollY;
 
     this.moveSphereUpNewPosY =
-      this.sphere.currentPos +
+      this.sphere.currentPosY -
+      this.sphere.initialScroll +
       (scrollY / this.doc.scrollableHeight) * (this.doc.bodyHeight - this.doc.windowHeight);
 
-    this.sphereNewPosZ = -scrollY * 0.5;
+    this.sphereNewPosZ = -scrollY * 0.35;
     this.newScale = this.sphere.initialScale * 0.2;
 
     gsap.to(this.sphere.mesh.position, {
@@ -369,55 +355,47 @@ export default class Stage {
       z: this.sphereNewPosZ,
       duration: 0.2,
     });
-
-    // if (!this.isMobileDevice() && !this.isTouchDevice()) {
-    //   if (this.newScale > 600) {
-    //     gsap.to(this.sphere.mesh.scale, {
-    //       x: this.newScale,
-    //       y: this.newScale,
-    //       z: this.newScale,
-    //     });
-    //   }
-    // }
   }
 
-  async #createSphere() {
-    this.sphere = await new Sphere(this, {
-      scale: window.innerHeight * 1.2,
-      noiseSpeed: 0.1,
-      rotationSpeed: 0.1,
-      particleMin: 4,
-      particleMax: 12,
-    });
-    // this.animateOnScroll(0, window.scrollY);
-    gsap.from(this.sphere.mesh.position, {
-      y: this.moveSphereUpNewPosY - 100,
-      duration: 1,
-      // delay: 3,
-    });
-  }
+  async createSphere() {
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
 
-  #createParticles() {
-    const particlesCount = 2000;
-    const positions = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.5) * 3000;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 3000;
-      positions[i * 3 + 2] = Math.random() * 3000;
+    if (currentTheme === 'light-mode') {
+      if (this.effect1) this.updateAberrationShader(0.001);
+      this.sphere = await new Sphere(this, {
+        scale: window.innerHeight * 1.2,
+        noiseSpeed: 0.1,
+        rotationSpeed: 0.1,
+        particleMin: 2,
+        particleMax: 6,
+        color: 0xe6e6e6,
+      });
+    } else {
+      if (this.effect1) this.updateAberrationShader(0.35);
+      this.sphere = await new Sphere(this, {
+        scale: window.innerHeight * 1.2,
+        noiseSpeed: 0.1,
+        rotationSpeed: 0.1,
+        particleMin: 4,
+        particleMax: 12,
+        blendingMode: THREE.AdditiveBlending,
+        color: 0x2e2e2e,
+      });
     }
 
-    const particleGeometry = new THREE.BufferGeometry();
-
-    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const particleMaterial = new THREE.PointsMaterial({
-      color: 0xffeded,
-      sizeAttenuation: true,
-      size: 0.05,
+    // this.animateOnScroll(0, window.scrollY);
+    gsap.from(this.sphere.mesh.position, {
+      y: this.sphere.mesh.position.y - 500,
+      duration: 2,
+      ease: 'power4.out',
     });
 
-    this.particles = new THREE.Points(particleGeometry, particleMaterial);
-    this.scene.add(this.particles);
+    // animate threejs mesh rotation with gsap
+    // gsap.to(this.sphere.mesh.rotation, {
+    //   duration: 5, // Animation duration in seconds
+    //   z: Math.PI, // Final rotation on z-axis (in radians)
+    //   // repeat: -1, // Repeat indefinitely
+    //   ease: 'power3.out', // Easing function
+    // });
   }
 }

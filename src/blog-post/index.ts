@@ -1,16 +1,24 @@
 // import { gsap } from 'gsap';
+import 'highlight.js/styles/dark.css';
+import '../css/code.css';
+
 import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
 import swift from 'highlight.js/lib/languages/swift';
-import 'highlight.js/styles/dark.css';
 import postscribe from 'postscribe';
 import showdown from 'showdown';
 
-import './css/code.css';
+import changeTheme from '$utils/changeTheme';
+import createLenis from '$utils/createLenis';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
   //Blog post page code
+
+  createLenis();
+
+  const toggle = document.querySelector("[data-toggle='theme']");
+  changeTheme(toggle);
 
   function loadGist(el) {
     let match = el.innerHTML.match(/^(https:\/\/gist.*)(\.js)?$/);
@@ -111,7 +119,6 @@ window.Webflow.push(() => {
     // Convert remaining content
     let html = markdownToHtml(txt);
 
-    console.log(html);
     el.innerHTML = html;
   });
   // syntax-highlight elements that contain a string like

@@ -1,0 +1,543 @@
+[data-theme='light-mode'],
+section [data-theme='light-mode'],
+body [data-theme='light-mode'] {
+  /* colors */
+  --colors--background--bg-active: var(--colors--gray-light-mode--50);
+  --colors--background--bg-brand-primary: var(--colors--brand--25);
+  --colors--background--bg-brand-secondary: var(--colors--brand--100);
+  --colors--background--bg-brand-section: var(--colors--brand--800);
+  --colors--background--bg-brand-solid: var(--colors--brand--600);
+  --colors--background--bg-brand-solid_hover: var(--colors--brand--700);
+  --colors--background--bg-disabled: var(--colors--gray-light-mode--100);
+  --colors--background--bg-error-primary: var(--colors--error--50);
+  --colors--background--bg-error-secondary: var(--colors--error--100);
+  --colors--background--bg-error-solid: var(--colors--error--600);
+  --colors--background--bg-overlay: var(--colors--gray-light-mode--950);
+  --colors--background--bg-primary: var(--colors--gray-light-mode--25);
+  --colors--background--bg-primary-solid: var(--colors--gray-light-mode--950);
+  --colors--background--bg-primary_hover: var(--colors--gray-light-mode--50);
+  --colors--background--bg-quaternary: var(--colors--gray-light-mode--200);
+  --colors--background--bg-secondary: var(--colors--gray-dark-mode--50);
+  --colors--background--bg-secondary-solid: var(--colors--gray-light-mode--600);
+  --colors--background--bg-secondary_hover: var(--colors--gray-light-mode--200);
+  --colors--background--bg-success-primary: var(--colors--success--50);
+  --colors--background--bg-success-secondary: var(--colors--success--100);
+  --colors--background--bg-success-solid: var(--colors--success--600);
+  --colors--background--bg-tertiary: var(--colors--gray-light-mode--200);
+  --colors--background--bg-warning-primary: var(--colors--warning--50);
+  --colors--background--bg-warning-secondary: var(--colors--warning--100);
+  --colors--background--bg-warning-solid: var(--colors--warning--600);
+  --colors--border--border-brand: var(--colors--brand--400);
+  --colors--border--border-brand-solid: var(--colors--brand--500);
+  --colors--border--border-disabled: var(--colors--gray-light-mode--300);
+  --colors--border--border-error: var(--colors--error--300);
+  --colors--border--border-error-solid: var(--colors--error--600);
+  --colors--border--border-primary: var(--colors--gray-light-mode--300);
+  --colors--border--border-secondary: var(--colors--gray-light-mode--200);
+  --colors--border--border-tertiary: var(--colors--gray-light-mode--100);
+  --colors--foreground--fg-brand-primary: var(--colors--brand--400);
+  --colors--foreground--fg-brand-secondary: var(--colors--brand--500);
+  --colors--foreground--fg-disabled: var(--colors--gray-light-mode--400);
+  --colors--foreground--fg-error-primary: var(--colors--error--600);
+  --colors--foreground--fg-error-secondary: var(--colors--error--500);
+  --colors--foreground--fg-primary: var(--colors--gray-light-mode--900);
+  --colors--foreground--fg-quarterary: var(--colors--gray-light-mode--500);
+  --colors--foreground--fg-quarterary_hover: var(--colors--gray-light-mode--600);
+  --colors--foreground--fg-secondary: var(--colors--gray-light-mode--700);
+  --colors--foreground--fg-secondary_hover: var(--colors--gray-light-mode--800);
+  --colors--foreground--fg-success-primary: var(--colors--success--600);
+  --colors--foreground--fg-success-secondary: var(--colors--success-500);
+  --colors--foreground--fg-tertiary: var(--colors--gray-light-mode--600);
+  --colors--foreground--fg-tertiary_hover: var(--colors--gray-light-mode--700);
+  --colors--foreground--fg-warning-primary: var(--colors--warning--600);
+  --colors--foreground--fg-warning-secondary: var(--colors--warning--500);
+  --colors--foreground--fg-white: var(--colors--base-white);
+  --colors--text--text-brand-primary: var(--colors--brand--800);
+  --colors--text--text-brand-secondary: var(--colors--brand--600);
+  --colors--text--text-brand-tertiary: var(--colors--brand--500);
+  --colors--text--text-brand-tertiary_alt: var(--colors--brand--400);
+  --colors--text--text-disabled: var(--colors--gray-light-mode--500);
+  --colors--text--text-error-primary: var(--colors--error--600);
+  --colors--text--text-placeholder: var(--colors--gray-light-mode--500);
+  --colors--text--text-primary: var(--colors--gray-light-mode--900);
+  --colors--text--text-primary_on-brand: var(--colors--base-white);
+
+  --colors--text--text-secondary: var(--colors--gray-light-mode--700);
+  --colors--text--text-secondary_hover: var(--colors--gray-light-mode--800);
+  --colors--text--text-secondary_on-brand: var(--colors--brand--200);
+  -colors--text--text-success-primary: var(--colors--success--600);
+  --colors--text--text-tertiary: var(--colors--gray-light-mode--800);
+  --colors--text--text-tertiary_hover: var(--colors--gray-light-mode--700);
+  --colors--text--text-tertiary_on-brand: var(--colors--brand--200);
+  --colors--text--text-warning-primary: var(--colors--warning--600);
+  --colors--text--text-white: var(--colors--base-white);
+
+  /* Add to figma */
+  --colors--text--text-select-bg: var(--colors--gray-light-mode--600);
+  --colors--text--text-select-fg: var(--colors--gray-light-mode--100);
+
+  --component-colors-alpha-alpha-black-10: #0000001a;
+  --component-colors-alpha-alpha-black-100: #000000;
+  --component-colors-alpha-alpha-black-20: #00000033;
+  --component-colors-alpha-alpha-black-30: #0000004d;
+  --component-colors-alpha-alpha-black-40: #00000066;
+  --component-colors-alpha-alpha-black-50: #00000080;
+  --component-colors-alpha-alpha-black-60: #00000099;
+  --component-colors-alpha-alpha-black-70: #000000b2;
+  --component-colors-alpha-alpha-black-80: #000000cc;
+  --component-colors-alpha-alpha-black-90: #000000e5;
+  --component-colors-alpha-alpha-white-10: #ffffff1a;
+  --component-colors-alpha-alpha-white-100: #ffffff;
+  --component-colors-alpha-alpha-white-20: #ffffff33;
+  --component-colors-alpha-alpha-white-30: #ffffff4d;
+  --component-colors-alpha-alpha-white-40: #ffffff66;
+  --component-colors-alpha-alpha-white-50: #ffffff80;
+  --component-colors-alpha-alpha-white-60: #ffffff99;
+  --component-colors-alpha-alpha-white-70: #ffffffb2;
+  --component-colors-alpha-alpha-white-80: #ffffffcc;
+  --component-colors-alpha-alpha-white-90: #ffffffe5;
+
+  --components--button-primary-fg: var(--colors--base--white);
+  --components--button-primary-bg: var(--colors--brand--400);
+
+  --components--button-secondary-fg: var(--colors--base--white);
+  --components--button-secondary-bg: var(--colors--gray-light-mode--900);
+
+  --components--button-tertiary-fg: var(--colors--gray-light-mode--600);
+  --components--button-tertiary-bg: var(--colors--gray-light-mode--100);
+  --components--button-tertiary-border: var(--colors--gray-light-mode--200);
+
+  /* --component-colors-components-application-navigation-nav-item-button-icon-fg: var(
+    --colors-gray-light-mode--500
+  );
+  --component-colors-components-application-navigation-nav-item-button-icon-fg-active: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-application-navigation-nav-item-icon-fg: var(
+    --colors-gray-light-mode--500
+  );
+  --component-colors-components-application-navigation-nav-item-icon-fg-active: var(
+    --colors-gray-light-mode--500
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-bg_hover: var(
+    --colors-gray-light-mode--50
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-bg_hover: var(
+    --colors-brand-50
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-fg_hover: var(
+    --colors-brand-700
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-icon-fg_hover: var(
+    --colors-brand-700
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-fg: var(
+    --colors-gray-light-mode--600
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-fg_hover: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-icon-fg: var(
+    --colors-gray-light-mode--500
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-icon-fg_hover: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-buttons-primary-button-primary-bg: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-primary-button-primary-bg_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-primary-button-primary-border: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-primary-button-primary-border_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-primary-button-primary-fg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-button-primary-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-bg: var(
+    --colors-error-600
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-bg_hover: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-border: var(
+    --colors-error-600
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-border_hover: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-fg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-secondary-button-secondary-bg: var(
+    --colors-gray-light-mode--950
+  );
+  --component-colors-components-buttons-secondary-button-secondary-bg_hover: var(
+    --colors-gray-light-mode--800
+  );
+  --component-colors-components-buttons-secondary-button-secondary-border: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-buttons-secondary-button-secondary-border_hover: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-buttons-secondary-button-secondary-fg: var(
+    --colors-gray-light-mode--50
+  );
+  --component-colors-components-buttons-secondary-button-secondary-fg_hover: var(
+    --colors-gray-light-mode--100
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-bg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-bg_hover: var(
+    --colors-brand-50
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-border: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-border_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-fg: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-fg_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-bg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-bg_hover: var(
+    --colors-error-50
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-border: var(
+    --colors-error-300
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-border_hover: var(
+    --colors-error-300
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-fg: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-fg_hover: var(
+    --colors-error-800
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-bg: var(
+    --colors-gray-light-mode--100
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-bg_hover: var(
+    --colors-gray-light-mode--50
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-border: var(
+    --colors-gray-light-mode--100
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-fg: var(
+    --colors-gray-light-mode--600
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-fg_hover: var(
+    --colors-gray-light-mode--700
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-bg_hover: var(
+    --colors-brand-50
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-fg: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-fg_hover: var(
+    --colors-brand-800
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-bg_hover: var(
+    --colors-error-50
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-fg: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-fg_hover: var(
+    --colors-error-800
+  ); */
+}
+[data-theme='dark-mode'],
+section [data-theme='dark-mode'] {
+  /* colors */
+  --colors--background--bg-active: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-brand-primary: var(--colors--brand--500);
+  --colors--background--bg-brand-secondary: var(--colors--brand--600);
+  --colors--background--bg-brand-section: var(--colors--background-bg-secondary);
+  --colors--background--bg-brand-solid: var(--colors--brand--600);
+  --colors--background--bg-brand-solid_hover: var(--colors--brand--500);
+  --colors--background--bg-disabled: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-error-primary: var(--colors--error--500);
+  --colors--background--bg-error-secondary: var(--colors--error--600);
+  --colors--background--bg-error-solid: var(--colors--error--600);
+  --colors--background--bg-overlay: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-primary: var(--colors--gray-dark-mode--950);
+  --colors--background--bg-primary-solid: var(--colors--gray-dark-mode--100);
+  --colors--background--bg-primary_hover: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-quaternary: var(--colors--gray-dark-mode--700);
+  --colors--background--bg-secondary: var(--colors--gray-dark-mode--900);
+  --colors--background--bg-secondary-solid: var(--colors--gray-dark-mode--600);
+  --colors--background--bg-secondary_hover: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-success-primary: var(--colors--success--500);
+  --colors--background--bg-success-secondary: var(--colors--success--600);
+  --colors--background--bg-success-solid: var(--colors--success--600);
+  --colors--background--bg-tertiary: var(--colors--gray-dark-mode--800);
+  --colors--background--bg-warning-primary: var(--colors--warning--500);
+  --colors--background--bg-warning-secondary: var(--colors--warning--600);
+  --colors--background--bg-warning-solid: var(--colors--warning--600);
+  --colors--border--border-brand: var(--colors--brand--400);
+  --colors--border--border-brand-solid: var(--colors--brand--500);
+  --colors--border--border-disabled: var(--colors--gray-dark-mode--700);
+  --colors--border--border-error: var(--colors--error--400);
+  --colors--border--border-error-solid: var(--colors--error--500);
+  --colors--border--border-primary: var(--colors--gray-dark-mode--700);
+  --colors--border--border-secondary: var(--colors--gray-dark-mode--800);
+  --colors--border--border-tertiary: var(--colors--gray-dark-mode--800);
+  --colors--foreground--fg-brand-primary: var(--colors--brand-400);
+  --colors--foreground--fg-brand-secondary: var(--colors--brand-500);
+  --colors--foreground--fg-disabled: var(--colors--gray-dark-mode--500);
+  --colors--foreground--fg-error-primary: var(--colors--error--500);
+  --colors--foreground--fg-error-secondary: var(--colors--error--400);
+  --colors--foreground--fg-primary: var(--colors--base-white);
+  --colors--foreground--fg-quarterary: var(--colors--gray-dark-mode--400);
+  --colors--foreground--fg-quarterary_hover: var(--colors--gray-dark-mode--300);
+  --colors--foreground--fg-secondary: var(--colors--gray-dark-mode--300);
+  --colors--foreground--fg-secondary_hover: var(--colors--gray-dark-mode--200);
+  --colors--foreground--fg-success-primary: var(--colors--success-500);
+  --colors--foreground--fg-success-secondary: var(--colors--success-400);
+  --colors--foreground--fg-tertiary: var(--colors--gray-dark-mode--400);
+  --colors--foreground--fg-tertiary_hover: var(--colors--gray-dark-mode--300);
+  --colors--foreground--fg-warning-primary: var(--colors--warning--500);
+  --colors--foreground--fg-warning-secondary: var(--colors--warning--400);
+  --colors--foreground--fg-white: var(--colors--base-white);
+  --colors--text--text-brand-primary: var(--colors--gray-dark-mode--50);
+  --colors--text--text-brand-secondary: var(--colors--gray-dark-mode--300);
+  --colors--text--text-brand-tertiary: var(--colors--gray-dark-mode--400);
+  --colors--text--text-brand-tertiary_alt: var(--colors--gray-dark-mode--50);
+  --colors--text--text-disabled: var(--colors--gray-dark-mode--500);
+  --colors--text--text-error-primary: var(--colors--error--400);
+  --colors--text--text-placeholder: var(--colors--gray-dark-mode--500);
+
+  --colors--text--text-primary: var(--colors--gray-dark-mode--100);
+  --colors--text--text-secondary: var(--colors--gray-dark-mode--300);
+  --colors--text--text-tertiary: var(--colors--gray-dark-mode--500);
+
+  --colors--text--text-primary_on-brand: var(--colors--gray-dark-mode--900);
+  --colors--text--text-secondary_hover: var(--colors--gray-dark-mode--200);
+  --colors--text--text-secondary_on-brand: var(--colors--gray-dark-mode--300);
+  --colors--text--text-success-primary: var(--colors--success--400);
+  --colors--text--text-tertiary_hover: var(--colors--gray-dark-mode--300);
+  --colors--text--text-tertiary_on-brand: var(--colors--gray-dark-mode--400);
+  --colors--text--text-warning-primary: var(--colors--warning--400);
+  --colors--text--text-white: var(--colors--base-white);
+
+  /* Add to Figma */
+  --colors--text--text-select-bg: var(--colors--gray-dark-mode--200);
+  --colors--text--text-select-fg: var(--colors--gray-dark-mode--800);
+
+  --component-colors-alpha-alpha-black-10: #ffffff1a;
+  --component-colors-alpha-alpha-black-100: #ffffff;
+  --component-colors-alpha-alpha-black-20: #ffffff33;
+  --component-colors-alpha-alpha-black-30: #ffffff4d;
+  --component-colors-alpha-alpha-black-40: #ffffff66;
+  --component-colors-alpha-alpha-black-50: #ffffff80;
+  --component-colors-alpha-alpha-black-60: #ffffff99;
+  --component-colors-alpha-alpha-black-70: #ffffffb2;
+  --component-colors-alpha-alpha-black-80: #ffffffcc;
+  --component-colors-alpha-alpha-black-90: #ffffffe5;
+  --component-colors-alpha-alpha-white-10: #0c111d1a;
+  --component-colors-alpha-alpha-white-100: var(--colors--gray-dark-mode--950);
+  --component-colors-alpha-alpha-white-20: #0c111d33;
+  --component-colors-alpha-alpha-white-30: #0c111d4d;
+  --component-colors-alpha-alpha-white-40: #0c111d66;
+  --component-colors-alpha-alpha-white-50: #0c111d80;
+  --component-colors-alpha-alpha-white-60: #0c111d99;
+  --component-colors-alpha-alpha-white-70: #0c111db2;
+  --component-colors-alpha-alpha-white-80: #0c111dcc;
+  --component-colors-alpha-alpha-white-90: #0c111de5;
+
+  --components--button-primary-fg: var(--colors--base--white);
+  --components--button-primary-bg: var(--colors--brand--400);
+
+  --components--button-secondary-fg: var(--colors--base--black);
+  --components--button-secondary-bg: var(--colors--gray-dark-mode--100);
+
+  --components--button-tertiary-fg: var(--colors--gray-dark-mode--300);
+  --components--button-tertiary-bg: var(--colors--gray-dark-mode--800);
+  --components--button-tertiary-border: var(--colors--gray-dark-mode--700);
+
+  /* Add to figma */
+  --components--cursor-bg: var(--colors--gray-dark-mode--300);
+  --components--cursor-text: var(--colors--gray-dark-mode--700);
+  --components--cursor-border: var(--colors--gray-dark-mode--400);
+
+  /* --component-colors-components-application-navigation-nav-item-button-icon-fg: var(
+    --colors-gray-dark-mode--400
+  );
+  --component-colors-components-application-navigation-nav-item-button-icon-fg-active: var(
+    --colors-gray-dark-mode--200
+  );
+  --component-colors-components-application-navigation-nav-item-icon-fg: var(
+    --colors-gray-dark-mode--400
+  );
+  --component-colors-components-application-navigation-nav-item-icon-fg-active: var(
+    --colors-gray-dark-mode--200
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-bg_hover: var(
+    --colors-gray-dark-mode--800
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-bg_hover: var(
+    --colors-gray-dark-mode--800
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-brand-icon-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-fg: var(
+    --colors-gray-dark-mode--300
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-icon-fg: var(
+    --colors-gray-dark-mode--400
+  );
+  --component-colors-components-breadcrumbs-breadcrumb-icon-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-button-primary-bg: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-primary-button-primary-bg_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-primary-button-primary-border: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-primary-button-primary-border_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-primary-button-primary-fg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-button-primary-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-bg: var(
+    --colors-error-600
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-bg_hover: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-border: var(
+    --colors-error-600
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-border_hover: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-fg: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-primary-error-button-primary-error-fg_hover: var(
+    --colors-base-white
+  );
+  --component-colors-components-buttons-secondary-button-secondary-bg: var(
+    --colors-gray-light-mode--50
+  );
+  --component-colors-components-buttons-secondary-button-secondary-bg_hover: var(
+    --colors-gray-dark-mode--100
+  );
+  --component-colors-components-buttons-secondary-button-secondary-border: var(
+    --colors-gray-dark-mode--200
+  );
+  --component-colors-components-buttons-secondary-button-secondary-border_hover: var(
+    --colors-gray-dark-mode--200
+  );
+  --component-colors-components-buttons-secondary-button-secondary-fg: var(
+    --colors-gray-dark-mode--950
+  );
+  --component-colors-components-buttons-secondary-button-secondary-fg_hover: var(
+    --colors-gray-dark-mode--900
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-bg: var(
+    --colors-gray-dark-mode--900
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-bg_hover: var(
+    --colors-gray-dark-mode--800
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-border: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-border_hover: var(
+    --colors-brand-600
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-fg: var(
+    --colors-gray-dark-mode--300
+  );
+  --component-colors-components-buttons-secondary-color-button-secondary-color-fg_hover: var(
+    --colors-gray-dark-mode--100
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-bg: var(
+    --colors-error-950
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-bg_hover: var(
+    --colors-error-900
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-border: var(
+    --colors-error-800
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-border_hover: var(
+    --colors-error-700
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-fg: var(
+    --colors-error-200
+  );
+  --component-colors-components-buttons-secondary-error-button-secondary-error-fg_hover: var(
+    --colors-error-100
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-bg: var(
+    --colors-gray-dark-mode--800
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-bg_hover: var(
+    --colors-gray-dark-mode--800
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-border: var(
+    --colors-gray-dark-mode--700
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-fg: var(
+    --colors-gray-dark-mode--300
+  );
+  --component-colors-components-buttons-tertiary-button-tertiary-fg_hover: var(
+    --colors-gray-dark-mode--200
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-bg_hover: var(
+    --colors-brand-950
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-fg: var(
+    --colors-brand-400
+  );
+  --component-colors-components-buttons-tertiary-color-button-tertiary-color-fg_hover: var(
+    --colors-brand-300
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-bg_hover: var(
+    --colors-error-900
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-fg: var(
+    --colors-error-300
+  );
+  --component-colors-components-buttons-tertiary-error-button-tertiary-error-fg_hover: var(
+    --colors-error-200
+  ); */
+}

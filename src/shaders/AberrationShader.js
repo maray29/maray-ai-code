@@ -1,10 +1,11 @@
-import { Vector2 } from "three";
+import { Vector2 } from 'three';
 
 export const AberrationShader = {
   uniforms: {
     tDiffuse: { value: null },
     distort: { value: 0.5 },
     time: { value: 0 },
+    max_distort: { value: 0.35 } // Add max_distort as a uniform
   },
 
   vertexShader: /* glsl */ `
@@ -19,8 +20,9 @@ export const AberrationShader = {
     uniform float time;
     uniform sampler2D tDiffuse;
     varying vec2 vUv;
+    uniform float max_distort; // Declare max_distort as a uniform
 
-    const float max_distort = 0.5;
+    // const float max_distort = 0.35;
     const int num_iter = 12;
     const float reci_num_iter_f = 1.0 / float(num_iter);
 

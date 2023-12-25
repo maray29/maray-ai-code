@@ -5,8 +5,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { doc } from 'prettier';
 import SplitType from 'split-type';
 
+import changeTheme from '$utils/changeTheme';
+
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  console.log('hello');
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(CustomEase);
   const lenis = new Lenis({ lerp: 0.1, duration: 1.5 });
@@ -16,6 +19,9 @@ window.Webflow.push(() => {
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
+
+  const toggle = document.querySelector("[data-toggle='theme']");
+  changeTheme(toggle);
 
   function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -31,9 +37,9 @@ window.Webflow.push(() => {
   const subHeading = document.querySelector('[data-element="subheading"]');
   const buttonRow = document.querySelector('[data-element="button-row"]');
   const headerContent = document.querySelector('.header_content');
-  const blogPost = document.querySelector('[data-element="blog-post"]');
-  const readLabel = blogPost.querySelector('[data-element="blog-post-read"]');
-  const blogPostImg = blogPost.querySelector('.wf_blog-post_img');
+  const articleCard = document.querySelector('[data-element="article-card"]');
+  // const readLabel = blogPost.querySelector('[data-element="blog-post-read"]');
+  // const blogPostImg = blogPost.querySelector('.wf_blog-post_img');
 
   const ease = CustomEase.create(
     'custom',
@@ -125,8 +131,8 @@ window.Webflow.push(() => {
   //   },
   // });
 
-  blogPost.addEventListener('mouseover', () => {
-    console.log(' I am over ');
+  articleCard.addEventListener('mouseover', () => {
+    // console.log(' I am over ');
     gsap.to(readLabel, {
       color: '#15d86d',
       // x: 10,
@@ -135,8 +141,8 @@ window.Webflow.push(() => {
       scale: 1.03,
     });
   });
-  blogPost.addEventListener('mouseleave', () => {
-    console.log(' I leave ');
+  articleCard.addEventListener('mouseleave', () => {
+    // console.log(' I leave ');
     gsap.to(readLabel, {
       color: '#c4c4c4',
       // x: 0,

@@ -21,6 +21,7 @@ export default class PortfolioAnimation {
     this.animateFadeIn();
     this.animateFadeInScrub();
     this.animateProjects();
+    this.animateCursorElements();
   }
 
   killScrollTriggers() {
@@ -186,19 +187,7 @@ export default class PortfolioAnimation {
   }
 
   animateParallax() {
-    const underline = [...document.querySelectorAll('[data-animation="underline"]')];
     const parallaxAnimationItems = [...document.querySelectorAll('[data-animation="parallax"]')];
-    const nameElements = [...document.querySelectorAll('[data-animation="name"]')];
-
-    // gsap.to('.portfolio_header_name-wrapper', {
-    //   yPercent: -100,
-    //   scrollTrigger: {
-    //     trigger: '.portfolio_nav',
-    //     start: 'top top',
-    //     end: '+300%',
-    //     scrub: true,
-    //   },
-    // });
 
     // console.log(parallaxAnimationItems);
     parallaxAnimationItems.forEach((item) => {
@@ -261,7 +250,7 @@ export default class PortfolioAnimation {
     const processText = [...document.querySelectorAll('[data-animation="words"]')];
 
     processText.forEach((text) => {
-      console.log(text);
+      // console.log(text);
 
       const triggerElement = text;
       const targetElement = new SplitType(text, {
@@ -277,7 +266,7 @@ export default class PortfolioAnimation {
         },
       });
 
-      console.log(targetElement.words);
+      // console.log(targetElement.words);
 
       // tl.from(targetElement.words, {
       //   autoAlpha: 0.25,
@@ -346,8 +335,58 @@ export default class PortfolioAnimation {
     });
   }
 
+  animateCursorElements() {
+    const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
+    const projects = [...document.querySelectorAll('[data-element="project"]')];
+
+    //TODO - merge arrays
+    const allElements = [...articleCards, ...projects];
+
+    allElements.forEach((el) => {
+      const cursorInner = document.querySelector('.cursor_inner');
+      const text = el.getAttribute('data-text');
+
+      el.addEventListener('mouseenter', () => {
+        const p = document.createElement('p');
+        p.textContent = text;
+        p.classList.add('cursor_text');
+
+        gsap.set(p, {
+          autoAlpha: 0,
+        });
+
+        cursorInner.appendChild(p);
+        const textWidth = p.getBoundingClientRect().width;
+        const textHeight = p.getBoundingClientRect().height;
+
+        cursorInner.classList.add('is-active');
+
+        gsap.to(cursorInner, {
+          width: textWidth + 20,
+          height: textHeight + 10,
+          duration: 0.35,
+        });
+
+        gsap.to(p, {
+          autoAlpha: 1,
+          delay: 0.1,
+        });
+      });
+
+      el.addEventListener('mouseleave', () => {
+        cursorInner.innerHTML = '';
+        cursorInner.classList.remove('is-active');
+        gsap.to(cursorInner, {
+          width: '1rem',
+          height: '1rem',
+          duration: 0.35,
+        });
+      });
+    });
+  }
+
   animateProjects() {
-    const projects = [...document.querySelectorAll('[data-animation="image"]')];
+    const projects = [...document.querySelectorAll('[data-element="project"]')];
 
     projects.forEach((project) => {
       const speed = project.getAttribute('data-speed');
@@ -361,54 +400,6 @@ export default class PortfolioAnimation {
           // markers: true,
         },
       });
-
-      const cursorInner = document.querySelector('.cursor-inner');
-      const cursorOuter = document.querySelector('.cursor-outer');
-
-      const projectImg = project.querySelector('img');
-      const tag = project.querySelector('.wf_tag-text');
-      // console.log(projectImg);
-
-      const mouseTl = gsap.timeline({ paused: true });
-
-      mouseTl
-        .set(tag, {
-          autoAlpha: 0,
-        })
-        .to(tag, {
-          autoAlpha: 1,
-        });
-
-      projectImg.addEventListener('mouseenter', () => {
-        // const text = 'VISIT';
-        // const p = document.createElement('p');
-        // p.textContent = text;
-        // p.style.fontWeight = 'bold';
-        // p.style.fontSize = '1.25rem';
-        // p.style.position = 'absolute';
-        // p.style.left = '50%';
-        // p.style.top = '50%';
-        // p.style.zIndex = 2;
-        // cursorInner.style.zIndex = 2;
-        // p.style.transform = 'translate(-50%, -50%)';
-        // gsap.to(cursorOuter, {
-        //   scale: 3,
-        //   backgroundColor: '#15d86d',
-        // });
-        // cursorInner.appendChild(p);
-        // mouseTl.play();
-        console.log('mouseenter');
-      });
-
-      projectImg.addEventListener('mouseleave', () => {
-        console.log('mouseleave');
-        // mouseTl.reverse();
-        //   cursorInner.innerHTML = '';
-        //   gsap.to(cursorOuter, {
-        //     scale: 1,
-        //     backgroundColor: 'transparent',
-        //   });
-      });
     });
   }
 
@@ -419,7 +410,7 @@ export default class PortfolioAnimation {
       gsap.set(el, {
         autoAlpha: 0.2,
         onComplete: () => {
-          console.log('blyaaaaaaaaaaaaaat');
+          // console.log('blyaaaaaaaaaaaaaat');
         },
       });
     });

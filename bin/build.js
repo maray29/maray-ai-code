@@ -11,9 +11,13 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 const ENTRY_POINTS = [
   'src/index.ts',
   'src/blog-os.ts',
-  'src/blog-post.ts',
-  'src/wf-landing-page.js',
-  'src/portfolio.js',
+  'src/blog-post/index.ts',
+  'src/webflow/index.js',
+  'src/portfolio/index.js',
+  'src/home/index.js',
+  'src/projects/index.js',
+  'src/template-gallery/index.js',
+  'src/css/*.css',
 ];
 
 // Config dev serving
