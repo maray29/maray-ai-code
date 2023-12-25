@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 1.10.2
+
+### Patch Changes
+
+- a67c54c: Fixed split text reveal animation
+
 ## 1.10.1
 
 ### Patch Changes
