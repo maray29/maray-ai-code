@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 2.0.0
+
+### Major Changes
+
+- da54a750e68820c8dad0798dddbc5a0160209cd7: New version: dark mode, code refactoring
+
 ## 1.10.2
 
 ### Patch Changes
