@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 2.0.3
+
+### Patch Changes
+
+- 6a263a854eed239b82d5eb991561cb7dc2de2071: Removed scrollTrigger markers
+
 ## 2.0.2
 
 ### Patch Changes
