@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 2.0.1
+
+### Patch Changes
+
+- 3200522d8f542ddcbfcf72297685662fec46e51c: Fix color transition bugs
+
 ## 2.0.0
 
 ### Major Changes
