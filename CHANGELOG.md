@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 2.0.2
+
+### Patch Changes
+
+- 071174c39c71507d9e7e113c6e81295ff69b0bfc: Fix css link
+
 ## 2.0.1
 
 ### Patch Changes
