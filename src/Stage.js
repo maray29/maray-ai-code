@@ -6,8 +6,8 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import Sphere from './Sphere.js';
 import { AberrationShader } from './shaders/AberrationShader.js';
+import Sphere from './Sphere.js';
 
 // define your constants here
 const CAMERA_FOV = 30;

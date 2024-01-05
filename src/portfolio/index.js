@@ -1,11 +1,13 @@
+import './portfolio.css';
+
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import changeTheme from '$utils/changeTheme';
+
 import PortfolioAnimation from '../PortfolioAnimation.js';
 import Stage from '../Stage.js';
-
-import './portfolio.css';
 
 class App {
   lenis;
@@ -25,7 +27,7 @@ class App {
       cursor2: document.querySelector('.cursor_outer'),
     },
     cards: document.querySelectorAll('.wf_process-card_component'),
-    toggle: document.querySelector("[data-toggle='theme']"),
+    toggle: "[data-element='theme-toggle']",
   };
 
   constructor() {
@@ -49,7 +51,7 @@ class App {
     this.animateCursor(this.DOM.mouse.cursor1, 0.2);
     // this.animateCursor(this.DOM.mouse.cursor2, 0.1);
     this.animateCards(this.DOM.cards);
-    this.changeTheme(this.DOM.toggle);
+    this.changeTheme(this.DOM.toggle, this.stage);
 
     const container = document.querySelector('main');
 
@@ -57,34 +59,8 @@ class App {
     this.homePageAnimation.initAnimationsOnPageLoad();
   }
 
-  changeTheme(button) {
-    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
-
-    // Set initial theme
-    document.body.setAttribute('data-theme', currentTheme);
-
-    button.addEventListener('change', () => {
-      console.log('hello');
-      let theme = document.body.getAttribute('data-theme');
-
-      if (theme === 'light-mode') {
-        theme = 'dark-mode';
-        this.stage.sphere.updateParticleProperties(0x2e2e2e, 4, 12);
-        if (this.stage.effect1) this.stage.updateAberrationShader(0.35);
-        this.stage.sphere.toggleBlendingMode();
-      } else {
-        theme = 'light-mode';
-        this.stage.sphere.updateParticleProperties(0xe6e6e6, 2, 6);
-        if (this.stage.effect1) this.stage.updateAberrationShader(0.001);
-        this.stage.sphere.toggleBlendingMode();
-      }
-
-      // Set new theme
-      document.body.setAttribute('data-theme', theme);
-
-      // Save theme choice
-      localStorage.setItem('theme', theme);
-    });
+  changeTheme(button, stage) {
+    changeTheme(button, stage);
   }
 
   animateCards(cards) {
@@ -134,7 +110,7 @@ class App {
   // Init three.js
   async createStage() {
     const container = document.querySelector('.canvas-container');
-    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
 
     if (currentTheme === 'light-mode') {
       this.stage = new Stage(container, {
@@ -228,6 +204,10 @@ class App {
     this.mouse.y = event.y;
   }
 
+  createEventListeners() {
+    window.addEventListener('mousemove', this.onMouseMove.bind(this));
+  }
+
   preventReloading() {
     // Prevent reloading the same page
     const links = document.querySelectorAll('a[href]');
@@ -241,10 +221,6 @@ class App {
     for (let i = 0; i < links.length; i++) {
       links[i].addEventListener('click', cbk);
     }
-  }
-
-  createEventListeners() {
-    window.addEventListener('mousemove', this.onMouseMove.bind(this));
   }
 
   // Getter methods for document and window properties

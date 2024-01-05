@@ -1,6 +1,4 @@
-[data-theme='light-mode'],
-section [data-theme='light-mode'],
-body [data-theme='light-mode'] {
+[data-theme='light-mode'] {
   /* colors */
   --colors--background--bg-active: var(--colors--gray-light-mode--50);
   --colors--background--bg-brand-primary: var(--colors--brand--25);
@@ -52,7 +50,7 @@ body [data-theme='light-mode'] {
   --colors--foreground--fg-warning-primary: var(--colors--warning--600);
   --colors--foreground--fg-warning-secondary: var(--colors--warning--500);
   --colors--foreground--fg-white: var(--colors--base-white);
-  --colors--text--text-brand-primary: var(--colors--brand--800);
+  --colors--text--text-brand-primary: var(--colors--brand--400);
   --colors--text--text-brand-secondary: var(--colors--brand--600);
   --colors--text--text-brand-tertiary: var(--colors--brand--500);
   --colors--text--text-brand-tertiary_alt: var(--colors--brand--400);
@@ -267,8 +265,7 @@ body [data-theme='light-mode'] {
     --colors-error-800
   ); */
 }
-[data-theme='dark-mode'],
-section [data-theme='dark-mode'] {
+[data-theme='dark-mode'] {
   /* colors */
   --colors--background--bg-active: var(--colors--gray-dark-mode--800);
   --colors--background--bg-brand-primary: var(--colors--brand--500);
@@ -320,7 +317,7 @@ section [data-theme='dark-mode'] {
   --colors--foreground--fg-warning-primary: var(--colors--warning--500);
   --colors--foreground--fg-warning-secondary: var(--colors--warning--400);
   --colors--foreground--fg-white: var(--colors--base-white);
-  --colors--text--text-brand-primary: var(--colors--gray-dark-mode--50);
+  --colors--text--text-brand-primary: var(--colors--brand--400);
   --colors--text--text-brand-secondary: var(--colors--gray-dark-mode--300);
   --colors--text--text-brand-tertiary: var(--colors--gray-dark-mode--400);
   --colors--text--text-brand-tertiary_alt: var(--colors--gray-dark-mode--50);

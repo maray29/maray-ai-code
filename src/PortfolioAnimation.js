@@ -409,9 +409,6 @@ export default class PortfolioAnimation {
     fadeInElements.forEach((el) => {
       gsap.set(el, {
         autoAlpha: 0.2,
-        onComplete: () => {
-          // console.log('blyaaaaaaaaaaaaaat');
-        },
       });
     });
     ScrollTrigger.batch(fadeInElements, {
