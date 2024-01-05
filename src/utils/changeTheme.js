@@ -141,8 +141,7 @@ function animateColorTransitions(colorThemes, currentTheme) {
       trigger: element,
       start: `clamp(top 50%)`,
       end: 'bottom 50%',
-      markers: true,
-      // Define toggleActions based on the trigger position
+      // markers: true,
       // toggleActions: `play complete none reverse`,
       onEnter: () => {
         // console.log('onEnter');
