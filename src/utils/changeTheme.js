@@ -6,7 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 const LIGHT_MODE = 'light-mode';
 const DARK_MODE = 'dark-mode';
 const PORTFOLIO_PATH = '/portfolio';
-const CSS_URL = 'http://localhost:3000/css/color-modes.css';
+const CSS_URL =
+  'https://cdn.jsdelivr.net/npm/@maray-ai/maray-ai-code@2.0.2/dist/css/color-modes.css';
 
 let currentTheme = localStorage.getItem('theme') || DARK_MODE; // Global scope
 let colorThemes = null; // Global variable to store color themes
