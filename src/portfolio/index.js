@@ -1,4 +1,5 @@
 import './portfolio.css';
+import '$utils/htmx-variable.js';
 
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
@@ -13,6 +14,7 @@ class App {
   lenis;
   plane;
   stage;
+
   DOM = {
     container: document.querySelector('.canvas-container'),
     itemsWrapper: document.querySelector('.projects_list'),
@@ -240,15 +242,10 @@ class App {
 window.Webflow ||= [];
 window.Webflow.push(() => {
   // console.clear()
+});
 
-  if (document.readyState === 'loading') {
-    // Loading hasn't finished yet
-    // console.log(`DOM hasn't loaded`);
-  } else {
-    // `DOMContentLoaded` has already fired
-    // console.log(`DOM has loaded`);
-    window.APP = new App('#app', {
-      debug: window.location.hash.includes('debug'),
-    });
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  window.APP = new App('#app', {
+    debug: window.location.hash.includes('debug'),
+  });
 });

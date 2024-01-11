@@ -2,12 +2,11 @@ import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
 
 function init() {
-  const toggle = document.querySelector("[data-toggle='theme']");
   createLenis();
-  changeTheme(toggle);
+  changeTheme("[data-element='theme-toggle']");
+  animateCursor('.cursor_inner', mouse, 0.2);
 }
 
-window.Webflow ||= [];
-window.Webflow.push(() => {
+window.addEventListener('DOMContentLoaded', () => {
   init();
 });

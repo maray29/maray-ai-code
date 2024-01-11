@@ -117,8 +117,7 @@ function animateLine() {
   });
 }
 
-window.Webflow ||= [];
-window.Webflow.push(() => {
+window.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(CustomEase);
   const lenis = new Lenis({ lerp: 0.1, duration: 1.5 });

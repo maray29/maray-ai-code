@@ -52,7 +52,7 @@ export function animateCursorElements(selectors) {
 
 export function animateCursor(cursor, mouse, speed = 0.1) {
   const cursorEl = document.querySelector(cursor);
-  console.log(cursorEl);
+  //   console.log(cursorEl);
   if (!isMobileDevice() && !isTouchDevice()) {
     gsap.set(cursorEl, {
       //   autoAlpha: 0,

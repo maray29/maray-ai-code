@@ -116,12 +116,11 @@ function createLoadingAnimation() {
   );
 }
 
-window.Webflow ||= [];
-window.Webflow.push(() => {
+window.addEventListener('DOMContentLoaded', () => {
   createLenis();
   setCopyrightYear();
   createLoadingAnimation();
 
-  const toggle = document.querySelector("[data-toggle='theme']");
-  changeTheme(toggle);
+  changeTheme("[data-element='theme-toggle']");
+  animateCursor('.cursor_inner', mouse, 0.2);
 });

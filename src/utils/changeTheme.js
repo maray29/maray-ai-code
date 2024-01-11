@@ -14,7 +14,7 @@ let colorThemes = null; // Global variable to store color themes
 
 export default async function changeTheme(selector, stage) {
   const button = document.querySelector(selector);
-  console.log('Toggle button: ', button);
+  // console.log('Toggle button: ', button);
   document.body.setAttribute('data-theme', currentTheme);
 
   button.addEventListener('change', () => toggleTheme(stage));
