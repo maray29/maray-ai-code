@@ -16,9 +16,7 @@ window.Webflow.push(() => {
   //Blog post page code
 
   createLenis();
-
-  const toggle = document.querySelector("[data-toggle='theme']");
-  changeTheme(toggle);
+  changeTheme("[data-element='theme-toggle']");
 
   function loadGist(el) {
     let match = el.innerHTML.match(/^(https:\/\/gist.*)(\.js)?$/);
