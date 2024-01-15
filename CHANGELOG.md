@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.0.2
+
+### Patch Changes
+
+- 31c85b05a0c970c504350f5ff5687dbb84f097b7: Removed htmx
+
 ## 3.0.1
 
 ### Patch Changes
