@@ -1,7 +1,6 @@
-import '$utils/htmx-variable.js';
+// import '$utils/htmx-variable.js';
 
 import gsap from 'gsap';
-// import htmx from 'htmx.org';
 
 let modalEventListenerAttached = false;
 const { htmx } = window;
