@@ -1,5 +1,4 @@
 import './portfolio.css';
-import '$utils/htmx-variable.js';
 
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
