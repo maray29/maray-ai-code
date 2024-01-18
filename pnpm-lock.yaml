@@ -50,7 +50,7 @@ devDependencies:
     specifier: ^0.1.14
     version: 0.1.14
   '@changesets/cli':
-    specifier: ^2.26.2
+    specifier: ^2.27.1
     version: 2.27.1
   '@finsweet/eslint-config':
     specifier: ^2.0.6
