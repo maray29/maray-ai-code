@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.1.0
+
+### Minor Changes
+
+- 156e50cb410916cb685d5460eb2b6a51148f0b36: implemented testimonial component
+
 ## 3.0.4
 
 ### Patch Changes
