@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
+import Swiper from 'swiper';
 
 import { isMobileDevice, isTouchDevice } from '$utils/isMobile';
 
@@ -161,5 +162,70 @@ export function animateFadeIn(selector) {
         }
       });
     },
+  });
+}
+
+export function createTestimonialComponent() {
+  const swiper = new Swiper('.swiper', {
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    spaceBetween: 16,
+    slideToClickedSlide: true,
+    keyboard: true,
+    centeredSlides: true,
+    loop: true,
+    grabCursor: true,
+    allowTouchMove: true,
+    navigation: {
+      nextEl: '.swiper-next',
+      prevEl: '.swiper-prev',
+    },
+    pagination: {
+      el: '.swiper-bullet-wrapper',
+      bulletClass: 'swiper-bullet',
+      bulletActiveClass: 'is-active',
+      bulletElement: 'button',
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3000,
+    },
+    speed: 150,
+  });
+
+  const names = document.querySelectorAll("[data-element='testimonial-name']");
+  const titles = document.querySelectorAll("[data-element='testimonial-title']");
+  const lines = document.querySelectorAll("[data-element='testimonial-line']");
+  const texts = document.querySelectorAll("[data-element='testimonial-text']");
+  const images = document.querySelectorAll("[data-element='testimonial-image']");
+
+  const swiperPrev = document.querySelector('.swiper-prev');
+  const swiperNext = document.querySelector('.swiper-next');
+
+  function animateSwiper(direction) {
+    // Not happy with this implementation as a new
+    // timeline is created on every button click
+    let tl = gsap.timeline();
+
+    tl.fromTo([names, titles], { opacity: 1, yPercent: 0 }, { opacity: 0, yPercent: 200 })
+      .fromTo(lines, { scaleX: 1 }, { scaleX: 0 }, '<')
+      .fromTo(texts, { autoAlpha: 1 }, { autoAlpha: 0 }, '<')
+      .fromTo(images, { autoAlpha: 1 }, { autoAlpha: 0 }, '<')
+      .to({}, { duration: 0.25 }, '>')
+      .call(() => (direction === 'next' ? swiper.slideNext() : swiper.slidePrev()));
+  }
+
+  swiperNext.addEventListener('click', () => animateSwiper('next'));
+  swiperPrev.addEventListener('click', () => animateSwiper('prev'));
+
+  swiper.on('slideChangeTransitionEnd', () => {
+    gsap.fromTo(
+      [names, titles],
+      { yPercent: 200, opacity: 0 },
+      { opacity: 1, yPercent: 0, ease: 'power4', duration: 1.4 }
+    );
+    gsap.fromTo(lines, { scaleX: 0 }, { scaleX: 1 }, '<');
+    gsap.fromTo(texts, { autoAlpha: 0 }, { autoAlpha: 1 }, '<');
+    gsap.fromTo(images, { autoAlpha: 0 }, { autoAlpha: 1 }, '<');
   });
 }

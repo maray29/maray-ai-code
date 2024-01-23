@@ -62,6 +62,7 @@
     "showdown": "^2.1.0",
     "split-type": "^0.3.3",
     "stats.js": "^0.17.0",
+    "swiper": "^11.0.5",
     "three": "^0.153.0",
     "tweakpane": "^3.1.10"
   },

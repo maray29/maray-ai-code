@@ -1,4 +1,4 @@
-import './portfolio.css';
+import 'swiper/css';
 
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import changeTheme from '$utils/changeTheme';
 
+import { createTestimonialComponent } from '../animations/animations';
 import PortfolioAnimation from '../PortfolioAnimation.js';
 import Stage from '../Stage.js';
 
@@ -53,11 +54,16 @@ class App {
     // this.animateCursor(this.DOM.mouse.cursor2, 0.1);
     this.animateCards(this.DOM.cards);
     this.changeTheme(this.DOM.toggle, this.stage);
+    this.createTestimonialComponent();
 
     const container = document.querySelector('main');
 
     this.homePageAnimation = new PortfolioAnimation(container);
     this.homePageAnimation.initAnimationsOnPageLoad();
+  }
+
+  createTestimonialComponent() {
+    createTestimonialComponent();
   }
 
   changeTheme(button, stage) {

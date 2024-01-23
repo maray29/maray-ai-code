@@ -333,9 +333,12 @@ export default class PortfolioAnimation {
   animateCursorElements() {
     const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
     const projects = [...document.querySelectorAll('[data-element="project"]')];
+    const testimonialProjects = [
+      [...document.querySelectorAll('[data-element="testimonial-project"]')],
+    ];
 
     //TODO - merge arrays
-    const allElements = [...articleCards, ...projects];
+    const allElements = [...articleCards, ...projects, ...testimonialProjects];
 
     allElements.forEach((el) => {
       const cursorInner = document.querySelector('.cursor_inner');

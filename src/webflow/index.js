@@ -11,6 +11,7 @@ import {
   animateCursorElements,
   animateFadeIn,
   animateText,
+  createTestimonialComponent,
 } from '../animations/animations';
 
 function animateHeader() {
@@ -100,23 +101,6 @@ function animateHeader() {
     );
 }
 
-function animateLine() {
-  const line = document.querySelector('[data-element="line"]');
-  gsap.set(line, {
-    scaleX: 0,
-    transformOrigin: 'left center',
-  });
-  gsap.to(line, {
-    scaleX: 1,
-    duration: 1,
-    scrollTrigger: {
-      trigger: line,
-      start: 'top 60%',
-      once: true,
-    },
-  });
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(CustomEase);
@@ -134,10 +118,14 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   animateHeader();
-  animateLine();
   animateCursor('.cursor_inner', mouse, 0.2);
-  animateCursorElements(['[data-element="article-card"]', '[data-element="project"]']);
+  animateCursorElements([
+    '[data-element="article-card"]',
+    '[data-element="project"]',
+    '[data-element="testimonial-project"]',
+  ]);
   animateText('[data-element="text"]');
   animateFadeIn('[data-animation="fade-in"]');
   changeTheme("[data-element='theme-toggle']");
+  createTestimonialComponent();
 });
