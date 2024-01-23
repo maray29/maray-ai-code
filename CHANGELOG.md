@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.0.4
+
+### Patch Changes
+
+- b52d5f55951792fe46929bfa4e60cfef54ac8241: Changed code CSS
+
 ## 3.0.3
 
 ### Patch Changes
