@@ -7,6 +7,8 @@ import SplitType from 'split-type';
 
 import { isMobileDevice } from '$utils/isMobile';
 
+import { animateCursorElements } from './animations/animations';
+
 export default class PortfolioAnimation {
   DOM = {};
   constructor(container) {
@@ -23,7 +25,11 @@ export default class PortfolioAnimation {
     this.animateFadeIn();
     this.animateFadeInScrub();
     this.animateProjects();
-    this.animateCursorElements();
+    this.animateCursorElements([
+      '[data-element="article-card"]',
+      '[data-element="project"]',
+      '[data-element="testimonial-project"]',
+    ]);
   }
 
   killScrollTriggers() {
@@ -330,57 +336,58 @@ export default class PortfolioAnimation {
     });
   }
 
-  animateCursorElements() {
-    const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
-    const projects = [...document.querySelectorAll('[data-element="project"]')];
-    const testimonialProjects = [
-      [...document.querySelectorAll('[data-element="testimonial-project"]')],
-    ];
+  animateCursorElements(selectors) {
+    animateCursorElements(selectors);
+    // const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
+    // const projects = [...document.querySelectorAll('[data-element="project"]')];
+    // const testimonialProjects = [
+    //   [...document.querySelectorAll('[data-element="testimonial-project"]')],
+    // ];
 
-    //TODO - merge arrays
-    const allElements = [...articleCards, ...projects, ...testimonialProjects];
+    // //TODO - merge arrays
+    // const allElements = [...articleCards, ...projects, ...testimonialProjects];
 
-    allElements.forEach((el) => {
-      const cursorInner = document.querySelector('.cursor_inner');
-      const text = el.getAttribute('data-text');
+    // allElements.forEach((el) => {
+    //   const cursorInner = document.querySelector('.cursor_inner');
+    //   const text = el.getAttribute('data-text');
 
-      el.addEventListener('mouseenter', () => {
-        const p = document.createElement('p');
-        p.textContent = text;
-        p.classList.add('cursor_text');
+    //   el.addEventListener('mouseenter', () => {
+    //     const p = document.createElement('p');
+    //     p.textContent = text;
+    //     p.classList.add('cursor_text');
 
-        gsap.set(p, {
-          autoAlpha: 0,
-        });
+    //     gsap.set(p, {
+    //       autoAlpha: 0,
+    //     });
 
-        cursorInner.appendChild(p);
-        const textWidth = p.getBoundingClientRect().width;
-        const textHeight = p.getBoundingClientRect().height;
+    //     cursorInner.appendChild(p);
+    //     const textWidth = p.getBoundingClientRect().width;
+    //     const textHeight = p.getBoundingClientRect().height;
 
-        cursorInner.classList.add('is-active');
+    //     cursorInner.classList.add('is-active');
 
-        gsap.to(cursorInner, {
-          width: textWidth + 20,
-          height: textHeight + 10,
-          duration: 0.35,
-        });
+    //     gsap.to(cursorInner, {
+    //       width: textWidth + 20,
+    //       height: textHeight + 10,
+    //       duration: 0.35,
+    //     });
 
-        gsap.to(p, {
-          autoAlpha: 1,
-          delay: 0.1,
-        });
-      });
+    //     gsap.to(p, {
+    //       autoAlpha: 1,
+    //       delay: 0.1,
+    //     });
+    //   });
 
-      el.addEventListener('mouseleave', () => {
-        cursorInner.innerHTML = '';
-        cursorInner.classList.remove('is-active');
-        gsap.to(cursorInner, {
-          width: '1rem',
-          height: '1rem',
-          duration: 0.35,
-        });
-      });
-    });
+    //   el.addEventListener('mouseleave', () => {
+    //     cursorInner.innerHTML = '';
+    //     cursorInner.classList.remove('is-active');
+    //     gsap.to(cursorInner, {
+    //       width: '1rem',
+    //       height: '1rem',
+    //       duration: 0.35,
+    //     });
+    //   });
+    // });
   }
 
   animateProjects() {

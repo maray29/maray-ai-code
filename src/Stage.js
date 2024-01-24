@@ -6,6 +6,8 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
+import { isMobileDevice } from '$utils/isMobile';
+
 import { AberrationShader } from './shaders/AberrationShader.js';
 import Sphere from './Sphere.js';
 
@@ -350,11 +352,21 @@ export default class Stage {
     this.sphereNewPosZ = -scrollY * 0.35;
     this.newScale = this.sphere.initialScale * 0.2;
 
-    gsap.to(this.sphere.mesh.position, {
-      y: this.moveSphereUpNewPosY,
-      z: this.sphereNewPosZ,
-      duration: 0.2,
-    });
+    let yTo = gsap.quickTo(this.sphere.mesh.position, 'y', { duration: 0.6, ease: 'power3' });
+
+    if (!isMobileDevice()) {
+      gsap.to(this.sphere.mesh.position, {
+        y: this.moveSphereUpNewPosY,
+        z: this.sphereNewPosZ,
+        duration: 0.2,
+      });
+    } else {
+      yTo(this.moveSphereUpNewPosY);
+      // gsap.quickSetter(this.sphere.mesh.position, 'y', {
+      //   y: this.moveSphereUpNewPosY,
+      //   duration: 0.2,
+      // });
+    }
   }
 
   async createSphere() {

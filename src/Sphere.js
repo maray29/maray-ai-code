@@ -1,5 +1,5 @@
-import * as THREE from 'three';
 import gsap from 'gsap';
+import * as THREE from 'three';
 
 // import noise from './shaders/Noise.glsl';
 import fragmentShader from './shaders/sphereFragmentShader.glsl';
