@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.1.1
+
+### Patch Changes
+
+- 55e9df1342b1fa1e4a3bacd276d7cd51844a75d5: Fixing sphere scroll lag on mobile
+
 ## 3.1.0
 
 ### Minor Changes
