@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.1.2
+
+### Patch Changes
+
+- 205b930c6d60706d80c29f2dc7fc0f0614e35612: Changed to quickSetter
+
 ## 3.1.1
 
 ### Patch Changes
