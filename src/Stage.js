@@ -352,7 +352,7 @@ export default class Stage {
     this.sphereNewPosZ = -scrollY * 0.35;
     this.newScale = this.sphere.initialScale * 0.2;
 
-    let yTo = gsap.quickTo(this.sphere.mesh.position, 'y', { duration: 0.6, ease: 'power3' });
+    let yTo = gsap.quickSetter(this.sphere.mesh.position, 'y');
 
     if (!isMobileDevice()) {
       gsap.to(this.sphere.mesh.position, {
@@ -362,10 +362,6 @@ export default class Stage {
       });
     } else {
       yTo(this.moveSphereUpNewPosY);
-      // gsap.quickSetter(this.sphere.mesh.position, 'y', {
-      //   y: this.moveSphereUpNewPosY,
-      //   duration: 0.2,
-      // });
     }
   }
 
