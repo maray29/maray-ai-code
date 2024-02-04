@@ -18,6 +18,7 @@ const ENTRY_POINTS = [
   'src/projects/index.js',
   'src/template-gallery/index.js',
   'src/css/*.css',
+  'src/lawyers/index.js',
 ];
 
 // Config dev serving
