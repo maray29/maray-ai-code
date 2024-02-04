@@ -26,7 +26,7 @@
 }
 
 @property --start {
-  syntax: "<number>";
+  syntax: '<number>';
   inherits: true;
   initial-value: 0;
 }
@@ -76,7 +76,7 @@
 .glows::after,
 .glows::before {
   --alpha: 0;
-  content: "";
+  content: '';
   background: var(--gradient);
   background-attachment: fixed;
   position: absolute;
@@ -100,7 +100,7 @@
   position: absolute;
   inset: 0;
   border: var(--border-width) solid transparent;
-  content: "";
+  content: '';
   border-radius: var(--border-radius);
   pointer-events: none;
   background: var(--border);
@@ -108,11 +108,7 @@
   border-radius: var(--border-radius);
   mask: linear-gradient(#0000, #0000),
     conic-gradient(
-      from
-        calc(
-          ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) *
-            1deg
-        ),
+      from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
       hsl(0 0% 100% / 0.15) 0deg,
       white,
       hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg)
@@ -125,7 +121,7 @@
 
 .wf_process-card_component::after {
   --bg-size: 100%;
-  content: "";
+  content: '';
   pointer-events: none;
   position: absolute;
   background: var(--gradient);
@@ -138,11 +134,7 @@
   border: var(--border-width) solid transparent;
   mask: linear-gradient(#0000, #0000),
     conic-gradient(
-      from
-        calc(
-          ((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) *
-            1deg
-        ),
+      from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg),
       #0000 0deg,
       #fff,
       #0000 calc(var(--spread) * 0.5deg)
@@ -151,7 +143,3 @@
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
 }
-
-/* .dg.ac {
-  z-index: 99999 !important;
-} */

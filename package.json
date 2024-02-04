@@ -1,6 +1,6 @@
 {
   "name": "@maray-ai/maray-ai-code",
-  "version": "1.10.2",
+  "version": "3.1.2",
   "description": "Developer starter template for maray projects.",
   "homepage": "https://github.com/finsweet/developer-starter#readme",
   "license": "ISC",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@changesets/changelog-git": "^0.1.14",
-    "@changesets/cli": "^2.26.2",
+    "@changesets/cli": "^2.27.1",
     "@finsweet/eslint-config": "^2.0.6",
     "@finsweet/tsconfig": "^1.3.3",
     "@playwright/test": "^1.39.0",
@@ -62,6 +62,7 @@
     "showdown": "^2.1.0",
     "split-type": "^0.3.3",
     "stats.js": "^0.17.0",
+    "swiper": "^11.0.5",
     "three": "^0.153.0",
     "tweakpane": "^3.1.10"
   },

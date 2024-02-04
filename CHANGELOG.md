@@ -1,5 +1,77 @@
 # @finsweet/developer-starter
 
+## 3.1.2
+
+### Patch Changes
+
+- 205b930c6d60706d80c29f2dc7fc0f0614e35612: Changed to quickSetter
+
+## 3.1.1
+
+### Patch Changes
+
+- 55e9df1342b1fa1e4a3bacd276d7cd51844a75d5: Fixing sphere scroll lag on mobile
+
+## 3.1.0
+
+### Minor Changes
+
+- 156e50cb410916cb685d5460eb2b6a51148f0b36: implemented testimonial component
+
+## 3.0.4
+
+### Patch Changes
+
+- b52d5f55951792fe46929bfa4e60cfef54ac8241: Changed code CSS
+
+## 3.0.3
+
+### Patch Changes
+
+- 1742e3d31c9a7c923239cb1af6638bb6d85dc698: Removed htmx
+
+## 3.0.2
+
+### Patch Changes
+
+- 31c85b05a0c970c504350f5ff5687dbb84f097b7: Removed htmx
+
+## 3.0.1
+
+### Patch Changes
+
+- 417431d072f0937aebc41f5babe44f1dfc558ac9: Fixed bugs
+
+## 3.0.0
+
+### Major Changes
+
+- 1373e0e6c69a86b10e723398f197d7ddf555b555: Fixed bugs
+
+## 2.0.3
+
+### Patch Changes
+
+- 6a263a854eed239b82d5eb991561cb7dc2de2071: Removed scrollTrigger markers
+
+## 2.0.2
+
+### Patch Changes
+
+- 071174c39c71507d9e7e113c6e81295ff69b0bfc: Fix css link
+
+## 2.0.1
+
+### Patch Changes
+
+- 3200522d8f542ddcbfcf72297685662fec46e51c: Fix color transition bugs
+
+## 2.0.0
+
+### Major Changes
+
+- da54a750e68820c8dad0798dddbc5a0160209cd7: New version: dark mode, code refactoring
+
 ## 1.10.2
 
 ### Patch Changes

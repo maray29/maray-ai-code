@@ -5,6 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import { debounce } from 'lodash';
 import SplitType from 'split-type';
 
+import { isMobileDevice } from '$utils/isMobile';
+
+import { animateCursorElements } from './animations/animations';
+
 export default class PortfolioAnimation {
   DOM = {};
   constructor(container) {
@@ -21,7 +25,11 @@ export default class PortfolioAnimation {
     this.animateFadeIn();
     this.animateFadeInScrub();
     this.animateProjects();
-    this.animateCursorElements();
+    this.animateCursorElements([
+      '[data-element="article-card"]',
+      '[data-element="project"]',
+      '[data-element="testimonial-project"]',
+    ]);
   }
 
   killScrollTriggers() {
@@ -30,15 +38,14 @@ export default class PortfolioAnimation {
 
   animateNavbar() {
     gsap.registerPlugin(CustomEase);
-    const logo = document.querySelector('.logo_wrap');
-    const navContact = document.querySelector('.nav_contact');
-    const navContactSubtitle = document.querySelector('.nav_contact-subtitle-2');
+    // const logo = document.querySelector('.logo_wrap');
     const headerCta = document.querySelectorAll('[data-element="portfolio-header-cta"]');
+    const nav = document.querySelector('[data-element="nav"]');
 
     const tl = gsap.timeline();
 
-    const logoSplit = new SplitType(logo, { types: `chars` });
-    this.nestLettersDivs(logoSplit);
+    // const logoSplit = new SplitType(logo, { types: `chars` });
+    // this.nestLettersDivs(logoSplit);
 
     const nameBright = [...document.querySelectorAll('.portfolio_header_name-bright')];
     const mar = nameBright[0];
@@ -46,6 +53,9 @@ export default class PortfolioAnimation {
     const nameDark = [...document.querySelectorAll('.portfolio_header_name-dark')];
     const tirosyan = nameDark[0];
     const k = nameDark[1];
+    const underline = [...document.querySelectorAll('[data-animation="underline"]')];
+    const headerText = [...document.querySelectorAll('[data-animation="header-text"]')];
+    const headerContent = document.querySelector('.portfolio_header_name-wrapper');
 
     const marSplit = new SplitType(mar, { types: `chars` });
     this.nestLettersDivs(marSplit);
@@ -59,21 +69,12 @@ export default class PortfolioAnimation {
     const kSplit = new SplitType(k, { types: `chars` });
     this.nestLettersDivs(kSplit);
 
-    const underline = [...document.querySelectorAll('[data-animation="underline"]')];
-    const headerText = [...document.querySelectorAll('[data-animation="header-text"]')];
-
-    // const nameSplit = new SplitType(name, { types: `chars` })
-    // this.nestLettersDivs(nameSplit)
-    // const brightLetters = []
-    // const darkLetters = []
-
-    const headerContent = document.querySelector('.portfolio_header_name-wrapper');
-
     gsap.set(headerContent, { perspective: 500 });
 
     const angle = -30;
     const duration = 2.0;
     const xDistance = -60;
+
     // const ease = CustomEase.create(
     //   'custom',
     //   'M0,0 C0.134,0.03 0.244,0.09 0.298,0.168 0.395,0.308 0.423,0.682 0.55,0.82 0.631,0.908 0.752,1 1,1 '
@@ -154,7 +155,7 @@ export default class PortfolioAnimation {
       )
 
       .from(
-        '.portfolio_nav',
+        nav,
         {
           autoAlpha: 0,
           duration: 0.5,
@@ -335,54 +336,58 @@ export default class PortfolioAnimation {
     });
   }
 
-  animateCursorElements() {
-    const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
-    const projects = [...document.querySelectorAll('[data-element="project"]')];
+  animateCursorElements(selectors) {
+    animateCursorElements(selectors);
+    // const articleCards = [...document.querySelectorAll('[data-element="article-card"]')];
+    // const projects = [...document.querySelectorAll('[data-element="project"]')];
+    // const testimonialProjects = [
+    //   [...document.querySelectorAll('[data-element="testimonial-project"]')],
+    // ];
 
-    //TODO - merge arrays
-    const allElements = [...articleCards, ...projects];
+    // //TODO - merge arrays
+    // const allElements = [...articleCards, ...projects, ...testimonialProjects];
 
-    allElements.forEach((el) => {
-      const cursorInner = document.querySelector('.cursor_inner');
-      const text = el.getAttribute('data-text');
+    // allElements.forEach((el) => {
+    //   const cursorInner = document.querySelector('.cursor_inner');
+    //   const text = el.getAttribute('data-text');
 
-      el.addEventListener('mouseenter', () => {
-        const p = document.createElement('p');
-        p.textContent = text;
-        p.classList.add('cursor_text');
+    //   el.addEventListener('mouseenter', () => {
+    //     const p = document.createElement('p');
+    //     p.textContent = text;
+    //     p.classList.add('cursor_text');
 
-        gsap.set(p, {
-          autoAlpha: 0,
-        });
+    //     gsap.set(p, {
+    //       autoAlpha: 0,
+    //     });
 
-        cursorInner.appendChild(p);
-        const textWidth = p.getBoundingClientRect().width;
-        const textHeight = p.getBoundingClientRect().height;
+    //     cursorInner.appendChild(p);
+    //     const textWidth = p.getBoundingClientRect().width;
+    //     const textHeight = p.getBoundingClientRect().height;
 
-        cursorInner.classList.add('is-active');
+    //     cursorInner.classList.add('is-active');
 
-        gsap.to(cursorInner, {
-          width: textWidth + 20,
-          height: textHeight + 10,
-          duration: 0.35,
-        });
+    //     gsap.to(cursorInner, {
+    //       width: textWidth + 20,
+    //       height: textHeight + 10,
+    //       duration: 0.35,
+    //     });
 
-        gsap.to(p, {
-          autoAlpha: 1,
-          delay: 0.1,
-        });
-      });
+    //     gsap.to(p, {
+    //       autoAlpha: 1,
+    //       delay: 0.1,
+    //     });
+    //   });
 
-      el.addEventListener('mouseleave', () => {
-        cursorInner.innerHTML = '';
-        cursorInner.classList.remove('is-active');
-        gsap.to(cursorInner, {
-          width: '1rem',
-          height: '1rem',
-          duration: 0.35,
-        });
-      });
-    });
+    //   el.addEventListener('mouseleave', () => {
+    //     cursorInner.innerHTML = '';
+    //     cursorInner.classList.remove('is-active');
+    //     gsap.to(cursorInner, {
+    //       width: '1rem',
+    //       height: '1rem',
+    //       duration: 0.35,
+    //     });
+    //   });
+    // });
   }
 
   animateProjects() {
@@ -391,7 +396,7 @@ export default class PortfolioAnimation {
     projects.forEach((project) => {
       const speed = project.getAttribute('data-speed');
       gsap.from(project, {
-        yPercent: `+${speed}`,
+        yPercent: `+${isMobileDevice() ? 0 : speed}`,
         scrollTrigger: {
           trigger: project,
           start: 'top bottom',
@@ -409,9 +414,6 @@ export default class PortfolioAnimation {
     fadeInElements.forEach((el) => {
       gsap.set(el, {
         autoAlpha: 0.2,
-        onComplete: () => {
-          // console.log('blyaaaaaaaaaaaaaat');
-        },
       });
     });
     ScrollTrigger.batch(fadeInElements, {

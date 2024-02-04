@@ -6,8 +6,10 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import Sphere from './Sphere.js';
+import { isMobileDevice } from '$utils/isMobile';
+
 import { AberrationShader } from './shaders/AberrationShader.js';
+import Sphere from './Sphere.js';
 
 // define your constants here
 const CAMERA_FOV = 30;
@@ -350,11 +352,17 @@ export default class Stage {
     this.sphereNewPosZ = -scrollY * 0.35;
     this.newScale = this.sphere.initialScale * 0.2;
 
-    gsap.to(this.sphere.mesh.position, {
-      y: this.moveSphereUpNewPosY,
-      z: this.sphereNewPosZ,
-      duration: 0.2,
-    });
+    let yTo = gsap.quickSetter(this.sphere.mesh.position, 'y');
+
+    if (!isMobileDevice()) {
+      gsap.to(this.sphere.mesh.position, {
+        y: this.moveSphereUpNewPosY,
+        z: this.sphereNewPosZ,
+        duration: 0.2,
+      });
+    } else {
+      yTo(this.moveSphereUpNewPosY);
+    }
   }
 
   async createSphere() {

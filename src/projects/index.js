@@ -1,7 +1,9 @@
+// import '$utils/htmx-variable.js';
+
 import gsap from 'gsap';
-import htmx from 'htmx.org';
 
 let modalEventListenerAttached = false;
+const { htmx } = window;
 
 function init() {
   closeModal();
@@ -11,8 +13,7 @@ function init() {
 function animateModal() {
   if (!modalEventListenerAttached) {
     const modal = htmx.find("[data-element='modal']");
-    console.log(modal);
-    console.log('htmx:load');
+    // console.log('htmx:load');
     if (modal) {
       gsap.killTweensOf(modal);
       // gsap.set(modal, { yPercent: 10 });
