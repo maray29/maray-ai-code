@@ -64,7 +64,7 @@
   --colors--text--text-secondary: var(--colors--gray-light-mode--700);
   --colors--text--text-secondary_hover: var(--colors--gray-light-mode--800);
   --colors--text--text-secondary_on-brand: var(--colors--brand--200);
-  -colors--text--text-success-primary: var(--colors--success--600);
+  --colors--text--text-success-primary: var(--colors--success--600);
   --colors--text--text-tertiary: var(--colors--gray-light-mode--800);
   --colors--text--text-tertiary_hover: var(--colors--gray-light-mode--700);
   --colors--text--text-tertiary_on-brand: var(--colors--brand--200);

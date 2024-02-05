@@ -14,7 +14,7 @@ function init() {
 
   createLenis();
   animateHeader();
-  changeTheme();
+  changeTheme("[data-element='theme-toggle']");
 }
 
 function animateHeader() {
