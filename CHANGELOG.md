@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.1.4
+
+### Patch Changes
+
+- 0815ed9c80c4c1f664416e61f4939004f41d4507: Fixed bugs
+
 ## 3.1.3
 
 ### Patch Changes
