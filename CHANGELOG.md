@@ -1,5 +1,12 @@
 # @finsweet/developer-starter
 
+## 3.1.3
+
+### Patch Changes
+
+- 6e9d71af34190e2d09b82043ba7f1bd659175dac: Fixed bugs
+- a97cab80870a4499e4bddd35eb97146fc57ccb1e: Added lawyer lp code
+
 ## 3.1.2
 
 ### Patch Changes
