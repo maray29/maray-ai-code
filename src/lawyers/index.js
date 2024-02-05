@@ -1,8 +1,8 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import createLenis from '$utils/createLenis';
 import changeTheme from '$utils/changeTheme';
+import createLenis from '$utils/createLenis';
 
 function init() {
   gsap.registerPlugin(ScrollTrigger);
