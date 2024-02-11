@@ -8,16 +8,45 @@ import { animateCursor } from '../animations/animations';
 
 function init() {
   gsap.registerPlugin(ScrollTrigger);
-  gsap.to('.page-wrapper', {
-    autoAlpha: 1,
-  });
 
   gsap.set('.tooltip_component', { autoAlpha: 0 });
 
   createLenis();
+  animatePageLoad();
   animateHeader();
   changeTheme("[data-element='theme-toggle']");
   animateCursor('.cursor_inner');
+}
+
+function animatePageLoad() {
+  const img1 = document.querySelector('.lawyers_header_img-1');
+  const img2 = document.querySelector('.lawyers_header_img-2');
+  const headerContent = document.querySelector('.lawyers_header_content');
+
+  const tl = gsap.timeline();
+  tl.to('.page-wrapper', {
+    autoAlpha: 1,
+  })
+    .from(img1, {
+      autoAlpha: 0,
+      // transform: 'rotate(0deg)',
+      rotationY: 0,
+      y: 300,
+      duration: 1,
+    })
+    .from(
+      img2,
+      {
+        autoAlpha: 0,
+        rotationY: 0,
+        y: 300,
+        duration: 0.75,
+      },
+      '<0.25'
+    )
+    .from(headerContent, {
+      autoAlpha: 0,
+    });
 }
 
 function animateHeader() {
@@ -73,6 +102,7 @@ function animateHeader() {
         // x: 0,
         y: img1MovementDistance,
         transform: 'rotate(0deg)',
+        // rotationY: 0,
         scale: 1,
       },
       '<'
@@ -83,6 +113,7 @@ function animateHeader() {
         // x: 0,
         y: img2MovementDistance,
         transform: 'rotate(0deg)',
+        // rotationY: 0,
         scale: 1,
       },
       '<'
