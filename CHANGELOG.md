@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.2.0
+
+### Minor Changes
+
+- d711fa0d6588e31e52028fa9dc7a5213f35c13a0: Developed web design landing page code
+
 ## 3.1.4
 
 ### Patch Changes
