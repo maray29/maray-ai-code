@@ -5,6 +5,8 @@ import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
 import { Gradient } from '$utils/gradient';
 
+import { animateCursor, animateCursorElements } from '../animations/animations';
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* Set Footer Copyright Year */
@@ -122,5 +124,10 @@ window.addEventListener('DOMContentLoaded', () => {
   createLoadingAnimation();
 
   changeTheme("[data-element='theme-toggle']");
-  animateCursor('.cursor_inner', mouse, 0.2);
+  animateCursor('.cursor_inner');
+  animateCursorElements([
+    '[data-element="article-card"]',
+    '[data-element="project"]',
+    '[data-element="testimonial-project"]',
+  ]);
 });

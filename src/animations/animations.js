@@ -80,8 +80,8 @@ export function animateCursor(cursor, mouse, speed = 0.1) {
   });
 
   window.addEventListener('mousemove', (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
+    localMouse.x = event.x;
+    localMouse.y = event.y;
   });
 }
 
