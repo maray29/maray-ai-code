@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.2.1
+
+### Patch Changes
+
+- 0e5e0064568982532f76434f86f46be560cafc19: Added on page load animation
+
 ## 3.2.0
 
 ### Minor Changes
