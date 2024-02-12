@@ -23,30 +23,67 @@ function animatePageLoad() {
   const img2 = document.querySelector('.lawyers_header_img-2');
   const headerContent = document.querySelector('.lawyers_header_content');
 
-  const tl = gsap.timeline();
-  tl.to('.page-wrapper', {
-    autoAlpha: 1,
-  })
-    .from(img1, {
-      autoAlpha: 0,
-      // transform: 'rotate(0deg)',
-      rotationY: 0,
-      y: 300,
-      duration: 1,
+  const mm = gsap.matchMedia();
+
+  mm.add('(min-width: 479px)', () => {
+    const tl = gsap.timeline();
+    tl.to('.page-wrapper', {
+      autoAlpha: 1,
     })
-    .from(
-      img2,
-      {
+      .from(img1, {
         autoAlpha: 0,
+        // transform: 'rotate(0deg)',
         rotationY: 0,
         y: 300,
+        duration: 1,
+      })
+      .from(
+        img2,
+        {
+          autoAlpha: 0,
+          rotationY: 0,
+          y: 300,
+          duration: 0.75,
+        },
+        '<0.25'
+      )
+      .from(headerContent, {
+        autoAlpha: 0,
+      });
+  });
+
+  mm.add('(max-width: 478px)', () => {
+    const tl = gsap.timeline();
+    tl.to('.page-wrapper', {
+      autoAlpha: 1,
+    })
+      .from(headerContent, {
+        autoAlpha: 0,
+        y: 100,
         duration: 0.75,
-      },
-      '<0.25'
-    )
-    .from(headerContent, {
-      autoAlpha: 0,
-    });
+      })
+      .from(
+        img1,
+        {
+          autoAlpha: 0,
+          // transform: 'rotate(0deg)',
+          rotationY: 0,
+          y: 300,
+          duration: 1,
+        },
+        '<'
+      )
+      .from(
+        img2,
+        {
+          autoAlpha: 0,
+          rotationY: 0,
+          y: 300,
+          duration: 0.75,
+        },
+        '<0.15'
+      );
+  });
 }
 
 function animateHeader() {
@@ -59,12 +96,18 @@ function animateHeader() {
   let endDistance;
   let img1MovementDistance;
   let img2MovementDistance;
+  let isPinned;
+  let start;
+  let headerContentMovementDistance;
 
   mm.add('(min-width: 992px)', () => {
     // desktop setup code here...
     endDistance = 1000;
     img1MovementDistance = 100;
     img2MovementDistance = 150;
+    isPinned = true;
+    start = '100px';
+    headerContentMovementDistance: -500;
   });
 
   mm.add('(max-width: 991px)', () => {
@@ -72,29 +115,36 @@ function animateHeader() {
     endDistance = 600;
     img1MovementDistance = 100;
     img2MovementDistance = 150;
+    isPinned = true;
+    start = '100px';
+    headerContentMovementDistance = -500;
   });
 
   mm.add('(max-width: 478px)', () => {
     // mobile setup code here...
-    endDistance = 300;
+    endDistance = 1200;
     img1MovementDistance = 0;
     img2MovementDistance = 0;
+    isPinned = false;
+    start = '50%';
+    headerContentMovementDistance = 0;
   });
 
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.lawyers_header_img-container',
-      start: 'clamp(top 100px)',
+      start: `clamp(top ${start})`,
       end: `+=${endDistance}`,
-      scrub: true,
-      markers: true,
-      pin: '.lawyers_header_img-container',
-      pinReparent: true,
+      scrub: 1,
+      pin: isPinned ? '.lawyers_header_img-container' : undefined,
+      pinReparent: isPinned ? true : false,
+      anticipatePin: 1,
+      // markers: true,
     },
   });
 
   tl.to('.lawyers_header_content', {
-    y: -500,
+    y: headerContentMovementDistance,
   })
     .to(
       img1,
@@ -128,7 +178,7 @@ function animateHeader() {
     .to(
       '.tooltip_component',
       {
-        y: endDistance + 100,
+        y: endDistance + img1MovementDistance,
         autoAlpha: 1,
         // stagger: 0.1,
       },
