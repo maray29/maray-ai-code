@@ -59,7 +59,7 @@
   --colors--text--text-placeholder: var(--colors--gray-light-mode--500);
   --colors--text--text-primary: var(--colors--gray-light-mode--900);
   --colors--text--text-primary_on-hover: var(--colors--brand--500);
-  --colors--text--text-primary_on-brand: var(--colors--base--white);
+  --colors--text--text-primary_on-brand: var(--colors--gray-light-mode--50);
 
   --colors--text--text-secondary: var(--colors--gray-light-mode--700);
   --colors--text--text-secondary_hover: var(--colors--gray-light-mode--800);
@@ -301,12 +301,12 @@
   --colors--border--border-primary: var(--colors--gray-dark-mode--700);
   --colors--border--border-secondary: var(--colors--gray-dark-mode--800);
   --colors--border--border-tertiary: var(--colors--gray-dark-mode--800);
-  --colors--foreground--fg-brand-primary: var(--colors--brand-400);
-  --colors--foreground--fg-brand-secondary: var(--colors--brand-500);
+  --colors--foreground--fg-brand-primary: var(--colors--brand--400);
+  --colors--foreground--fg-brand-secondary: var(--colors--brand--500);
   --colors--foreground--fg-disabled: var(--colors--gray-dark-mode--500);
   --colors--foreground--fg-error-primary: var(--colors--error--500);
   --colors--foreground--fg-error-secondary: var(--colors--error--400);
-  --colors--foreground--fg-primary: var(--colors--base--white);
+  --colors--foreground--fg-primary: var(--colors--gray-light-mode--50);
   --colors--foreground--fg-quarterary: var(--colors--gray-dark-mode--400);
   --colors--foreground--fg-quarterary_hover: var(--colors--gray-dark-mode--300);
   --colors--foreground--fg-secondary: var(--colors--gray-dark-mode--300);
