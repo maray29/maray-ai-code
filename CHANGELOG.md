@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.2.2
+
+### Patch Changes
+
+- 4e197644f4e1850f50d6aa9150f2d986564efd0c: Improved animation
+
 ## 3.2.1
 
 ### Patch Changes
