@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.3.1
+
+### Patch Changes
+
+- 965ef263de14a0b9757eecbc5b7f5a8a1ca60ac9: Added new blog index.js
+
 ## 3.3.0
 
 ### Minor Changes
