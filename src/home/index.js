@@ -1,133 +1,322 @@
+/* eslint-disable no-return-assign */
+import 'swiper/css';
+
+import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import changeTheme from '$utils/changeTheme';
-import createLenis from '$utils/createLenis';
-import { Gradient } from '$utils/gradient';
 
-import { animateCursor, animateCursorElements } from '../animations/animations';
+import { createTestimonialComponent } from '../animations/animations';
+import PortfolioAnimation from '../PortfolioAnimation.js';
+import Stage from '../Stage.js';
 
-gsap.registerPlugin(ScrollTrigger);
+class App {
+  lenis;
+  plane;
+  stage;
 
-/* Set Footer Copyright Year */
-function setCopyrightYear() {
-  const copyRightYear = document.querySelector('[am-element="copyright-year"]');
-  copyRightYear.textContent = new Date().getFullYear();
-}
-
-function createLoadingAnimation() {
-  // Create your instance
-  const gradient = new Gradient();
-  if (!gradient) {
-    return;
-  }
-
-  // Call `initGradient` with the selector to your canvas
-  gradient.initGradient('#gradient-canvas');
-  gradient.amp = 20;
-
-  // Loader counter
-  const counter = {
-    value: 75,
+  DOM = {
+    container: document.querySelector('.canvas-container'),
+    itemsWrapper: document.querySelector('.projects_list'),
+    homeHeader: document.querySelector('[data-element="home-header"]'),
+    home: {
+      el: document.querySelector('.projects_list'),
+    },
+    project: {
+      el: document.querySelector('.project_cover'),
+    },
+    mouse: {
+      cursor1: document.querySelector('.cursor_inner'),
+      cursor2: document.querySelector('.cursor_outer'),
+    },
+    cards: document.querySelectorAll('.wf_process-card_component'),
+    toggle: "[data-element='theme-toggle']",
+    navigationComponent: document.querySelector('[data-element="navigation-component"]'),
+    navigationLink: '[data-element="navigation-link"]',
+    navigationLinkText: '[data-element="navigation-link-text"]',
+    navigationLinkIcon: '[data-element="navigation-icon"]',
   };
 
-  const counterText = document.querySelector("[am-element='counter-text']");
-  const counterIcon = document.querySelector("[am-element='counter-icon']");
+  constructor() {
+    this.scrollThreshold = 5;
+    this.mouse = {
+      x: 0,
+      y: 0,
+    };
 
-  if (!counterText || !counterIcon) {
-    return;
+    this.isFirstLoad = true;
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    this.init();
+    // this.isFirstLoad = false
   }
 
-  function updateCounter() {
-    const progress = Math.round(counter.value);
-    counterText.textContent = progress.toString();
+  async init() {
+    await this.createStage();
+    this.createLenis();
+    this.preventReloading();
+    this.createEventListeners();
+    this.animateCursor(this.DOM.mouse.cursor1, 0.2);
+    // this.animateCursor(this.DOM.mouse.cursor2, 0.1);
+    // this.animateCards(this.DOM.cards);
+    this.changeTheme(this.DOM.toggle, this.stage);
+    this.createTestimonialComponent();
+    this.animateNavigationComponent();
+    this.createScrollTo();
+
+    const container = document.querySelector('main');
+
+    this.homePageAnimation = new PortfolioAnimation(container);
+    this.homePageAnimation.initAnimationsOnPageLoad();
   }
 
-  const loadingTl = gsap.timeline();
-  // loadingTl.to(counterIcon, { rotate: 360, ease: 'none', duration: 4 });
+  createTestimonialComponent() {
+    createTestimonialComponent();
+  }
 
-  loadingTl.to(counter, {
-    onUpdate: updateCounter,
-    duration: 1.25,
-    value: 100,
-  });
-  loadingTl.to(
-    counterIcon,
-    {
-      rotate: 120,
-      ease: 'power2.out',
-      duration: 1.25,
-    },
-    '<'
-  );
+  changeTheme(button, stage) {
+    changeTheme(button, stage);
+  }
 
-  //Loading screen animation
-  loadingTl.to('.loading-screen', {
-    yPercent: -100,
-    duration: 0.85,
-    ease: 'power2.out',
-  });
-  loadingTl.to(
-    '.loading-shape',
-    {
-      top: '100%',
-      duration: 0.85,
-      ease: 'power2.out',
-    },
-    '<'
-  );
+  animateNavigationComponent() {
+    if (!this.DOM.navigationComponent) return;
+    let isCollapsed = false;
+    gsap.to(this.DOM.navigationComponent, {
+      width: '3rem',
+      scrollTrigger: {
+        trigger: this.DOM.homeHeader,
+        start: 'bottom center',
+        toggleActions: 'play none none reverse',
+        onEnter: () => (isCollapsed = true),
+        onLeaveBack: () => (isCollapsed = false),
+      },
+    });
 
-  // Heading animation
-  loadingTl.from(
-    '.header-home_heading-v3',
-    {
-      delay: 0.1,
-      // opacity: 0,
-      y: 400,
-      duration: 1,
-      stagger: 0.1,
-      ease: 'power3.out',
-    },
-    '<'
-  );
-  // Heading cubes image animation
-  loadingTl.from(
-    '.header_image',
-    {
-      delay: 0.1,
-      // opacity: 0,
-      y: 300,
-      duration: 0.9,
-      stagger: 0.1,
-      ease: 'power3.out',
-    },
-    '<'
-  );
+    this.DOM.navigationComponent.addEventListener('mouseenter', () => {
+      if (isCollapsed) {
+        gsap.to(this.DOM.navigationComponent, {
+          width: 'auto',
+        });
+      }
+    });
 
-  // The text message animation that is below the header.
-  loadingTl.from(
-    '.message_text',
-    {
-      // delay: 0.1,
-      // opacity: 0,
-      y: 300,
-      duration: 1,
-      ease: 'power3.out',
-    },
-    '<'
-  );
+    this.DOM.navigationComponent.addEventListener('mouseleave', () => {
+      if (isCollapsed) {
+        gsap.to(this.DOM.navigationComponent, {
+          width: '3rem',
+          delay: 0.25,
+        });
+      }
+    });
+
+    const links = this.DOM.navigationComponent.querySelectorAll(this.DOM.navigationLink);
+    links.forEach((link) => {
+      const linkIcon = link.querySelector(this.DOM.navigationLinkIcon);
+      const linkText = link.querySelector(this.DOM.navigationLinkText);
+      gsap.set(linkIcon, {
+        // display: 'none',
+        xPercent: -100,
+        autoAlpha: 0,
+      });
+      gsap.set(linkText, {
+        x: -24,
+      });
+      link.addEventListener('mouseenter', () => {
+        gsap.to(linkIcon, {
+          // display: 'block',
+          xPercent: 0,
+          autoAlpha: 1,
+        });
+        gsap.to(linkText, {
+          x: 0,
+        });
+      });
+      link.addEventListener('mouseleave', () => {
+        gsap.to(linkIcon, {
+          xPercent: -100,
+          autoAlpha: 0,
+        });
+        gsap.to(linkText, {
+          x: -25,
+        });
+      });
+    });
+  }
+
+  createScrollTo() {
+    // Remember: if you scroll to an element and also animate it,
+    // then the offset will be calculated with an error.
+    const sections = gsap.utils.toArray(document.querySelectorAll('[data-section]'));
+    const links = gsap.utils.toArray(document.querySelectorAll('[data-link]'));
+
+    for (let i = 0; i < sections.length; i++) {
+      for (let j = 0; j < links.length; j++) {
+        if (sections[i].getAttribute('data-section') === links[j].getAttribute('data-link')) {
+          const pair = {
+            section: sections[i],
+            link: links[j],
+          };
+          console.log(pair);
+
+          ScrollTrigger.create({
+            trigger: pair.section,
+            start: 'top 60%',
+            end: 'bottom 40%',
+            toggleClass: { targets: pair.link, className: 'is-active' },
+          });
+
+          pair.link.addEventListener('click', (e) => {
+            e.preventDefault();
+            gsap.to(window, {
+              duration: 1.5,
+              scrollTo: { y: pair.section, offsetY: 80 },
+              ease: 'power2.inOut',
+              overwrite: 'auto',
+            });
+          });
+        }
+      }
+    }
+  }
+
+  // Init three.js
+  async createStage() {
+    const container = document.querySelector('.canvas-container');
+    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+
+    if (currentTheme === 'light-mode') {
+      this.stage = new Stage(container, {
+        aberration: 0.001,
+      });
+    } else {
+      this.stage = new Stage(container, {
+        aberration: 0.35,
+      });
+    }
+  }
+
+  createLenis() {
+    this.lenis = new Lenis({
+      duration: 1.5,
+      // normalizeWheel: true,
+      // syncTouch: true,
+    });
+
+    this.lenis.on('scroll', ({ scroll }) => {
+      ScrollTrigger.update();
+      // update our scroll manager values
+      // this.stage.updateScrollValues(scroll)
+      if (this.stage) {
+        this.stage.animateOnScroll(0, scroll);
+        // console.log(scroll);
+      }
+    });
+
+    // this.lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      this.lenis.raf(time * 1000);
+    });
+  }
+
+  isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  }
+
+  isTouchDevice() {
+    return (
+      'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+    );
+  }
+
+  animateCursor(cursor, speed = 0.1) {
+    // let mm = gsap.matchMedia();
+
+    // // add a media query. When it matches, the associated function will run
+    // mm.add('(max-width: 768px)', () => {
+    //   // this setup code only runs when viewport is at least 800px wide
+    //   gsap.set(cursor, {
+    //     autoAlpha: 0,
+    //   });
+    // });
+
+    if (!this.isMobileDevice() && !this.isTouchDevice()) {
+      gsap.set(cursor, {
+        // autoAlpha: 0,
+        // x: '20px',
+        // y: '-20px',
+        // xPercent: 50,
+        // yPercent: -100,
+      });
+    }
+
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    this.mouse = { x: pos.x, y: pos.y };
+
+    const fpms = 60 / 1000;
+
+    const xSet = gsap.quickSetter(cursor, 'x', 'px');
+    const ySet = gsap.quickSetter(cursor, 'y', 'px');
+
+    gsap.ticker.add((time, deltaTime) => {
+      const delta = deltaTime * fpms;
+      const dt = 1.0 - Math.pow(1.0 - speed, delta);
+
+      pos.x += (this.mouse.x - pos.x) * dt;
+      pos.y += (this.mouse.y - pos.y) * dt;
+      xSet(pos.x + 20);
+      ySet(pos.y - 20);
+    });
+  }
+
+  onMouseMove(event) {
+    this.mouse.x = event.x;
+    this.mouse.y = event.y;
+  }
+
+  createEventListeners() {
+    window.addEventListener('mousemove', this.onMouseMove.bind(this));
+  }
+
+  preventReloading() {
+    // Prevent reloading the same page
+    const links = document.querySelectorAll('a[href]');
+    const cbk = (e) => {
+      if (e.currentTarget.href === window.location.href) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', cbk);
+    }
+  }
+
+  // Getter methods for document and window properties
+  get documentHeight() {
+    return document.documentElement.scrollHeight;
+  }
+
+  get viewportHeight() {
+    return window.innerHeight;
+  }
+
+  get scrollPosition() {
+    return window.scrollY;
+  }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  createLenis();
-  setCopyrightYear();
-  createLoadingAnimation();
+window.Webflow ||= [];
+window.Webflow.push(() => {
+  // console.clear()
+});
 
-  changeTheme("[data-element='theme-toggle']");
-  animateCursor('.cursor_inner');
-  animateCursorElements([
-    '[data-element="article-card"]',
-    '[data-element="project"]',
-    '[data-element="testimonial-project"]',
-  ]);
+window.addEventListener('DOMContentLoaded', () => {
+  window.APP = new App('#app', {
+    debug: window.location.hash.includes('debug'),
+  });
 });

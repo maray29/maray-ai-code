@@ -62,7 +62,7 @@
   --colors--text--text-primary_on-brand: var(--colors--gray-light-mode--50);
 
   --colors--text--text-secondary: var(--colors--gray-light-mode--700);
-  --colors--text--text-secondary_hover: var(--colors--gray-light-mode--800);
+  --colors--text--text-secondary_hover: var(--colors--gray-light-mode--950);
   --colors--text--text-secondary_on-brand: var(--colors--brand--200);
   --colors--text--text-success-primary: var(--colors--success--600);
   --colors--text--text-tertiary: var(--colors--gray-light-mode--800);
@@ -332,7 +332,7 @@
   --colors--text--text-tertiary: var(--colors--gray-dark-mode--500);
 
   --colors--text--text-primary_on-brand: var(--colors--gray-dark-mode--900);
-  --colors--text--text-secondary_hover: var(--colors--gray-dark-mode--200);
+  --colors--text--text-secondary_hover: var(--colors--gray-dark-mode--50);
   --colors--text--text-secondary_on-brand: var(--colors--gray-dark-mode--300);
   --colors--text--text-success-primary: var(--colors--success--400);
   --colors--text--text-tertiary_hover: var(--colors--gray-dark-mode--300);
