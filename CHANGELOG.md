@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.3.0
+
+### Minor Changes
+
+- 419234c4c077c536b5cc5ce16389620df8e29907: New home page
+
 ## 3.2.3
 
 ### Patch Changes
