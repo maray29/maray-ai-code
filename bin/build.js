@@ -19,6 +19,7 @@ const ENTRY_POINTS = [
   'src/template-gallery/index.js',
   'src/css/*.css',
   'src/web-design/index.js',
+  'src/blog/index.js',
 ];
 
 // Config dev serving
