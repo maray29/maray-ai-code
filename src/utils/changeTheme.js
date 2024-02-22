@@ -42,7 +42,11 @@ async function applyTheme() {
 }
 
 function updatePageForTheme(theme, stage) {
-  if (window.location.pathname === PORTFOLIO_PATH && stage) {
+  if (
+    (window.location.pathname === PORTFOLIO_PATH && stage) ||
+    (window.location.pathname === '/home-new' && stage) ||
+    (window.location.pathname === '/' && stage)
+  ) {
     updatePortfolioPage(theme, stage);
   }
 }

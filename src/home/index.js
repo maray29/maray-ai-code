@@ -17,7 +17,6 @@ import {
 } from '../animations/animations';
 import Stage from '../Stage.js';
 import {
-  animateElementsParallax,
   animateFadeInScrub,
   animatePageHeader,
   animateProcessText,
@@ -77,10 +76,6 @@ class App {
     this.animateNavigationComponent();
     this.createScrollTo();
 
-    // const container = document.querySelector('main');
-    // this.homePageAnimation = new PortfolioAnimation(container);
-    // this.homePageAnimation.initAnimationsOnPageLoad();
-
     // Refactored functions
     const mouse = {
       x: 0,
@@ -96,7 +91,6 @@ class App {
     animatePageHeader();
     animateFadeIn('[data-animation="fade-in"]');
     animateText('[data-animation="paragraph"]');
-    // animateElementsParallax('[data-animation="parallax"]');
     animateProcessText('[data-animation="words"]');
     animateFadeInScrub('[data-animation="fade-in-scrub"]');
     animateProjectsParallax('[data-element="project"]');
