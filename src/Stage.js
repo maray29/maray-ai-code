@@ -366,7 +366,7 @@ export default class Stage {
   }
 
   async createSphere() {
-    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    const currentTheme = localStorage.getItem('theme') || 'dark-mode';
 
     if (currentTheme === 'light-mode') {
       if (this.effect1) this.updateAberrationShader(0.001);
