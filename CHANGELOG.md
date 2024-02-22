@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.4.1
+
+### Patch Changes
+
+- 65cda743616b0b94b390b5432b1003d2b19d7e50: Fixed sphere settings bug
+
 ## 3.4.0
 
 ### Minor Changes
