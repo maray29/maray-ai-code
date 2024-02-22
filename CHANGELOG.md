@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.3.2
+
+### Patch Changes
+
+- 7823164b414ff8bf10f960e96e7d789167fe233b: Refactored new home page animations
+
 ## 3.3.1
 
 ### Patch Changes
