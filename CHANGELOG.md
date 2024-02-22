@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.4.0
+
+### Minor Changes
+
+- 18d5c5b1e9d961f0e225fe502031be08e50a0092: Restructured pages
+
 ## 3.3.2
 
 ### Patch Changes
