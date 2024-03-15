@@ -376,7 +376,7 @@
   --components--button-tertiary-border: var(--colors--gray-dark-mode--700);
 
   /* Add to figma */
-  --components--cursor-bg: var(--colors--gray-dark-mode--300);
+  --components--cursor-bg: var(--colors--gray-dark-mode--200);
   --components--cursor-text: var(--colors--gray-dark-mode--700);
   --components--cursor-border: var(--colors--gray-dark-mode--400);
 

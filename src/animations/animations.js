@@ -211,7 +211,7 @@ export function createTestimonialComponent() {
       .fromTo(lines, { scaleX: 1 }, { scaleX: 0 }, '<')
       .fromTo(texts, { autoAlpha: 1 }, { autoAlpha: 0 }, '<')
       .fromTo(images, { autoAlpha: 1 }, { autoAlpha: 0 }, '<')
-      .to({}, { duration: 0.25 }, '>')
+      .to({}, { duration: 0.1 }, '>')
       .call(() => (direction === 'next' ? swiper.slideNext() : swiper.slidePrev()));
   }
 
@@ -227,5 +227,77 @@ export function createTestimonialComponent() {
     gsap.fromTo(lines, { scaleX: 0 }, { scaleX: 1 }, '<');
     gsap.fromTo(texts, { autoAlpha: 0 }, { autoAlpha: 1 }, '<');
     gsap.fromTo(images, { autoAlpha: 0 }, { autoAlpha: 1 }, '<');
+  });
+}
+
+export function animateNavDropdown() {
+  // const dropdown = document.querySelector('[data-element="nav-dropdown-webdesign"]');
+  const dropdown = document.querySelector('[data-element="nav-dropdown"]');
+  const dropdownList = dropdown.querySelector('[data-element="nav-dropdown-list"]');
+  const dropdownArrow = dropdown.querySelector('[data-element="nav-dropdown-arrow"]');
+  if (!dropdown) return;
+  const dropdownLinks = dropdown.querySelectorAll('[data-element="nav-dropdown-link"]');
+  const dropdownContents = dropdown.querySelectorAll('[data-element="nav-dropdown-content"]');
+  const dropdownArticles = dropdown.querySelectorAll('[data-element="nav-dropdown-articles"]');
+  console.log(dropdownLinks);
+
+  const duration = 0.35;
+  let mouseLeaveTimeout;
+
+  dropdown.addEventListener('mouseenter', () => {
+    clearTimeout(mouseLeaveTimeout);
+    gsap.set(dropdownList, { display: 'flex' });
+    gsap.to(dropdownList, { autoAlpha: 1, duration: duration });
+    gsap.to(dropdownArrow, { rotateZ: 180, duration: duration });
+    gsap.to('.main-wrapper, .navigation_component', {
+      filter: 'blur(5px)',
+    });
+  });
+
+  dropdown.addEventListener('mouseleave', () => {
+    mouseLeaveTimeout = setTimeout(() => {
+      gsap.to(dropdownList, { autoAlpha: 0, duration: duration });
+      gsap.to(dropdownArrow, { rotateZ: 0, duration: duration });
+      gsap.set(dropdownList, { display: 'none', delay: duration });
+      gsap.to('.main-wrapper, .navigation_component', {
+        filter: 'blur(0px)',
+      });
+    }, 150);
+  });
+
+  dropdownLinks.forEach((link) => {
+    const contentType = link.getAttribute('data-type');
+    link.addEventListener('mouseenter', () => {
+      dropdownContents.forEach((content) => {
+        if (contentType !== content.getAttribute('data-type')) {
+          gsap.to(content, { autoAlpha: 0, duration: duration });
+          gsap.set(content, {
+            display: 'none',
+            delay: 0.2,
+          });
+        } else {
+          gsap.set(content, {
+            display: 'flex',
+            delay: 0.2,
+          });
+          gsap.to(content, { autoAlpha: 1, duration: duration, delay: duration });
+        }
+      });
+      dropdownArticles.forEach((articles) => {
+        if (contentType !== articles.getAttribute('data-type')) {
+          gsap.to(articles, { autoAlpha: 0, duration: duration });
+          gsap.set(articles, {
+            display: 'none',
+            delay: 0.2,
+          });
+        } else {
+          gsap.set(articles, {
+            display: 'block',
+            delay: 0.2,
+          });
+          gsap.to(articles, { autoAlpha: 1, duration: duration, delay: duration });
+        }
+      });
+    });
   });
 }

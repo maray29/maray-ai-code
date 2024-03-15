@@ -12,6 +12,7 @@ import {
   animateCursor,
   animateCursorElements,
   animateFadeIn,
+  animateNavDropdown,
   animateText,
   createTestimonialComponent,
 } from '../animations/animations';
@@ -87,6 +88,8 @@ class App {
       '[data-element="article-card"]',
       '[data-element="project"]',
       '[data-element="testimonial-project"]',
+      '[data-element="nav-dropdown-link"]',
+      '[data-element="nav-articles-item"]',
     ]);
     animatePageHeader();
     animateFadeIn('[data-animation="fade-in"]');
@@ -94,6 +97,7 @@ class App {
     animateProcessText('[data-animation="words"]');
     animateFadeInScrub('[data-animation="fade-in-scrub"]');
     animateProjectsParallax('[data-element="project"]');
+    animateNavDropdown();
   }
 
   createTestimonialComponent() {

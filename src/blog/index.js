@@ -1,11 +1,10 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { animateCursor, animateCursorElements, animateNavDropdown } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
 import { Gradient } from '$utils/gradient';
-
-import { animateCursor, animateCursorElements } from '../animations/animations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,5 +135,8 @@ window.addEventListener('DOMContentLoaded', () => {
     '[data-element="article-card"]',
     '[data-element="project"]',
     '[data-element="testimonial-project"]',
+    '[data-element="nav-dropdown-link"]',
+    '[data-element="nav-articles-item"]',
   ]);
+  animateNavDropdown();
 });

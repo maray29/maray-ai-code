@@ -18,7 +18,7 @@ export default async function changeTheme(selector, stage) {
 
   button.addEventListener('change', () => toggleTheme(stage));
 
-  applyTheme();
+  // applyTheme();
 }
 
 async function toggleTheme(stage) {
@@ -44,7 +44,6 @@ async function applyTheme() {
 function updatePageForTheme(theme, stage) {
   if (
     (window.location.pathname === PORTFOLIO_PATH && stage) ||
-    (window.location.pathname === '/home-new' && stage) ||
     (window.location.pathname === '/' && stage)
   ) {
     updatePortfolioPage(theme, stage);

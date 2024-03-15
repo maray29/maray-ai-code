@@ -1,10 +1,9 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+import { animateCursor, animateCursorElements, animateNavDropdown } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
-
-import { animateCursor } from '../animations/animations';
 
 function init() {
   gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +15,11 @@ function init() {
   animateHeader();
   changeTheme("[data-element='theme-toggle']");
   animateCursor('.cursor_inner');
+  animateCursorElements([
+    '[data-element="nav-dropdown-link"]',
+    '[data-element="nav-articles-item"]',
+  ]);
+  animateNavDropdown();
 }
 
 function animatePageLoad() {

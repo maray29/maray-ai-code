@@ -3,16 +3,16 @@ import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import changeTheme from '$utils/changeTheme';
-import { isMobileDevice } from '$utils/isMobile';
-
 import {
   animateCursor,
   animateCursorElements,
   animateFadeIn,
+  animateNavDropdown,
   animateText,
   createTestimonialComponent,
-} from '../animations/animations';
+} from '$animations/animations';
+import changeTheme from '$utils/changeTheme';
+import { isMobileDevice } from '$utils/isMobile';
 
 function animateHeader() {
   const pageWrapper = document.querySelector('.page-wrapper');
@@ -123,9 +123,12 @@ window.addEventListener('DOMContentLoaded', () => {
     '[data-element="article-card"]',
     '[data-element="project"]',
     '[data-element="testimonial-project"]',
+    '[data-element="nav-dropdown-link"]',
+    '[data-element="nav-articles-item"]',
   ]);
   animateText('[data-element="text"]');
   animateFadeIn('[data-animation="fade-in"]');
   changeTheme("[data-element='theme-toggle']");
   createTestimonialComponent();
+  animateNavDropdown();
 });

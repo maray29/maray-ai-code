@@ -8,6 +8,7 @@ import swift from 'highlight.js/lib/languages/swift';
 import postscribe from 'postscribe';
 import showdown from 'showdown';
 
+import { animateCursor, animateCursorElements, animateNavDropdown } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
 
@@ -17,6 +18,13 @@ window.Webflow.push(() => {
 
   createLenis();
   changeTheme("[data-element='theme-toggle']");
+  animateCursor('.cursor_inner');
+  animateCursorElements([
+    '[data-element="article-card"]',
+    '[data-element="nav-dropdown-link"]',
+    '[data-element="nav-articles-item"]',
+  ]);
+  animateNavDropdown();
 
   function loadGist(el) {
     let match = el.innerHTML.match(/^(https:\/\/gist.*)(\.js)?$/);
