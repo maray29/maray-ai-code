@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.5.1
+
+### Patch Changes
+
+- 911ab7fc5b48641fbcd80981c6cfeebff2d2548f: Fixed cursor animation bug
+
 ## 3.5.0
 
 ### Minor Changes
