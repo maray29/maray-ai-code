@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.5.0
+
+### Minor Changes
+
+- 926f08769dcfb66a1d0feeaa34885e12fc341fe4: Added navbar dropdown animation
+
 ## 3.4.1
 
 ### Patch Changes
