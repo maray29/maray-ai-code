@@ -118,7 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
   };
 
   animateHeader();
-  animateCursor('.cursor_inner', mouse, 0.2);
+  animateCursor('.cursor_inner');
   animateCursorElements([
     '[data-element="article-card"]',
     '[data-element="project"]',

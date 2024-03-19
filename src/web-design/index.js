@@ -31,12 +31,12 @@ function animatePageLoad() {
 
   mm.add('(min-width: 479px)', () => {
     const tl = gsap.timeline();
+
     tl.to('.page-wrapper', {
       autoAlpha: 1,
     })
       .from(img1, {
         autoAlpha: 0,
-        // transform: 'rotate(0deg)',
         rotationY: 0,
         y: 300,
         duration: 1,
@@ -189,6 +189,20 @@ function animateHeader() {
       '<0.5'
     );
 }
+
+// The following code is a temporary solution
+// to a problem where the on page load animation does not
+// work well with proceeding scroll trigger animation if the page is loaded in the middle.
+// Tried to call the second animation after the first one is complete,
+// but the scroll trigger animation is delayed by on page load animation
+// and that causes a layout shift.
+
+window.onbeforeunload = function () {
+  gsap.set('.page-wrapper', {
+    autoAlpha: 0,
+  });
+  window.scrollTo(0, 0);
+};
 
 window.addEventListener('DOMContentLoaded', () => {
   init();

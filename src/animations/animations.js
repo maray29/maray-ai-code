@@ -239,7 +239,6 @@ export function animateNavDropdown() {
   const dropdownLinks = dropdown.querySelectorAll('[data-element="nav-dropdown-link"]');
   const dropdownContents = dropdown.querySelectorAll('[data-element="nav-dropdown-content"]');
   const dropdownArticles = dropdown.querySelectorAll('[data-element="nav-dropdown-articles"]');
-  console.log(dropdownLinks);
 
   const duration = 0.35;
   let mouseLeaveTimeout;
