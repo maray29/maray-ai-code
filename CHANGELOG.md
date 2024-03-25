@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.5.2
+
+### Patch Changes
+
+- 5b2d8b3499248a0a52b0073c59aaa60467a5f44e: Added a bug fix to scroll trigger animation
+
 ## 3.5.1
 
 ### Patch Changes
