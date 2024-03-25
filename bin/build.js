@@ -20,6 +20,7 @@ const ENTRY_POINTS = [
   'src/web-design/index.js',
   'src/blog/index.js',
   'src/legal/index.js',
+  'src/smb/index.js',
 ];
 
 // Config dev serving
