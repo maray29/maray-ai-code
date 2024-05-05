@@ -298,8 +298,8 @@
   --colors--border--border-disabled: var(--colors--gray-dark-mode--700);
   --colors--border--border-error: var(--colors--error--400);
   --colors--border--border-error-solid: var(--colors--error--500);
-  --colors--border--border-primary: var(--colors--gray-dark-mode--700);
-  --colors--border--border-secondary: var(--colors--gray-dark-mode--800);
+  --colors--border--border-primary: var(--colors--gray-dark-mode--600);
+  --colors--border--border-secondary: var(--colors--gray-dark-mode--700);
   --colors--border--border-tertiary: var(--colors--gray-dark-mode--800);
   --colors--foreground--fg-brand-primary: var(--colors--brand--400);
   --colors--foreground--fg-brand-secondary: var(--colors--brand--500);
