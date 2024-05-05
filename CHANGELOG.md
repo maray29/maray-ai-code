@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.6.0
+
+### Minor Changes
+
+- bda542c4dd700171b504eccb674bbbdd117075ba: Added life os page
+
 ## 3.5.3
 
 ### Patch Changes
