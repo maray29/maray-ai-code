@@ -112,10 +112,10 @@ window.addEventListener('DOMContentLoaded', () => {
     lenis.raf(time * 1000);
   });
 
-  const mouse = {
-    x: 0,
-    y: 0,
-  };
+  // const mouse = {
+  //   x: 0,
+  //   y: 0,
+  // };
 
   animateHeader();
   animateCursor('.cursor_inner');
