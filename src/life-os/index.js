@@ -20,8 +20,6 @@ function init() {
     });
   }
 
-  gsap.set('.tooltip_component', { autoAlpha: 0 });
-
   changeTheme("[data-element='theme-toggle']");
   animateCursor('.cursor_inner');
   animateCursorElements([
