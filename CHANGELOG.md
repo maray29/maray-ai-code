@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.6.3
+
+### Patch Changes
+
+- 617c34386724c6d4003f67d56f5be9e24459cb79: color changes
+
 ## 3.6.2
 
 ### Patch Changes
