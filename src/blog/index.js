@@ -1,11 +1,10 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { animateCursor, animateCursorElements, animateNavDropdown } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
 import createLenis from '$utils/createLenis';
 import { Gradient } from '$utils/gradient';
-
-import { animateCursor, animateCursorElements } from '../animations/animations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,22 +43,29 @@ function createLoadingAnimation() {
   }
 
   const loadingTl = gsap.timeline();
-  // loadingTl.to(counterIcon, { rotate: 360, ease: 'none', duration: 4 });
 
-  loadingTl.to(counter, {
-    onUpdate: updateCounter,
-    duration: 1.25,
-    value: 100,
+  // loadingTl.to(counter, {
+  //   onUpdate: updateCounter,
+  //   duration: 1.25,
+  //   value: 100,
+  // });
+  // loadingTl.to(
+  //   counterIcon,
+  //   {
+  //     rotate: 120,
+  //     ease: 'power2.out',
+  //     duration: 1.25,
+  //   },
+  //   '<'
+  // );
+
+  loadingTl.set('.loading-container', {
+    display: 'flex',
   });
-  loadingTl.to(
-    counterIcon,
-    {
-      rotate: 120,
-      ease: 'power2.out',
-      duration: 1.25,
-    },
-    '<'
-  );
+
+  loadingTl.set('.page-wrapper', {
+    autoAlpha: 1,
+  });
 
   //Loading screen animation
   loadingTl.to('.loading-screen', {
@@ -79,7 +85,7 @@ function createLoadingAnimation() {
 
   // Heading animation
   loadingTl.from(
-    '.header-home_heading-v3',
+    '.blog-header_heading',
     {
       delay: 0.1,
       // opacity: 0,
@@ -92,7 +98,7 @@ function createLoadingAnimation() {
   );
   // Heading cubes image animation
   loadingTl.from(
-    '.header_image',
+    '.blog-header_img',
     {
       delay: 0.1,
       // opacity: 0,
@@ -106,7 +112,7 @@ function createLoadingAnimation() {
 
   // The text message animation that is below the header.
   loadingTl.from(
-    '.message_text',
+    '.blog-header_message-text',
     {
       // delay: 0.1,
       // opacity: 0,
@@ -129,5 +135,8 @@ window.addEventListener('DOMContentLoaded', () => {
     '[data-element="article-card"]',
     '[data-element="project"]',
     '[data-element="testimonial-project"]',
+    '[data-element="nav-dropdown-link"]',
+    '[data-element="nav-articles-item"]',
   ]);
+  animateNavDropdown();
 });

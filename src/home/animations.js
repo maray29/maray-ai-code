@@ -10,96 +10,49 @@ import { isMobileDevice } from '$utils/isMobile';
 export function animatePageHeader() {
   gsap.registerPlugin(CustomEase);
   // const logo = document.querySelector('.logo_wrap');
-  const headerCta = document.querySelectorAll('[data-element="portfolio-header-cta"]');
+  const headerCta = document.querySelectorAll('[data-element="home-header-cta"]');
   const nav = document.querySelector('[data-element="nav"]');
-
-  const tl = gsap.timeline();
-
-  // const logoSplit = new SplitType(logo, { types: `chars` });
-  // this.nestLettersDivs(logoSplit);
-
-  const nameBright = [...document.querySelectorAll('.portfolio_header_name-bright')];
-  const mar = nameBright[0];
-  const ay = nameBright[1];
-  const nameDark = [...document.querySelectorAll('.portfolio_header_name-dark')];
-  const tirosyan = nameDark[0];
-  const k = nameDark[1];
   const underline = [...document.querySelectorAll('[data-element="underline"]')];
+  const divider = document.querySelector('.divider');
   const headerText = [...document.querySelectorAll('[data-animation="header-text"]')];
-  const headerContent = document.querySelector('.portfolio_header_name-wrapper');
-
-  //   gsap.set(headerContent, { perspective: 500 });
+  const logoLetters = document.querySelectorAll('.logo-letter');
+  const navigationComponent = document.querySelector('[data-element="navigation-component"]');
 
   const angle = -30;
-  const duration = 2.0;
+  const duration = 1.5;
   const xDistance = -60;
 
-  // const ease = CustomEase.create(
-  //   'custom',
-  //   'M0,0 C0.134,0.03 0.244,0.09 0.298,0.168 0.395,0.308 0.423,0.682 0.55,0.82 0.631,0.908 0.752,1 1,1 '
-  // ),
+  const tl = gsap.timeline();
 
   const ease = 'power4.out';
 
   tl.to('.page-wrapper', { autoAlpha: 1 })
 
-    // .from(marSplit.chars, {
-    //   xPercent: xDistance,
-    //   rotationY: angle,
-    //   autoAlpha: 0,
-    //   stagger: 0.02,
-    //   duration: duration,
-    //   ease: ease,
-    // })
-    // .from(
-    //   aySplit.chars,
-    //   {
-    //     xPercent: xDistance,
-    //     rotationY: angle,
-    //     autoAlpha: 0,
-    //     stagger: 0.02,
-    //     duration: duration,
-    //     ease: ease,
-    //   },
-    //   '<'
-    // )
-
-    // .from(
-    //   tirosyanSplit.chars,
-    //   {
-    //     xPercent: xDistance,
-    //     rotationY: angle,
-    //     autoAlpha: 0,
-    //     stagger: 0.02,
-    //     duration: duration,
-    //     ease: ease,
-    //   },
-    //   '<0.25'
-    // )
-
-    // .from(
-    //   kSplit.chars,
-    //   {
-    //     xPercent: xDistance,
-    //     rotationY: angle,
-    //     autoAlpha: 0,
-    //     stagger: 0.05,
-    //     duration: duration,
-    //     ease: ease,
-    //   },
-    //   '<'
-    // )
-
+    .from(logoLetters, {
+      xPercent: xDistance,
+      rotationY: angle,
+      autoAlpha: 0,
+      stagger: 0.05,
+      duration: duration,
+      ease: ease,
+    })
     .from(
       underline,
       {
         scaleX: 0,
         duration: 1.25,
-        delay: 0.25,
         autoAlpha: 0,
+        delay: 0.25,
         ease: ease,
       },
       '<'
+    )
+    .from(
+      divider,
+      {
+        autoAlpha: 0,
+      },
+      '<0.25'
     )
 
     .from(
@@ -107,37 +60,26 @@ export function animatePageHeader() {
       {
         stagger: 0.2,
         duration: 1.5,
-        ease: 'ease.out4',
         autoAlpha: 0,
-      },
-      '<0.5'
-    )
-
-    .from(
-      nav,
-      {
-        autoAlpha: 0,
-        duration: 0.5,
         ease: ease,
       },
-      '<0.8'
+      '<0.25'
     )
 
-    // .from(logoSplit.chars, {
-    //   xPercent: -120,
-    //   stagger: 0.1,
-    //   duration: 1.0,
-    //   ease: 'power.out4',
-    //   autoAlpha: 0,
-    // })
-
     .from(
-      headerCta,
+      [nav, headerCta],
       {
-        ease: 'power.out4',
+        autoAlpha: 0,
+        ease: ease,
+      },
+      '<0.25'
+    )
+    .from(
+      navigationComponent,
+      {
         autoAlpha: 0,
       },
-      '<0.9'
+      '<0.25'
     );
 
   // window.addEventListener('click', () => {
@@ -221,8 +163,8 @@ export function animateFadeInScrub(selector) {
       delay: 0.25,
       scrollTrigger: {
         trigger: el,
-        start: 'top 60%',
-        end: 'top 45%',
+        start: '0% 90%',
+        end: '100% 50%',
         scrub: 1,
         // once: true,
       },

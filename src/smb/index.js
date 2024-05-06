@@ -1,4 +1,3 @@
-import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +11,7 @@ import {
   createTestimonialComponent,
 } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
+import createLenis from '$utils/createLenis';
 import { isMobileDevice } from '$utils/isMobile';
 
 function animateHeader() {
@@ -104,19 +104,8 @@ function animateHeader() {
 window.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(CustomEase);
-  const lenis = new Lenis({ lerp: 0.1, duration: 1.5 });
 
-  lenis.on('scroll', ScrollTrigger.update);
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-
-  // const mouse = {
-  //   x: 0,
-  //   y: 0,
-  // };
-
+  createLenis();
   animateHeader();
   animateCursor('.cursor_inner');
   animateCursorElements([

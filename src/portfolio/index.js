@@ -4,9 +4,9 @@ import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { animateNavDropdown, createTestimonialComponent } from '$animations/animations';
 import changeTheme from '$utils/changeTheme';
 
-import { createTestimonialComponent } from '../animations/animations';
 import PortfolioAnimation from '../PortfolioAnimation.js';
 import Stage from '../Stage.js';
 
@@ -60,6 +60,7 @@ class App {
 
     this.homePageAnimation = new PortfolioAnimation(container);
     this.homePageAnimation.initAnimationsOnPageLoad();
+    animateNavDropdown();
   }
 
   createTestimonialComponent() {

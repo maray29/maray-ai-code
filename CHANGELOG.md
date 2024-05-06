@@ -1,5 +1,65 @@
 # @finsweet/developer-starter
 
+## 3.6.1
+
+### Patch Changes
+
+- 3b0a8d9216010e5882d55a60578f98d8c5c01bbe: various changes
+
+## 3.6.0
+
+### Minor Changes
+
+- bda542c4dd700171b504eccb674bbbdd117075ba: Added life os page
+
+## 3.5.3
+
+### Patch Changes
+
+- 128dee9229ba579428a24ce4fa7887df82736e8f: Bug fix
+
+## 3.5.2
+
+### Patch Changes
+
+- 2083897d4a5deb7a75cade633436dc601a9ed809: Added code for smb page
+
+## 3.5.2
+
+### Patch Changes
+
+- 5b2d8b3499248a0a52b0073c59aaa60467a5f44e: Added a bug fix to scroll trigger animation
+
+## 3.5.1
+
+### Patch Changes
+
+- 911ab7fc5b48641fbcd80981c6cfeebff2d2548f: Fixed cursor animation bug
+
+## 3.5.0
+
+### Minor Changes
+
+- 926f08769dcfb66a1d0feeaa34885e12fc341fe4: Added navbar dropdown animation
+
+## 3.4.1
+
+### Patch Changes
+
+- 65cda743616b0b94b390b5432b1003d2b19d7e50: Fixed sphere settings bug
+
+## 3.4.0
+
+### Minor Changes
+
+- 18d5c5b1e9d961f0e225fe502031be08e50a0092: Restructured pages
+
+## 3.3.2
+
+### Patch Changes
+
+- 7823164b414ff8bf10f960e96e7d789167fe233b: Refactored new home page animations
+
 ## 3.3.1
 
 ### Patch Changes

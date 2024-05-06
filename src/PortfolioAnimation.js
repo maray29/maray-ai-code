@@ -5,9 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // import { debounce } from 'lodash';
 import SplitType from 'split-type';
 
+import { animateCursorElements, animateNavDropdown } from '$animations/animations';
 import { isMobileDevice } from '$utils/isMobile';
-
-import { animateCursorElements } from './animations/animations';
 
 export default class PortfolioAnimation {
   DOM = {};
@@ -30,6 +29,7 @@ export default class PortfolioAnimation {
       '[data-element="project"]',
       '[data-element="testimonial-project"]',
     ]);
+    animateNavDropdown();
   }
 
   killScrollTriggers() {
@@ -229,8 +229,6 @@ export default class PortfolioAnimation {
       duration: 0.25,
       ease: 'power2.out',
     });
-
-    const projectHeading = link.querySelector('.project_heading');
   }
 
   projectLinkMouseLeave(link) {
@@ -241,8 +239,6 @@ export default class PortfolioAnimation {
       duration: 0.25,
       // ease: 'power2.out',
     });
-
-    const projectHeading = link.querySelector('.project_heading');
   }
 
   animateProcessText() {

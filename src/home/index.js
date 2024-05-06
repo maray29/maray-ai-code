@@ -12,12 +12,12 @@ import {
   animateCursor,
   animateCursorElements,
   animateFadeIn,
+  animateNavDropdown,
   animateText,
   createTestimonialComponent,
 } from '../animations/animations';
 import Stage from '../Stage.js';
 import {
-  animateElementsParallax,
   animateFadeInScrub,
   animatePageHeader,
   animateProcessText,
@@ -77,10 +77,6 @@ class App {
     this.animateNavigationComponent();
     this.createScrollTo();
 
-    // const container = document.querySelector('main');
-    // this.homePageAnimation = new PortfolioAnimation(container);
-    // this.homePageAnimation.initAnimationsOnPageLoad();
-
     // Refactored functions
     const mouse = {
       x: 0,
@@ -92,14 +88,16 @@ class App {
       '[data-element="article-card"]',
       '[data-element="project"]',
       '[data-element="testimonial-project"]',
+      '[data-element="nav-dropdown-link"]',
+      '[data-element="nav-articles-item"]',
     ]);
     animatePageHeader();
     animateFadeIn('[data-animation="fade-in"]');
     animateText('[data-animation="paragraph"]');
-    // animateElementsParallax('[data-animation="parallax"]');
     animateProcessText('[data-animation="words"]');
     animateFadeInScrub('[data-animation="fade-in-scrub"]');
     animateProjectsParallax('[data-element="project"]');
+    animateNavDropdown();
   }
 
   createTestimonialComponent() {

@@ -9,7 +9,6 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
 const ENTRY_POINTS = [
-  'src/index.ts',
   'src/blog-os.ts',
   'src/blog-post/index.js',
   'src/webflow/index.js',
@@ -20,6 +19,9 @@ const ENTRY_POINTS = [
   'src/css/*.css',
   'src/web-design/index.js',
   'src/blog/index.js',
+  'src/legal/index.js',
+  'src/smb/index.js',
+  'src/life-os/index.js',
 ];
 
 // Config dev serving
@@ -108,41 +110,3 @@ function logServedFiles() {
   // eslint-disable-next-line no-console
   console.table(filesInfo);
 }
-
-// App class to structure and init the code
-class App {
-  // Curtains object
-  curtains;
-  // Smooth scroll Lenis object
-  lenis;
-  // WebGL planes
-  planes = [];
-  // Scroll value that we'll use to animate plane deformation
-  scrollEffect = 0;
-
-  // An object where we store all the DOM elements
-  DOM = {
-    h1: document.querySelector('h1'),
-    planeElements: [...document.querySelectorAll('[data-animation="image"]')],
-    heroImage: document.querySelector('.project_header_img'),
-    heroWebGlPlane: null,
-    paragraphs: [...document.querySelectorAll('[data-animation="paragraph"]')],
-    wheel: document.querySelector('.wheel_icon'),
-    wheelWrapper: document.querySelector('.wheel_wrapper'),
-    pageWrap: document.querySelector('.page-wrapper'),
-  };
-
-  // An object where we store timelines and track animation state
-  animationState = {};
-
-  constructor() {
-    this.init();
-  }
-
-  // Rest of the code
-}
-
-// window.addEventListener('load', () => {
-//   const app = new App(); // eslint-disable-line
-//   console.log('Loaded');
-// });
