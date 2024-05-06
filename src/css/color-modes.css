@@ -326,7 +326,7 @@
   --colors--text--text-error-primary: var(--colors--error--400);
   --colors--text--text-placeholder: var(--colors--gray-dark-mode--500);
 
-  --colors--text--text-primary: var(--colors--gray-dark-mode--100);
+  --colors--text--text-primary: var(--colors--gray-dark-mode--200);
   --colors--text--text-primary_on-hover: var(--colors--brand--400);
   --colors--text--text-secondary: var(--colors--gray-dark-mode--300);
   --colors--text--text-tertiary: var(--colors--gray-dark-mode--500);
