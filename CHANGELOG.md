@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.6.2
+
+### Patch Changes
+
+- 4c5edc29b576b7b72bf71b9c280b101dc859ab95: minor bug
+
 ## 3.6.1
 
 ### Patch Changes
