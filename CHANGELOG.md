@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.6.5
+
+### Patch Changes
+
+- 218fabbf753dab894a86907d7ff5e78fa17fe4b0: scrolltrigger start adjustment
+
 ## 3.6.4
 
 ### Patch Changes
