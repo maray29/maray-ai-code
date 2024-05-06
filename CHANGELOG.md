@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.6.4
+
+### Patch Changes
+
+- b6ea5bf7983ebab6ab87e79f4ba7cb4b69fb2ced: particle color change
+
 ## 3.6.3
 
 ### Patch Changes
