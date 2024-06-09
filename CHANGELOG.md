@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.7.0
+
+### Minor Changes
+
+- 1608ae1ba806276b20b6966a3d40814fb0436a95: added project hover interaction
+
 ## 3.6.5
 
 ### Patch Changes
