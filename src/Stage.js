@@ -105,10 +105,14 @@ export default class Stage {
   }
 
   updateAberrationShader(newValue) {
-    this.effect1.uniforms.max_distort.value = newValue;
+    if (this.effect1.uniforms.max_distort.value !== newValue) {
+      this.effect1.uniforms.max_distort.value = newValue;
+    }
   }
 
   #render() {
+    this.renderer.clear(); // Clear the renderer before each frame
+
     this.composer.render();
   }
 

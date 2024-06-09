@@ -32,20 +32,41 @@ export default class Sphere extends THREE.Object3D {
 
   // Method to update the particle color
   updateParticleProperties(newColor, particleMin, particleMax) {
-    this.material.uniforms.color.value = new THREE.Color(newColor);
-    this.material.uniforms.particleSizeMin.value = particleMin;
-    this.material.uniforms.particleSizeMax.value = particleMax;
+    const color = new THREE.Color(newColor);
+
+    if (this.material.uniforms.color.value.getHex() !== color.getHex()) {
+      gsap.to(this.material.uniforms.color.value, {
+        r: color.r,
+        g: color.g,
+        b: color.b,
+        duration: 0.5,
+      });
+    }
+
+    if (this.material.uniforms.particleSizeMin.value !== particleMin) {
+      gsap.to(this.material.uniforms.particleSizeMin, {
+        value: particleMin,
+        duration: 0.5,
+      });
+    }
+
+    if (this.material.uniforms.particleSizeMax.value !== particleMax) {
+      gsap.to(this.material.uniforms.particleSizeMax, {
+        value: particleMax,
+        duration: 0.5,
+      });
+    }
   }
 
   toggleBlendingMode() {
-    if (this.material.blending === THREE.AdditiveBlending) {
-      this.material.blending = THREE.NormalBlending;
-    } else {
-      this.material.blending = THREE.AdditiveBlending;
-    }
+    const currentBlending = this.material.blending;
+    const newBlending =
+      currentBlending === THREE.AdditiveBlending ? THREE.NormalBlending : THREE.AdditiveBlending;
 
-    // This line ensures the change is reflected in the rendering
-    this.material.needsUpdate = true;
+    if (currentBlending !== newBlending) {
+      this.material.blending = newBlending;
+      this.material.needsUpdate = true; // Ensure the change is reflected in rendering
+    }
   }
 
   async #createSphereMesh() {

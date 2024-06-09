@@ -376,8 +376,8 @@
   --components--button-tertiary-border: var(--colors--gray-dark-mode--700);
 
   /* Add to figma */
-  --components--cursor-bg: var(--colors--gray-dark-mode--200);
-  --components--cursor-text: var(--colors--gray-dark-mode--700);
+  --components--cursor-bg: var(--colors--gray-dark-mode--100);
+  --components--cursor-text: var(--colors--gray-dark-mode--100);
   --components--cursor-border: var(--colors--gray-dark-mode--400);
 
   /* --component-colors-components-application-navigation-nav-item-button-icon-fg: var(
@@ -539,4 +539,33 @@
   --component-colors-components-buttons-tertiary-error-button-tertiary-error-fg_hover: var(
     --colors-error-200
   ); */
+}
+
+body {
+  /* transition: background-color 0.5s ease-in-out; */
+  /* transition: color 0.35s ease-in-out; */
+}
+
+[data-theme='yellow'] {
+  --colors--background--bg-primary: #d6b446;
+}
+
+[data-theme='green'] {
+  --colors--background--bg-primary: #416b60;
+}
+
+[data-theme='acid'] {
+  --colors--background--bg-primary: #d3fd51;
+}
+
+[data-theme='nude'] {
+  --colors--background--bg-primary: #ffddc4;
+}
+
+[data-theme='red'] {
+  --colors--background--bg-primary: #f25457;
+}
+
+[data-theme='turquoise'] {
+  --colors--background--bg-primary: #47b089;
 }

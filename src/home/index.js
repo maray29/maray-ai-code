@@ -13,6 +13,7 @@ import {
   animateCursorElements,
   animateFadeIn,
   animateNavDropdown,
+  animateProjectColorMode,
   animateText,
   createTestimonialComponent,
 } from '../animations/animations';
@@ -98,6 +99,7 @@ class App {
     animateFadeInScrub('[data-animation="fade-in-scrub"]');
     animateProjectsParallax('[data-element="project"]');
     animateNavDropdown();
+    animateProjectColorMode(this.stage);
   }
 
   createTestimonialComponent() {
@@ -113,6 +115,7 @@ class App {
     let isCollapsed = false;
     gsap.to(this.DOM.navigationComponent, {
       width: '3rem',
+      backgroundColor: 'transparent',
       scrollTrigger: {
         trigger: this.DOM.homeHeader,
         start: 'bottom center',
@@ -126,6 +129,7 @@ class App {
       if (isCollapsed) {
         gsap.to(this.DOM.navigationComponent, {
           width: 'auto',
+          backgroundColor: 'var(--colors--background--bg-primary)',
         });
       }
     });
@@ -135,6 +139,7 @@ class App {
         gsap.to(this.DOM.navigationComponent, {
           width: '3rem',
           delay: 0.25,
+          backgroundColor: 'transparent',
         });
       }
     });

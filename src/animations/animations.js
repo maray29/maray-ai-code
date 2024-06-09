@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Swiper from 'swiper';
 
+import updatePortfolioPage from '$utils/changeTheme';
 import { isMobileDevice, isTouchDevice } from '$utils/isMobile';
 
 export function animateCursorElements(selectors) {
@@ -27,15 +28,18 @@ export function animateCursorElements(selectors) {
 
       cursorInner.classList.add('is-active');
 
+      console.log('active');
+
       gsap.to(cursorInner, {
         width: textWidth + 20,
         height: textHeight + 10,
         duration: 0.35,
+        borderRadius: 0,
       });
 
       gsap.to(p, {
         autoAlpha: 1,
-        delay: 0.1,
+        delay: 0.25,
       });
     });
 
@@ -45,6 +49,7 @@ export function animateCursorElements(selectors) {
       gsap.to(cursorInner, {
         width: '1rem',
         height: '1rem',
+        borderRadius: 100,
         duration: 0.35,
       });
     });
@@ -299,4 +304,47 @@ export function animateNavDropdown() {
       });
     });
   });
+}
+
+export function animateProjectColorMode(stage) {
+  // Select all project elements with data-element="project"
+  const projectElements = document.querySelectorAll('[data-element="project"]');
+  // Iterate through each project element
+  projectElements.forEach((project) => {
+    // Extract the data-color-mode value
+    const colorMode = project.getAttribute('data-color-mode');
+
+    // Add mouseenter event listener
+    project.addEventListener('mouseenter', () => {
+      updateSphereColor('light-mode', stage);
+      document.body.setAttribute('data-theme', colorMode);
+    });
+
+    // Add mouseout event listener
+    project.addEventListener('mouseleave', () => {
+      // Retrieve the original theme from localStorage
+      const originalTheme = localStorage.getItem('theme');
+
+      // Reset the html/body data-theme attribute to the original value
+      if (originalTheme) {
+        // document.documentElement.setAttribute('data-theme', originalTheme);
+        document.body.setAttribute('data-theme', originalTheme);
+
+        updateSphereColor(originalTheme, stage);
+      }
+    });
+  });
+}
+
+function updateSphereColor(theme, stage) {
+  const isLightMode = theme === 'light-mode';
+  stage.sphere.updateParticleProperties(
+    isLightMode ? 0xe6e6e6 : 0x2e2e2e,
+    isLightMode ? 2 : 4,
+    isLightMode ? 6 : 12
+  );
+  if (stage.effect1) {
+    stage.updateAberrationShader(isLightMode ? 0.001 : 0.35);
+  }
+  stage.sphere.toggleBlendingMode();
 }
