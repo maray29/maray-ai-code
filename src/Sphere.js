@@ -39,7 +39,8 @@ export default class Sphere extends THREE.Object3D {
         r: color.r,
         g: color.g,
         b: color.b,
-        duration: 0.5,
+        duration: 1,
+        ease: 'power4.out',
       });
     }
 
