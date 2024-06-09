@@ -108,7 +108,7 @@ export function animateText(selector) {
       ease: 'power.out4',
       scrollTrigger: {
         trigger: el,
-        start: 'top 60%',
+        start: 'top 70%',
         once: true,
       },
     });
@@ -143,7 +143,7 @@ export function animateFadeIn(selector) {
   });
 
   ScrollTrigger.batch(elements, {
-    start: 'top 60%',
+    start: 'top 70%',
     once: true,
     onEnter: (batch) => {
       batch.forEach((el) => {

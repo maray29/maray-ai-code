@@ -1,5 +1,29 @@
 # @finsweet/developer-starter
 
+## 3.6.5
+
+### Patch Changes
+
+- 218fabbf753dab894a86907d7ff5e78fa17fe4b0: scrolltrigger start adjustment
+
+## 3.6.4
+
+### Patch Changes
+
+- b6ea5bf7983ebab6ab87e79f4ba7cb4b69fb2ced: particle color change
+
+## 3.6.3
+
+### Patch Changes
+
+- 617c34386724c6d4003f67d56f5be9e24459cb79: color changes
+
+## 3.6.2
+
+### Patch Changes
+
+- 4c5edc29b576b7b72bf71b9c280b101dc859ab95: minor bug
+
 ## 3.6.1
 
 ### Patch Changes

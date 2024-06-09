@@ -391,7 +391,7 @@ export default class Stage {
         particleMin: 4,
         particleMax: 12,
         blendingMode: THREE.AdditiveBlending,
-        color: 0x2e2e2e,
+        color: 0x464646,
       });
     }
 
