@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.7.1
+
+### Patch Changes
+
+- 4b731d5ada514d66e9bf27b2224efb3f2daf78ec: fixed sphere particles colors
+
 ## 3.7.0
 
 ### Minor Changes
