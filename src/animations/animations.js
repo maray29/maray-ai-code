@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Swiper from 'swiper';
 
-import updatePortfolioPage from '$utils/changeTheme';
+import detectDevice from '$utils/detectDevice';
 import { isMobileDevice, isTouchDevice } from '$utils/isMobile';
 
 export function animateCursorElements(selectors) {
@@ -310,6 +310,10 @@ export function animateProjectColorMode(stage) {
   // Select all project elements with data-element="project"
   const projectElements = document.querySelectorAll('[data-element="project"]');
   // Iterate through each project element
+
+  const { isTouchDevice } = detectDevice();
+  if (isTouchDevice) return;
+
   projectElements.forEach((project) => {
     // Extract the data-color-mode value
     const colorMode = project.getAttribute('data-color-mode');
