@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.7.3
+
+### Patch Changes
+
+- 3270839c95778d930f2d3295080fe5ae5b98d252: color modes
+
 ## 3.7.2
 
 ### Patch Changes
