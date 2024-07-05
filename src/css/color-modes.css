@@ -552,6 +552,9 @@ body {
 
 [data-theme='green'] {
   --colors--background--bg-primary: #416b60;
+  --colors--text--text-primary: var(--colors--gray-dark-mode--200);
+  --colors--text--text-secondary_hover: var(--colors--gray-dark-mode--50);
+  --colors--foreground--fg-secondary: var(--colors--gray-dark-mode--300);
 }
 
 [data-theme='acid'] {

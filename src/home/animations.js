@@ -194,7 +194,7 @@ export function killScrollTriggers() {
   ScrollTrigger.getAll().forEach((st) => st.kill());
 }
 
-function nestLettersDivs(text) {
+export function nestLettersDivs(text) {
   text.chars.forEach((el) => {
     const wrapper = document.createElement('div');
     wrapper.classList.add('char-mask');

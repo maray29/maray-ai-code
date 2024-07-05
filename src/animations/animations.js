@@ -318,9 +318,14 @@ export function animateProjectColorMode(stage) {
     // Extract the data-color-mode value
     const colorMode = project.getAttribute('data-color-mode');
 
+    if (!colorMode) return;
+
     // Add mouseenter event listener
     project.addEventListener('mouseenter', () => {
-      updateSphereColor('light-mode', stage);
+      if (colorMode !== 'dark-mode') {
+        updateSphereColor('light-mode', stage);
+      }
+      // updateSphereColor('light-mode', stage);
       document.body.setAttribute('data-theme', colorMode);
     });
 
@@ -334,7 +339,9 @@ export function animateProjectColorMode(stage) {
         // document.documentElement.setAttribute('data-theme', originalTheme);
         document.body.setAttribute('data-theme', originalTheme);
 
-        updateSphereColor(originalTheme, stage);
+        if (colorMode !== 'dark-mode') {
+          updateSphereColor(originalTheme, stage);
+        }
       }
     });
   });
