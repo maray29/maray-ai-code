@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.7.2
+
+### Patch Changes
+
+- 4d0faf3c4e2985bf6d64254903154e77eebb0e1c: removed project hover animation from touch devices
+
 ## 3.7.1
 
 ### Patch Changes
