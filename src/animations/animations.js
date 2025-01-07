@@ -346,6 +346,9 @@ export function animateProjectColorMode(stage) {
     });
   });
 }
+export function animatePageFadeIn() {
+  gsap.to('.page-wrapper', { autoAlpha: 1, duration: 1 });
+}
 
 function updateSphereColor(theme, stage) {
   const isLightMode = theme === 'light-mode';

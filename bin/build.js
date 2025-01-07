@@ -22,6 +22,7 @@ const ENTRY_POINTS = [
   'src/legal/index.js',
   'src/smb/index.js',
   'src/life-os/index.js',
+  'src/project/index.js',
 ];
 
 // Config dev serving
