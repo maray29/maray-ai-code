@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.8.0
+
+### Minor Changes
+
+- b648eae9c4497614eed25d01d373eee01f28bf50: new project page
+
 ## 3.7.3
 
 ### Patch Changes
