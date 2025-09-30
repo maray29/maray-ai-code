@@ -1,5 +1,15 @@
 # @finsweet/developer-starter
 
+## 3.9.0
+
+### Minor Changes
+
+- c98d31be8fe781ddf3e4e0c5d8fb94b495ace5f2: Add h3 to TOC and fix console errors.
+
+### Patch Changes
+
+- 2a1eb10243ada59b8427ea3d64e3ce9e231d8ad6: Update lock file
+
 ## 3.8.0
 
 ### Minor Changes
