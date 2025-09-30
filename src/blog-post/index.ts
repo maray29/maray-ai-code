@@ -162,27 +162,41 @@ window.Webflow.push(() => {
         document.querySelectorAll('.active').forEach((z) => {
           z.classList.remove('active');
         });
-        document.querySelector(`a[href="#${id}"]`).classList.add('active');
+        const activeLink = document.querySelector(`a[href="#${id}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
+        }
       }
     });
   });
 
   // TOC
-  document.querySelectorAll('#content h2').forEach(function (heading, i) {
-    // runs a function for all h2 elements inside your rich text element
+  document.querySelectorAll('#content h2, #content h3').forEach(function (heading, i) {
+    // runs a function for all h2 and h3 elements inside your rich text element
     observer.observe(heading);
-    heading.setAttribute('id', 'toc-' + i); // gives each h2 a unique id
-    const item = document.createElement('a'); // creates an anchor element called "item" for each h2
+    const id = 'toc-' + i;
+    heading.setAttribute('id', id); // gives each heading a unique id
+    const item = document.createElement('a'); // creates an anchor element called "item" for each heading
     item.innerHTML = heading.innerHTML; // gives each item the text of the corresponding heading
-    item.setAttribute('class', 'tocitem'); // gives each item the correct class
-    item.setAttribute('href', '#toc-' + i); // gives each item the correct anchor link
-    document.querySelector('#toc-items').appendChild(item); // places each item inside the Table of Contents div
+    item.setAttribute('href', '#' + id); // gives each item the correct anchor link
+
+    if (heading.tagName === 'H2') {
+      item.setAttribute('class', 'tocitem tocitem-h2'); // gives h2 items a specific class
+    } else if (heading.tagName === 'H3') {
+      item.setAttribute('class', 'tocitem tocitem-h3'); // gives h3 items a specific class
+    }
+    const tocItemsContainer = document.querySelector('#toc-items');
+    if (tocItemsContainer) {
+      tocItemsContainer.appendChild(item); // places each item inside the Table of Contents div
+    }
   });
 
   /* Set Footer Copyright Year */
   function setCopyrightYear() {
     const copyRightYear = document.querySelector('[am-element="copyright-year"]');
-    copyRightYear.textContent = new Date().getFullYear();
+    if (copyRightYear) {
+      copyRightYear.textContent = new Date().getFullYear().toString();
+    }
   }
 
   setCopyrightYear();

@@ -58,6 +58,7 @@ export function animateCursorElements(selectors) {
 
 export function animateCursor(cursor, mouse, speed = 0.1) {
   const cursorEl = document.querySelector(cursor);
+  if (!cursorEl) return;
   //   console.log(cursorEl);
   if (!isMobileDevice() && !isTouchDevice()) {
     gsap.set(cursorEl, {
@@ -238,6 +239,8 @@ export function createTestimonialComponent() {
 export function animateNavDropdown() {
   // const dropdown = document.querySelector('[data-element="nav-dropdown-webdesign"]');
   const dropdown = document.querySelector('[data-element="nav-dropdown"]');
+  if (!dropdown) return;
+
   const dropdownList = dropdown.querySelector('[data-element="nav-dropdown-list"]');
   const dropdownArrow = dropdown.querySelector('[data-element="nav-dropdown-arrow"]');
   if (!dropdown) return;
