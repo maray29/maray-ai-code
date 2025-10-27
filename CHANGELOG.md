@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.10.0
+
+### Minor Changes
+
+- 7f5bcfea407a66c080339d9636c96dd7dded458c: Refactor code, simplify cursor animation selector logic
+
 ## 3.9.0
 
 ### Minor Changes
