@@ -6,11 +6,11 @@ import Swiper from 'swiper';
 import detectDevice from '$utils/detectDevice';
 import { isMobileDevice, isTouchDevice } from '$utils/isMobile';
 
-export function animateCursorElements(selectors) {
-  const elements = selectors.flatMap((selector) => [...document.querySelectorAll(selector)]);
+export function animateCursorElements() {
+  const elements = [...document.querySelectorAll('[data-text]')];
+  const cursorInner = document.querySelector('.cursor_inner');
 
   elements.forEach((el) => {
-    const cursorInner = document.querySelector('.cursor_inner');
     const text = el.getAttribute('data-text');
 
     el.addEventListener('mouseenter', () => {
@@ -27,8 +27,6 @@ export function animateCursorElements(selectors) {
       const textHeight = p.getBoundingClientRect().height;
 
       cursorInner.classList.add('is-active');
-
-      console.log('active');
 
       gsap.to(cursorInner, {
         width: textWidth + 20,
@@ -56,15 +54,9 @@ export function animateCursorElements(selectors) {
   });
 }
 
-export function animateCursor(cursor, mouse, speed = 0.1) {
-  const cursorEl = document.querySelector(cursor);
+export function animateCursor(mouse, speed = 0.1) {
+  const cursorEl = document.querySelector('.cursor_inner');
   if (!cursorEl) return;
-  //   console.log(cursorEl);
-  if (!isMobileDevice() && !isTouchDevice()) {
-    gsap.set(cursorEl, {
-      //   autoAlpha: 0,
-    });
-  }
 
   const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   // Use a local mouse variable if it's not passed as an argument
@@ -243,7 +235,7 @@ export function animateNavDropdown() {
 
   const dropdownList = dropdown.querySelector('[data-element="nav-dropdown-list"]');
   const dropdownArrow = dropdown.querySelector('[data-element="nav-dropdown-arrow"]');
-  if (!dropdown) return;
+
   const dropdownLinks = dropdown.querySelectorAll('[data-element="nav-dropdown-link"]');
   const dropdownContents = dropdown.querySelectorAll('[data-element="nav-dropdown-content"]');
   const dropdownArticles = dropdown.querySelectorAll('[data-element="nav-dropdown-articles"]');

@@ -130,13 +130,7 @@ window.addEventListener('DOMContentLoaded', () => {
   createLoadingAnimation();
 
   changeTheme("[data-element='theme-toggle']");
-  animateCursor('.cursor_inner');
-  animateCursorElements([
-    '[data-element="article-card"]',
-    '[data-element="project"]',
-    '[data-element="testimonial-project"]',
-    '[data-element="nav-dropdown-link"]',
-    '[data-element="nav-articles-item"]',
-  ]);
+  animateCursor();
+  animateCursorElements();
   animateNavDropdown();
 });

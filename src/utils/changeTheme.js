@@ -107,21 +107,21 @@ function animateColorTransitions(colorThemes, currentTheme) {
   // }
   triggerElements.forEach((element, index) => {
     let theme = element.getAttribute('data-animate-to');
-    console.log('Theme to animate to: ', theme);
-    console.log('Current theme: ', currentTheme);
+    // console.log('Theme to animate to: ', theme);
+    // console.log('Current theme: ', currentTheme);
 
     if (theme === currentTheme) {
       // Find a different theme
       for (let potentialTheme in colorThemes) {
         if (potentialTheme !== currentTheme) {
           theme = potentialTheme;
-          console.log('Switched to: ', theme);
+          // console.log('Switched to: ', theme);
           break;
         }
       }
     } else if (theme === 'current-theme') {
       theme = currentTheme;
-      console.log('Switched to current theme: ', theme);
+      // console.log('Switched to current theme: ', theme);
     }
 
     const isLastElement = index === triggerElements.length - 1;
@@ -150,7 +150,7 @@ function animateColorTransitions(colorThemes, currentTheme) {
         colorScroll.play();
       },
       onEnterBack: () => {
-        console.log('onEnterBack');
+        // console.log('onEnterBack');
       },
       onLeave: () => {
         // console.log('onLeave');
@@ -161,7 +161,7 @@ function animateColorTransitions(colorThemes, currentTheme) {
         }
       },
       onLeaveBack: () => {
-        console.log('onLeaveBack');
+        // console.log('onLeaveBack');
         colorScroll.reverse().then(() => {
           if (index === 0) {
             gsap.set('body', {

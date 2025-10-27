@@ -112,20 +112,9 @@ window.addEventListener('DOMContentLoaded', () => {
     lenis.raf(time * 1000);
   });
 
-  // const mouse = {
-  //   x: 0,
-  //   y: 0,
-  // };
-
   animateHeader();
-  animateCursor('.cursor_inner');
-  animateCursorElements([
-    '[data-element="article-card"]',
-    '[data-element="project"]',
-    '[data-element="testimonial-project"]',
-    '[data-element="nav-dropdown-link"]',
-    '[data-element="nav-articles-item"]',
-  ]);
+  animateCursor();
+  animateCursorElements();
   animateText('[data-element="text"]');
   animateFadeIn('[data-animation="fade-in"]');
   changeTheme("[data-element='theme-toggle']");

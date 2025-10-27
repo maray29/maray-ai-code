@@ -18,12 +18,8 @@ window.Webflow.push(() => {
 
   createLenis();
   changeTheme("[data-element='theme-toggle']");
-  animateCursor('.cursor_inner');
-  animateCursorElements([
-    '[data-element="article-card"]',
-    '[data-element="nav-dropdown-link"]',
-    '[data-element="nav-articles-item"]',
-  ]);
+  animateCursor();
+  animateCursorElements();
   animateNavDropdown();
 
   function loadGist(el) {
@@ -127,13 +123,6 @@ window.Webflow.push(() => {
 
     el.innerHTML = html;
   });
-  // syntax-highlight elements that contain a string like
-  //   -- CODE language-foo optional additional classes --
-  // if we're working with a raw webflow rtf field, we want
-  // to grab matching <p> elements. if we're working with
-  // html that we've run through showdown, we want to grab
-  // matching <code> elements
-  //   let snips = $('p:contains("CODE"),code:contains("CODE")');
 
   function contains(selector, text) {
     const elements = document.querySelectorAll(selector);

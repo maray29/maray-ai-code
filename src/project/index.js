@@ -13,6 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
   createLenis();
   animatePageFadeIn();
   animateNavDropdown();
-  animateCursor('.cursor_inner');
+  animateCursor();
   changeTheme("[data-element='theme-toggle']");
 });
