@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.11.0
+
+### Minor Changes
+
+- 28aafbe8197eb6874a5eabf086871ee68eaf1f2f: Refactored code and improved animations code.
+
 ## 3.10.0
 
 ### Minor Changes
