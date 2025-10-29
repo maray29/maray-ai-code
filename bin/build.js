@@ -24,6 +24,8 @@ const ENTRY_POINTS = [
   'src/life-os/index.js',
   'src/project/index.js',
   'src/about/index.js',
+  'src/solo/index.js',
+  'src/index.js',
 ];
 
 // Config dev serving

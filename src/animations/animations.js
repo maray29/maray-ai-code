@@ -1,10 +1,11 @@
 import gsap from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import Swiper from 'swiper';
 
 import detectDevice from '$utils/detectDevice';
-import { isMobileDevice, isTouchDevice } from '$utils/isMobile';
+import { isMobileDevice } from '$utils/isMobile';
 
 export function animateCursorElements() {
   const elements = [...document.querySelectorAll('[data-text]')];
@@ -83,8 +84,8 @@ export function animateCursor(mouse, speed = 0.1) {
   });
 }
 
-export function animateText(selector) {
-  const textElements = [...document.querySelectorAll(selector)];
+export function animateText() {
+  const textElements = [...document.querySelectorAll('[data-element="text"]')];
 
   textElements.forEach((el) => {
     function splitText(el) {
@@ -145,7 +146,7 @@ export function animateFadeIn(selector) {
           // animate children of the element
           gsap.to(el.children, {
             autoAlpha: 1,
-            duration: 1,
+            duration: 0.75,
             yPercent: 0,
             stagger: 0.1,
           });
@@ -153,7 +154,7 @@ export function animateFadeIn(selector) {
           // animate elements
           gsap.to(batch, {
             autoAlpha: 1,
-            duration: 1,
+            duration: 0.75,
             yPercent: 0,
             stagger: 0.1,
           });
@@ -229,73 +230,68 @@ export function createTestimonialComponent() {
 }
 
 export function animateNavDropdown() {
-  // const dropdown = document.querySelector('[data-element="nav-dropdown-webdesign"]');
-  const dropdown = document.querySelector('[data-element="nav-dropdown"]');
-  if (!dropdown) return;
+  const dropdowns = document.querySelectorAll('[data-element="nav-dropdown"]');
+  if (dropdowns.length === 0) return;
 
-  const dropdownList = dropdown.querySelector('[data-element="nav-dropdown-list"]');
-  const dropdownArrow = dropdown.querySelector('[data-element="nav-dropdown-arrow"]');
+  dropdowns.forEach((dropdown) => {
+    const dropdownList = dropdown.querySelector('[data-element="nav-dropdown-list"]');
+    const dropdownArrow = dropdown.querySelector('[data-element="nav-dropdown-arrow"]');
 
-  const dropdownLinks = dropdown.querySelectorAll('[data-element="nav-dropdown-link"]');
-  const dropdownContents = dropdown.querySelectorAll('[data-element="nav-dropdown-content"]');
-  const dropdownArticles = dropdown.querySelectorAll('[data-element="nav-dropdown-articles"]');
+    const dropdownLinks = dropdown.querySelectorAll('[data-element="nav-dropdown-link"]');
+    const dropdownContents = dropdown.querySelectorAll('[data-element="nav-dropdown-content"]');
+    const dropdownArticles = dropdown.querySelectorAll('[data-element="nav-dropdown-articles"]');
 
-  const duration = 0.35;
-  let mouseLeaveTimeout;
+    const duration = 0.35;
+    let mouseLeaveTimeout;
 
-  dropdown.addEventListener('mouseenter', () => {
-    clearTimeout(mouseLeaveTimeout);
-    gsap.set(dropdownList, { display: 'flex' });
-    gsap.to(dropdownList, { autoAlpha: 1, duration: duration });
-    gsap.to(dropdownArrow, { rotateZ: 180, duration: duration });
-    gsap.to('.main-wrapper, .navigation_component', {
-      filter: 'blur(5px)',
+    dropdown.addEventListener('mouseenter', () => {
+      clearTimeout(mouseLeaveTimeout);
+      gsap.set(dropdownList, { display: 'flex' });
+      gsap.to(dropdownList, { autoAlpha: 1, duration: duration });
+      gsap.to(dropdownArrow, { rotateZ: 180, duration: duration });
     });
-  });
 
-  dropdown.addEventListener('mouseleave', () => {
-    mouseLeaveTimeout = setTimeout(() => {
-      gsap.to(dropdownList, { autoAlpha: 0, duration: duration });
-      gsap.to(dropdownArrow, { rotateZ: 0, duration: duration });
-      gsap.set(dropdownList, { display: 'none', delay: duration });
-      gsap.to('.main-wrapper, .navigation_component', {
-        filter: 'blur(0px)',
-      });
-    }, 150);
-  });
+    dropdown.addEventListener('mouseleave', () => {
+      mouseLeaveTimeout = setTimeout(() => {
+        gsap.to(dropdownList, { autoAlpha: 0, duration: duration });
+        gsap.to(dropdownArrow, { rotateZ: 0, duration: duration });
+        gsap.set(dropdownList, { display: 'none', delay: duration });
+      }, 150);
+    });
 
-  dropdownLinks.forEach((link) => {
-    const contentType = link.getAttribute('data-type');
-    link.addEventListener('mouseenter', () => {
-      dropdownContents.forEach((content) => {
-        if (contentType !== content.getAttribute('data-type')) {
-          gsap.to(content, { autoAlpha: 0, duration: duration });
-          gsap.set(content, {
-            display: 'none',
-            delay: 0.2,
-          });
-        } else {
-          gsap.set(content, {
-            display: 'flex',
-            delay: 0.2,
-          });
-          gsap.to(content, { autoAlpha: 1, duration: duration, delay: duration });
-        }
-      });
-      dropdownArticles.forEach((articles) => {
-        if (contentType !== articles.getAttribute('data-type')) {
-          gsap.to(articles, { autoAlpha: 0, duration: duration });
-          gsap.set(articles, {
-            display: 'none',
-            delay: 0.2,
-          });
-        } else {
-          gsap.set(articles, {
-            display: 'block',
-            delay: 0.2,
-          });
-          gsap.to(articles, { autoAlpha: 1, duration: duration, delay: duration });
-        }
+    dropdownLinks.forEach((link) => {
+      const contentType = link.getAttribute('data-type');
+      link.addEventListener('mouseenter', () => {
+        dropdownContents.forEach((content) => {
+          if (contentType !== content.getAttribute('data-type')) {
+            gsap.to(content, { autoAlpha: 0, duration: duration });
+            gsap.set(content, {
+              display: 'none',
+              delay: 0.2,
+            });
+          } else {
+            gsap.set(content, {
+              display: 'flex',
+              delay: 0.2,
+            });
+            gsap.to(content, { autoAlpha: 1, duration: duration, delay: duration });
+          }
+        });
+        dropdownArticles.forEach((articles) => {
+          if (contentType !== articles.getAttribute('data-type')) {
+            gsap.to(articles, { autoAlpha: 0, duration: duration });
+            gsap.set(articles, {
+              display: 'none',
+              delay: 0.2,
+            });
+          } else {
+            gsap.set(articles, {
+              display: 'block',
+              delay: 0.2,
+            });
+            gsap.to(articles, { autoAlpha: 1, duration: duration, delay: duration });
+          }
+        });
       });
     });
   });
@@ -356,4 +352,194 @@ function updateSphereColor(theme, stage) {
     stage.updateAberrationShader(isLightMode ? 0.001 : 0.35);
   }
   stage.sphere.toggleBlendingMode();
+}
+
+export function animatePageHeader() {
+  gsap.registerPlugin(CustomEase);
+  // const logo = document.querySelector('.logo_wrap');
+  const headerCta = document.querySelectorAll('[data-element="home-header-cta"]');
+  const nav = document.querySelector('[data-element="nav"]');
+  const underline = [...document.querySelectorAll('[data-element="underline"]')];
+  const divider = document.querySelector('.divider');
+  const headerText = [...document.querySelectorAll('[data-animation="header-text"]')];
+  const logoLetters = document.querySelectorAll('.logo-letter');
+  const navigationComponent = document.querySelector('[data-element="navigation-component"]');
+
+  const angle = -30;
+  const duration = 1.5;
+  const xDistance = -60;
+
+  const tl = gsap.timeline();
+
+  const ease = 'power4.out';
+
+  tl.to('.page-wrapper', { autoAlpha: 1 })
+
+    .from(logoLetters, {
+      xPercent: xDistance,
+      rotationY: angle,
+      autoAlpha: 0,
+      stagger: 0.05,
+      duration: duration,
+      ease: ease,
+    })
+    .from(
+      underline,
+      {
+        scaleX: 0,
+        duration: 1.25,
+        autoAlpha: 0,
+        delay: 0.25,
+        ease: ease,
+      },
+      '<'
+    )
+    .from(
+      divider,
+      {
+        autoAlpha: 0,
+      },
+      '<0.25'
+    )
+
+    .from(
+      headerText,
+      {
+        stagger: 0.2,
+        duration: 1.5,
+        autoAlpha: 0,
+        ease: ease,
+      },
+      '<0.25'
+    )
+
+    .from(
+      [nav, headerCta],
+      {
+        autoAlpha: 0,
+        ease: ease,
+      },
+      '<0.25'
+    )
+    .from(
+      navigationComponent,
+      {
+        autoAlpha: 0,
+      },
+      '<0.25'
+    );
+}
+
+export function animateElementsParallax(selector) {
+  const parallaxAnimationItems = [...document.querySelectorAll(selector)];
+
+  parallaxAnimationItems.forEach((item) => {
+    const speed = item.getAttribute('data-speed');
+    const scale = item.getAttribute('data-scale');
+    const end = item.getAttribute('data-end');
+    gsap.from(item, {
+      yPercent: speed ? `${speed * 2}` : 20,
+      scale: scale ? 0.95 : 1.0,
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 100%',
+        end: `top ${end ? end : 0}%`,
+        scrub: true,
+      },
+    });
+  });
+}
+
+export function animateProcessText(selector) {
+  const processText = [...document.querySelectorAll(selector)];
+
+  processText.forEach((text) => {
+    // console.log(text);
+
+    const triggerElement = text;
+    const targetElement = new SplitType(text, {
+      types: `words`,
+    });
+
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: '0% 90%',
+        end: '100% 50%',
+        scrub: 0.5,
+      },
+    });
+
+    tl.fromTo(
+      targetElement.words,
+      {
+        opacity: 0.25,
+      },
+      {
+        opacity: 1,
+        stagger: 0.15,
+        duration: 0.75,
+        ease: 'none',
+        delay: 0.25,
+      }
+    );
+  });
+}
+
+export function animateFadeInScrub(selector) {
+  const elements = [...document.querySelectorAll(selector)];
+
+  elements.forEach((el) => {
+    gsap.set(el, {
+      autoAlpha: 0.2,
+    });
+    gsap.to(el, {
+      autoAlpha: 1,
+      stagger: 0.15,
+      duration: 0.75,
+      ease: 'power.out4',
+      delay: 0.25,
+      scrollTrigger: {
+        trigger: el,
+        start: '0% 90%',
+        end: '100% 50%',
+        scrub: 1,
+        // once: true,
+      },
+    });
+  });
+}
+
+export function animateProjectsParallax(selector) {
+  const projects = [...document.querySelectorAll(selector)];
+
+  projects.forEach((project) => {
+    const speed = project.getAttribute('data-speed');
+    gsap.from(project, {
+      yPercent: `+${isMobileDevice() ? 0 : speed}`,
+      scrollTrigger: {
+        trigger: project,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+        // markers: true,
+      },
+    });
+  });
+}
+
+export function killScrollTriggers() {
+  ScrollTrigger.getAll().forEach((st) => st.kill());
+}
+
+export function nestLettersDivs(text) {
+  text.chars.forEach((el) => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('char-mask');
+
+    // insert wrapper before el in the DOM tree
+    el.parentNode.insertBefore(wrapper, el);
+    // move el into wrapper
+    wrapper.appendChild(el);
+  });
 }

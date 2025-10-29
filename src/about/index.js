@@ -6,8 +6,6 @@ import gsap from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import changeTheme from '$utils/changeTheme';
-
 import {
   animateCursor,
   animateCursorElements,
@@ -16,14 +14,16 @@ import {
   animateProjectColorMode,
   animateText,
   createTestimonialComponent,
-} from '../animations/animations';
-import Stage from '../Stage.js';
+} from '$animations/animations';
 import {
   animateFadeInScrub,
   animatePageHeader,
   animateProcessText,
   animateProjectsParallax,
-} from './animations.js';
+} from '$animations/animations';
+import changeTheme from '$utils/changeTheme';
+
+import Stage from '../Stage.js';
 
 class App {
   lenis;
@@ -88,7 +88,7 @@ class App {
     animateCursorElements();
     animatePageHeader();
     animateFadeIn('[data-animation="fade-in"]');
-    animateText('[data-animation="paragraph"]');
+    animateText();
     animateProcessText('[data-animation="words"]');
     animateFadeInScrub('[data-animation="fade-in-scrub"]');
     animateProjectsParallax('[data-element="project"]');
