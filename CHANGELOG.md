@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.8
+
+### Patch Changes
+
+- 63af3dfbcc609f91038dcd16978a255e035da853: Update GH action
+
 ## 3.12.7
 
 ### Patch Changes
