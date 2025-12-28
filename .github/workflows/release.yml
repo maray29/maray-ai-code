@@ -45,11 +45,16 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
 
       - name: Auto-merge Version Packages PR
-        if: steps.changesets-production.outputs.pullRequestNumber
+        if: '${{ steps.changesets-production.outputs.pullRequestNumber }}'
         run: |
           gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --squash --delete-branch
           git pull origin master
           pnpm release
+          git push --tags
+
+          # Create GitHub Release from the new tag
+          NEW_TAG=$(git describe --tags --abbrev=0)
+          gh release create "$NEW_TAG" --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
