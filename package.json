@@ -5,7 +5,7 @@
   "homepage": "https://github.com/maray29/maray-ai-code#readme",
   "license": "ISC",
   "keywords": [],
-  "packageManager": "pnpm@9.1.2",
+  "packageManager": "pnpm@10.26.2",
   "author": {
     "name": "maray",
     "url": "https://www.maray.ai/"
@@ -68,6 +68,6 @@
     "tweakpane": "^3.1.10"
   },
   "engines": {
-    "pnpm": ">=8"
+    "pnpm": ">=10"
   }
 }
