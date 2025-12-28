@@ -11,6 +11,7 @@ import {
   animateFadeIn,
   animateNavDropdown,
   animateText,
+  animateLightBeams,
 } from '$animations/animations';
 import {
   animateFadeInScrub,
@@ -40,4 +41,5 @@ window.addEventListener('DOMContentLoaded', () => {
   animateProcessText('[data-animation="words"]');
   animateFadeInScrub('[data-animation="fade-in-scrub"]');
   animateProjectsParallax('[data-element="project"]');
+  animateLightBeams();
 });

@@ -543,3 +543,35 @@ export function nestLettersDivs(text) {
     wrapper.appendChild(el);
   });
 }
+
+export function animateLightBeams() {
+  const beams = gsap.utils.toArray('[data-element="svg-light-beams"] svg g rect');
+
+  // Start fully visible
+  gsap.set(beams, { attr: { 'fill-opacity': 1 } });
+
+  beams.forEach((beam) => {
+    // Spread delays across ~10 seconds so only 3-5 animate at once
+    const delay = Math.random() * 40;
+    const duration = 10 + Math.random() * 1;
+
+    gsap.to(beam, {
+      attr: { 'fill-opacity': 'random(0.1, .5)' },
+      attr: { width: 0 },
+      duration: duration,
+      delay: delay,
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+    });
+
+    gsap.to(beam, {
+      y: 'random(0, 50)',
+      ease: 'sine.inOut',
+      duration: 3,
+      repeat: -1,
+      delay: 'random(0.25, 1)',
+      yoyo: true,
+    });
+  });
+}
