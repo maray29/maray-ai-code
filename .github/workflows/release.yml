@@ -46,6 +46,10 @@ jobs:
 
       - name: Auto-merge Version Packages PR
         if: steps.changesets-production.outputs.pullRequestNumber
-        run: gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --squash --delete-branch
+        run: |
+          gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --squash --delete-branch
+          git pull origin master
+          pnpm release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
