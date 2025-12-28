@@ -5,6 +5,7 @@
   "homepage": "https://github.com/maray29/maray-ai-code#readme",
   "license": "ISC",
   "keywords": [],
+  "packageManager": "pnpm@9.1.2",
   "author": {
     "name": "maray",
     "url": "https://www.maray.ai/"
