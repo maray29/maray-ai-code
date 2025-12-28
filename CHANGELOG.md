@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.0
+
+### Minor Changes
+
+- 00644f4d605b3b0cbd324d16db69bf2ee4b4dd66: Added svg light beams animation
+
 ## 3.11.0
 
 ### Minor Changes
