@@ -1,5 +1,12 @@
 # @finsweet/developer-starter
 
+## 3.12.2
+
+### Patch Changes
+
+- d19f3aa1e0e545b7255d5e546d7e779a9fdc5f48: Added "packageManager" to package.json
+- d25d944bd8bffda114d688f31047bb3221a8c3f4: Update github action to work with trusted publishing.
+
 ## 3.12.1
 
 ### Patch Changes
