@@ -544,6 +544,7 @@ export function nestLettersDivs(text) {
   });
 }
 
+// Animations for light beams in the background SVG
 export function animateLightBeams() {
   const beams = gsap.utils.toArray('[data-element="svg-light-beams"] svg g rect');
 
