@@ -547,6 +547,8 @@ export function nestLettersDivs(text) {
 export function animateLightBeams() {
   const beams = gsap.utils.toArray('[data-element="svg-light-beams"] svg g rect');
 
+  if (beams.length === 0) return;
+
   // Start fully visible
   gsap.set(beams, { attr: { 'fill-opacity': 1 } });
 
