@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.1
+
+### Patch Changes
+
+- cf30cb2f2d54c230828bab346f350e8ec298c546: Exit function when no element is on page
+
 ## 3.12.0
 
 ### Minor Changes
