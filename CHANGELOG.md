@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.3
+
+### Patch Changes
+
+- 84bfbc82fcab85f1d83eafe55d62ac6d3694825c: Bump pnpm version
+
 ## 3.12.2
 
 ### Patch Changes
