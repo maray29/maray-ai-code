@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.7
+
+### Patch Changes
+
+- bf0189c3b32f96a735b518c2f4af1a70f24180f5: Update changeset config
+
 ## 3.12.6
 
 ### Patch Changes
