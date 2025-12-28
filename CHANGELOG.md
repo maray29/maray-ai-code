@@ -1,5 +1,11 @@
 # @finsweet/developer-starter
 
+## 3.12.5
+
+### Patch Changes
+
+- 8a2e48ff118ae85280c94e5fdf8ac1383af46aca: Test auto merge
+
 ## 3.12.4
 
 ### Patch Changes
