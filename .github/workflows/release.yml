@@ -43,3 +43,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
+
+      - name: Auto-merge Version Packages PR
+        if: steps.changesets-production.outputs.pullRequestNumber
+        run: gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
