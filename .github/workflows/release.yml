@@ -46,6 +46,6 @@ jobs:
 
       - name: Auto-merge Version Packages PR
         if: steps.changesets-production.outputs.pullRequestNumber
-        run: gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --auto --squash
+        run: gh pr merge ${{ steps.changesets-production.outputs.pullRequestNumber }} --squash --delete-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
